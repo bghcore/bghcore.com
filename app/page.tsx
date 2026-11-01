@@ -90,12 +90,7 @@ export default function HomePage() {
       </PageSection>
 
       <PageSection id="about" label="About" title="I build outside of work, too">
-        <div className="grid max-w-3xl gap-8 sm:grid-cols-[11rem_1fr] sm:gap-10">
-          <Portrait sizes="(min-width: 640px) 11rem, 50vw" className="max-w-44" />
-          <div className="space-y-5 text-lg leading-relaxed text-pretty">
-            <p>{aboutParagraphs[4]}</p>
-          </div>
-        </div>
+        <p className="max-w-2xl text-lg leading-relaxed text-pretty">{aboutParagraphs[4]}</p>
         <Link href="/about/" className="mt-8 inline-flex items-center gap-1.5 text-sm font-medium text-accent hover:underline">
           More about me
         </Link>
@@ -117,8 +112,17 @@ function Hero() {
 
   return (
     <section aria-labelledby="hero-heading" className="mx-auto max-w-6xl px-4 pt-16 pb-20 sm:px-6 sm:pt-24 sm:pb-28">
-      <div className="grid gap-14 lg:grid-cols-12 lg:gap-8">
-        <div className="lg:col-span-8">
+      <div className="grid gap-10 lg:grid-cols-12 lg:gap-x-8 lg:gap-y-8">
+        {/* First in the DOM so phones see the photo before the headline; on desktop it tops the right column. */}
+        <div className="lg:col-span-4 lg:col-start-9 lg:row-start-1">
+          <Portrait
+            shape="square"
+            priority
+            sizes="(min-width: 1024px) 22rem, 9rem"
+            className="max-w-36 lg:max-w-none"
+          />
+        </div>
+        <div className="lg:col-span-8 lg:col-start-1 lg:row-span-2 lg:row-start-1 lg:self-center">
           <h1 id="hero-heading" className="font-mono text-sm text-muted">
             {site.name}
           </h1>
@@ -141,7 +145,7 @@ function Hero() {
             </Link>
           </div>
         </div>
-        <dl className="self-end border-t border-line text-sm lg:col-span-4">
+        <dl className="border-t border-line text-sm lg:col-span-4 lg:col-start-9 lg:row-start-2 lg:self-start">
           {facts.map((fact) => (
             <div key={fact.label} className="grid grid-cols-[4.5rem_1fr] gap-3 border-b border-line py-3">
               <dt className="font-mono text-xs leading-5 text-subtle">{fact.label}</dt>
