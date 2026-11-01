@@ -3,12 +3,12 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Privacy",
-  description: "What bghcore.com collects about visitors, which is almost nothing.",
+  description: "What bghcore.com collects about visitors: anonymous page views and nothing else.",
   alternates: { canonical: "/privacy/" },
   openGraph: { url: "/privacy/" },
 };
 
-// Keep this page in step with the site. If analytics, forms, or cookies are ever added, update it first.
+// Keep this page in step with the site. If tracking, forms, or cookies change, update it first.
 export default function PrivacyPage() {
   return (
     <article className="mx-auto max-w-2xl px-4 pt-16 pb-24 sm:px-6 sm:pt-24">
@@ -18,10 +18,21 @@ export default function PrivacyPage() {
 
       <div className="mt-10 space-y-8 leading-relaxed text-pretty">
         <section>
-          <h2 className="text-lg font-semibold">No accounts, cookies, or analytics</h2>
+          <h2 className="text-lg font-semibold">No accounts, forms, or cookies</h2>
           <p className="mt-2 text-muted">
-            This is a static personal site. It has no sign-in, no forms, no advertising, no analytics scripts, and it
-            sets no cookies.
+            This is a static personal site. It has no sign-in, no forms, and no advertising, and it sets no cookies.
+          </p>
+        </section>
+        <section>
+          <h2 className="text-lg font-semibold">Page-view analytics</h2>
+          <p className="mt-2 text-muted">
+            The site uses Vercel Web Analytics to count page views. It records which page was viewed, the referring
+            site, and general details like country, browser, and device type, so I can see which pages people read. It
+            uses no cookies and doesn&apos;t identify you across sites or over time. Details are in{" "}
+            <a href="https://vercel.com/docs/analytics/privacy-policy" className="text-link text-ink">
+              Vercel&apos;s analytics privacy documentation
+            </a>
+            .
           </p>
         </section>
         <section>

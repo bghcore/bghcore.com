@@ -40,6 +40,10 @@ export const engineeringDomains: EngineeringDomain[] = [
         projectSlug: "azure-engineering",
       },
       {
+        text: "As a vendor, rebuilt an internal Azure app's frontend in React to retire AngularJS. Parts of that UI are still in production, and the work got me hired full time.",
+        projectSlug: "azure-engineering",
+      },
+      {
         text: "Wrote a JSON-driven React forms library with a rules engine and adapters for 11 UI libraries.",
         projectSlug: "formosaic",
       },
@@ -164,6 +168,10 @@ export const engineeringDomains: EngineeringDomain[] = [
       {
         text: "Ingest Census TIGERweb geography for all 50 states, plus officeholders from Congress.gov, Open States, and the FJC, with provenance on every record.",
         projectSlug: "civic-maps",
+      },
+      {
+        text: "Model SoundCloud's social graph as partitioned SQL queries in Cosmos DB, and score tracks with a time-decay half-life.",
+        projectSlug: "the-sub-delta",
       },
       {
         text: "Cut search indexing over millions of documents from weeks to hours with Azure Search indexers.",

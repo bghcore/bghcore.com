@@ -178,9 +178,18 @@ export const resumePositions: ResumePosition[] = [
       {
         bullets: [
           {
-            lead: "Rebuilt an outage-alerting front end from AngularJS to React and TypeScript,",
+            lead: "Owned the frontend of an internal outage-alerting app for the Azure field,",
             detail:
-              "reaching feature parity with the legacy app, and delivered full-stack .NET and React features for Azure CXP.",
+              "taking it from pilot to preview release, then rebuilding it in React to retire AngularJS, with routing, telemetry, an error boundary, and token refresh.",
+          },
+          {
+            lead: "Started its migration to TypeScript and Redux",
+            detail:
+              "and added alerts, impacted-customer views, and SMS phone verification. Parts of that UI are still in production today.",
+          },
+          {
+            lead: "Hired by Microsoft as a full-time engineer in October 2018",
+            detail: "on the strength of that work.",
           },
         ],
       },

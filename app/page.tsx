@@ -44,7 +44,7 @@ export default function HomePage() {
           href="/work/"
           className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-muted hover:text-ink"
         >
-          All projects, including The Sub Delta, Formosaic, and my wedding website
+          All projects, including Formosaic and my wedding website
         </Link>
       </PageSection>
 
@@ -62,7 +62,7 @@ export default function HomePage() {
         id="experience"
         label="Experience"
         title="Ten years on Microsoft products"
-        intro="Two years as a vendor engineer, then Microsoft from October 2018. My title is Software Engineer II."
+        intro="I started as a vendor engineer, and my work got me hired full time in October 2018. My title is Software Engineer II."
       >
         <ExperienceTimeline />
         <div className="mt-16">

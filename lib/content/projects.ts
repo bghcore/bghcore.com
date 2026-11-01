@@ -216,7 +216,7 @@ export const projects: Project[] = [
         heading: "Overview",
         paragraphs: [
           "Azure Customer Experience (CXP) Engineering builds the tools Microsoft uses to support Azure customers, along with customer-facing experiences in the Azure portal and Services Hub.",
-          "I worked there from 2016 to January 2026, as a vendor engineer through Mindtree and then at Microsoft from October 2018. Most of my work was frontend ownership of React and TypeScript apps, with .NET and Azure work underneath.",
+          "I worked there from 2016 to January 2026. I started as a vendor engineer through Mindtree, took ownership of an internal app's frontend, and that work got me hired at Microsoft full time in October 2018. After that, most of my work was frontend ownership of React and TypeScript apps, with .NET and Azure work underneath.",
         ],
       },
       {
@@ -250,13 +250,15 @@ export const projects: Project[] = [
           "Migrated the extension to resource-provider deployment, closed a Secure Future Initiative compliance item, and remediated 10+ .NET and npm CVEs.",
           "Delivered Services Hub 2.0 support case creation in about three months (56 PRs), covering product and problem selection, validation, and additional contacts.",
           "Built the forms engine, plus tree-view navigation and shared controls that other CXP apps reused.",
-          "Sole frontend developer of the outage-visibility app for the Azure field. I extended its coverage from Azure to Microsoft 365 and Dynamics 365.",
+          "As a vendor, owned the frontend of the Azure field's outage-visibility app: took it from pilot to preview, rebuilt it in React to retire AngularJS, and started its move to TypeScript and Redux. That's the work that got me hired full time.",
+          "After joining Microsoft, stayed its sole frontend developer. I finished the TypeScript migration and extended its coverage from Azure to Microsoft 365 and Dynamics 365.",
           "Took an internal tool from a hackathon prototype to production, replacing a legacy ASP.NET MVC app. Later led two AI hackathon teams that added RAG-based recommendations to assessments.",
         ],
       },
       {
         heading: "Challenges and tradeoffs",
         paragraphs: [
+          "As a vendor, I had to earn ownership. I took on the outage-visibility app's frontend while it was still in pilot and rebuilt it in React while people were using it. That work turned the contract into a full-time offer.",
           "The rewrite landed as 100+ PRs, so the customer-facing extension stayed in service while Knockout came out.",
           "Case creation was on a stack I hadn't used before, with about three months to deliver. It shipped in 56 PRs and went to a pilot of about 4,000 users.",
         ],
@@ -268,7 +270,106 @@ export const projects: Project[] = [
           "Services Hub 2.0 case creation was piloted to about 4,000 users.",
           "A CXP platform's Azure subscription costs dropped by about $142.7K a year (36%) after I removed redundant infrastructure.",
           "Search indexing over millions of documents went from weeks to hours. Daily users of the outage-visibility app grew from about 100 to about 173.",
+          "Parts of the outage-visibility UI I built as a vendor are still in production today.",
           "The forms engine became the platform's primary data-entry UX.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "the-sub-delta",
+    name: "The Sub Delta",
+    title: "The Sub Delta: a music discovery engine I've rebuilt for a decade",
+    group: "independent",
+    eyebrow: "Independent · Music",
+    summary:
+      "My main side project since 2015 and the place I experiment freely. It crawls SoundCloud's social graph from artists you already like and surfaces tracks that are catching early.",
+    period: "2015 to present",
+    role: "Sole developer",
+    status: "Live at thesubdelta.com",
+    format: "case-study",
+    featured: true,
+    domains: ["full-stack", "cloud-enterprise", "data-geospatial", "developer-tooling"],
+    technologies: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Azure Functions",
+      "Azure Cosmos DB",
+      "Azure Storage queues and tables",
+      "Redis",
+      "NextAuth",
+      "pnpm workspaces",
+      "esbuild",
+      "Vitest",
+      "Vercel",
+    ],
+    links: [{ label: "thesubdelta.com", href: "https://www.thesubdelta.com" }],
+    images: [
+      {
+        file: "the-sub-delta",
+        alt: "The Sub Delta home page with the headline Find music early and a button to build your first channel",
+        caption: "thesubdelta.com. Seed artists you know, set a depth, and a daily scan does the digging.",
+      },
+    ],
+    sections: [
+      {
+        heading: "Overview",
+        paragraphs: [
+          "The Sub Delta is the project I come back to when I want to try something new with nobody's permission needed. I started it in 2015 to answer one question: given artists I already like, what should I listen to next? It crawls SoundCloud's social graph from those artists, scores what it finds, and gives each user a discovery channel that updates every day.",
+          "Because it's mine, it's where I learn. Each rebuild taught me something I later used at work: queues and retries, cost-aware data modeling, monorepos, and now building with AI agents.",
+        ],
+      },
+      {
+        heading: "Problem",
+        paragraphs: [
+          "SoundCloud has more underground music than anywhere else online and few good ways to find it. Its own recommendations lean toward what's already popular. I wanted something that starts from my taste and looks a few steps further out.",
+        ],
+      },
+      {
+        heading: "Constraints",
+        bullets: [
+          "SoundCloud's API is rate-limited and only partly documented.",
+          "A graph crawl fans out fast. Each artist leads to likes, reposts, follows, and related artists, several levels deep.",
+          "It's a side project, so it has to be cheap to run and hard to break while I'm not watching it.",
+          "One developer, fitting it around a full-time job.",
+        ],
+      },
+      {
+        heading: "Architecture and technical decisions",
+        bullets: [
+          "Channels and springs: a channel is a taste profile, and springs are the seed artists and tracks it starts from. The rest of the system hangs off that model.",
+          "Queue-driven crawl: the scan runs as queue-triggered Azure Functions, one hop per message, so each step can fail and retry on its own. Handlers rethrow on failure, so nothing fails silently.",
+          "Hourly scan slots: channels are spread across the hours of the day, which keeps pipeline load and SoundCloud's rate limits even.",
+          "Scoring with decay: a track's score combines engagement, tag matches, follower counts, and trend, and persistent scores fade on a half-life so one good day doesn't keep a track on top.",
+          "Graph in Cosmos: the graph moved from a dedicated graph database to partitioned SQL queries in Cosmos DB. It kept the traversal model and cut the database bill.",
+          "A pnpm monorepo: shared packages for models, services, and pipeline logic feed the Next.js site, the admin app, and the Functions, so a type changes in one place.",
+        ],
+      },
+      {
+        heading: "My contributions",
+        bullets: [
+          "All of it. I designed the data model and the scoring, and built the pipeline, the site, the admin app, and the operations tooling.",
+          "Wrote the SoundCloud packages it runs on and published them as open source.",
+          "Added accounts, public channels with a Discover page, and a taste loop that uses what you like to re-rank your For You feed.",
+          "Set the repo up for AI agents: rule files, a system map, and agent skills that check production health, query the database, and read logs.",
+          "Ran a full engineering audit of the codebase in 2026 and closed its findings over a series of PRs.",
+        ],
+      },
+      {
+        heading: "Challenges and tradeoffs",
+        paragraphs: [
+          "The hard part has always been the fan-out. The earliest version tried to crawl the whole graph in one function call, which can't survive a fan-out that size. Putting each hop on a queue made the crawl harder to follow but possible to retry, and every version since has kept that shape.",
+          "Cost shapes the design. A dedicated graph database was the natural fit, and it was expensive. Rebuilding the graph as partitioned SQL queries in one shared throughput pool kept the model I wanted for much less money.",
+        ],
+      },
+      {
+        heading: "Outcomes",
+        bullets: [
+          "Live at thesubdelta.com, with a free tier and a Pro tier.",
+          "Rebuilt from a C#/.NET prototype into TypeScript, then from a single Next.js app into a monorepo with the pipeline on Azure Functions.",
+          "Three open-source SoundCloud packages came out of it.",
+          "More than 1,000 commits in the current monorepo since 2023, with most recent work done through AI coding agents and the same guardrails I use at work.",
         ],
       },
     ],
@@ -465,50 +566,6 @@ export const projects: Project[] = [
           "Multi-step wizards with conditional step visibility and rules that reach across steps.",
           "Auto-save with debounce, retry, and abort.",
           "Open core: the library and its adapters stay public, and the designer and hosted product live in a separate private repository that pulls the public docs in as a submodule.",
-        ],
-      },
-      {
-        heading: "Technologies",
-      },
-    ],
-  },
-  {
-    slug: "the-sub-delta",
-    name: "The Sub Delta",
-    title: "The Sub Delta: music discovery on SoundCloud",
-    group: "independent",
-    eyebrow: "Independent · Music",
-    summary:
-      "A discovery engine for underground music on SoundCloud. You seed artists you already know, set a depth, and daily scans surface tracks that are catching early.",
-    period: "2015 to present",
-    role: "Sole developer",
-    status: "Live at thesubdelta.com",
-    format: "project",
-    featured: false,
-    domains: ["full-stack", "cloud-enterprise"],
-    technologies: ["Next.js", "TypeScript", "Azure Functions", "Cosmos DB", "Redis", "pnpm workspaces", "Vitest"],
-    links: [{ label: "thesubdelta.com", href: "https://www.thesubdelta.com" }],
-    images: [
-      {
-        file: "the-sub-delta",
-        alt: "The Sub Delta home page with the headline Find music early and a button to build your first channel",
-        caption: "thesubdelta.com. Seed artists you know, set a depth, and a daily scan does the digging.",
-      },
-    ],
-    sections: [
-      {
-        heading: "Overview",
-        paragraphs: [
-          "The Sub Delta builds a personal discovery channel from your taste. You seed artists, choose how far out to look, and a daily scan walks SoundCloud's graph to find tracks you haven't heard.",
-          "I started it in 2015 and have rebuilt it several times since. It's where I try new frontend and backend patterns on a product I actually use.",
-        ],
-      },
-      {
-        heading: "How it's built",
-        bullets: [
-          "A pnpm monorepo with a Next.js product site, an admin app, and shared TypeScript packages.",
-          "An Azure Functions pipeline that runs the graph scans.",
-          "Runs on my open-source SoundCloud packages for API access and playback.",
         ],
       },
       {

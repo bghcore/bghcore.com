@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/next";
 import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -60,6 +61,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           {children}
         </main>
         <SiteFooter />
+        {/* Cookie-free page-view analytics. Vercel serves its script once Web Analytics is enabled for the project. */}
+        <Analytics />
       </body>
     </html>
   );

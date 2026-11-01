@@ -62,9 +62,13 @@ export const careerPositions: CareerPosition[] = [
     team: "Vendor engineer for Microsoft Azure CXP",
     period: "2016 to 2018",
     roles: [{ title: "Software Engineer", period: "December 2016 to October 2018" }],
-    summary: "Full-stack .NET and React work for Azure CXP before joining Microsoft full time.",
+    summary:
+      "I joined Azure CXP as a vendor engineer and took ownership of the frontend of an internal app that tells Microsoft's Azure field teams when an outage affects their customers. That work is what got me hired at Microsoft full time in October 2018.",
     highlights: [
-      "Rebuilt an outage-alerting front end from AngularJS to React and TypeScript, reaching feature parity with the legacy app.",
+      "Took the app from a pilot to a preview release, working through feedback from its first users.",
+      "Rebuilt it in React and retired the AngularJS version, then set it up on a new web platform with routing, telemetry, an error boundary, and token refresh.",
+      "Started its move to TypeScript and Redux, and added alerts, impacted-customer views, and SMS phone verification.",
+      "Parts of the UI I built are still in production today, years after I moved on to other projects.",
     ],
   },
 ];
