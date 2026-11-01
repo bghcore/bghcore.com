@@ -1,0 +1,138 @@
+@import "tailwindcss";
+
+/* Dark is the default theme. [data-theme="light"] on <html> switches it. */
+@custom-variant light (&:where([data-theme="light"], [data-theme="light"] *));
+
+:root {
+  --bg: #0b0d0c;
+  --surface: #111413;
+  --raised: #161a18;
+  --line: #222826;
+  --line-strong: #323a37;
+  --ink: #e8ecea;
+  --muted: #9ba5a0;
+  --subtle: #7f8984;
+  --accent: #4fd1a5;
+  --accent-ink: #062018;
+  --accent-wash: rgb(79 209 165 / 0.09);
+  color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+  --bg: #fafaf8;
+  --surface: #ffffff;
+  --raised: #f3f4f1;
+  --line: #e3e5e1;
+  --line-strong: #cdd1cb;
+  --ink: #111413;
+  --muted: #545c58;
+  --subtle: #66706b;
+  --accent: #047857;
+  --accent-ink: #ffffff;
+  --accent-wash: rgb(4 120 87 / 0.07);
+  color-scheme: light;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-raised: var(--raised);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-subtle: var(--subtle);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-wash: var(--accent-wash);
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+html {
+  scroll-padding-top: 5rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+.text-link {
+  text-decoration-line: underline;
+  text-decoration-color: var(--line-strong);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.3em;
+  transition: text-decoration-color 150ms, color 150ms;
+}
+
+.text-link:hover {
+  color: var(--ink);
+  text-decoration-color: var(--accent);
+}
+
+/*
+ * Engineering Explorer. Selection is a native radio group, and CSS :has() shows the matching
+ * panel and highlights matching projects, so it works with JavaScript off. Browsers without
+ * :has() skip this block and show every panel in order.
+ */
+@supports selector(:has(a)) {
+  .explorer-panel {
+    display: none;
+  }
+
+  .explorer-project {
+    transition:
+      opacity 180ms ease,
+      border-color 180ms ease,
+      color 180ms ease;
+  }
+}
+
+/* Printing (mainly the résumé page) always uses light colors, with darker gray text for paper. */
+@media print {
+  :root {
+    --bg: #ffffff;
+    --surface: #ffffff;
+    --line: #d6d9d4;
+    --line-strong: #b9beb7;
+    --ink: #111413;
+    --muted: #3b423e;
+    --subtle: #555d59;
+    --accent: #047857;
+    color-scheme: light;
+  }
+
+  @page {
+    margin: 0.5in 0.55in;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0ms !important;
+    animation-duration: 0ms !important;
+  }
+}
