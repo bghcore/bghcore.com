@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ContactSection } from "@/components/ContactSection";
 import { Portrait } from "@/components/Portrait";
-import { aboutParagraphs, interests } from "@/lib/content/about";
+import { aboutParagraphs, interests, lessons } from "@/lib/content/about";
 import { education } from "@/lib/content/experience";
 import { site } from "@/lib/site";
 
@@ -60,6 +60,24 @@ export default function AboutPage() {
               </div>
             ))}
           </dl>
+          <h2 className="mt-16 text-xl font-semibold tracking-tight">Lessons I&apos;ve kept</h2>
+          <p className="mt-2 text-pretty text-muted">
+            Each of these started as something I got wrong. What matters is what changed afterward.
+          </p>
+          <ol className="mt-6 space-y-8">
+            {lessons.map((lesson, lessonIndex) => (
+              <li key={lesson.title} className="grid gap-2 sm:grid-cols-[2.5rem_1fr]">
+                <span aria-hidden="true" className="font-mono text-xs leading-7 text-accent">
+                  {String(lessonIndex + 1).padStart(2, "0")}
+                </span>
+                <div>
+                  <h3 className="font-medium">{lesson.title}</h3>
+                  <p className="mt-2 text-pretty text-muted">{lesson.story}</p>
+                  <p className="mt-2 text-pretty">{lesson.change}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
           <p className="mt-10 text-muted">
             The work behind all of this is on the{" "}
             <Link href="/work/" className="text-link text-ink">

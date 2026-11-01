@@ -3,8 +3,16 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ContactSection } from "@/components/ContactSection";
+import { CredentialBoundaryDiagram } from "@/components/diagrams/CredentialBoundaryDiagram";
 import { JsonLd } from "@/components/JsonLd";
-import { getProject, projects, type Project, type ProjectSection } from "@/lib/content/projects";
+import { ProjectScreenshot } from "@/components/ProjectScreenshot";
+import {
+  getProject,
+  projects,
+  type Project,
+  type ProjectDiagramId,
+  type ProjectSection,
+} from "@/lib/content/projects";
 import { projectJsonLd } from "@/lib/structured-data";
 
 type ProjectPageProps = {
@@ -47,6 +55,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   const index = projects.findIndex((candidate) => candidate.slug === project.slug);
   const nextProject = projects[(index + 1) % projects.length];
   const sections = withTechnologiesSection(project);
+  const images = project.images ?? [];
 
   return (
     <>
@@ -91,6 +100,25 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           )}
         </header>
 
+        {images.length > 0 && (
+          <div className="mx-auto max-w-6xl px-4 pb-14 sm:px-6">
+            <div className={`grid gap-8 ${images.length > 1 ? "lg:grid-cols-2" : ""}`}>
+              {images.map((image, imageIndex) => (
+                <figure key={image.file}>
+                  <ProjectScreenshot
+                    image={image}
+                    sizes={images.length > 1 ? "(min-width: 1024px) 34rem, 100vw" : "(min-width: 1152px) 72rem, 100vw"}
+                    priority={imageIndex === 0}
+                  />
+                  {image.caption && (
+                    <figcaption className="mt-3 text-sm text-pretty text-muted">{image.caption}</figcaption>
+                  )}
+                </figure>
+              ))}
+            </div>
+          </div>
+        )}
+
         <div className="border-t border-line">
           <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-12 lg:gap-8">
             <nav aria-label="On this page" className="hidden lg:col-span-3 lg:block">
@@ -124,6 +152,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                     section={section}
                     number={sectionIndex + 1}
                     technologies={section.heading === "Technologies" ? project.technologies : undefined}
+                    diagram={section.heading === "Architecture and technical decisions" ? project.diagram : undefined}
                   />
                 ))}
               </div>
@@ -185,9 +214,15 @@ type BodySectionProps = {
   section: ProjectSection;
   number: number;
   technologies?: string[];
+  diagram?: ProjectDiagramId;
 };
 
-function BodySection({ section, number, technologies }: BodySectionProps) {
+const diagrams: Record<ProjectDiagramId, () => React.JSX.Element> = {
+  "credential-boundary": CredentialBoundaryDiagram,
+};
+
+function BodySection({ section, number, technologies, diagram }: BodySectionProps) {
+  const Diagram = diagram ? diagrams[diagram] : undefined;
   const anchor = sectionAnchor(section.heading);
   return (
     <section id={anchor} aria-labelledby={`${anchor}-heading`}>
@@ -198,6 +233,11 @@ function BodySection({ section, number, technologies }: BodySectionProps) {
         {section.heading}
       </h2>
       <div className="mt-4 space-y-4 leading-relaxed text-pretty">
+        {Diagram && (
+          <div className="pb-4">
+            <Diagram />
+          </div>
+        )}
         {section.paragraphs?.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
         {section.bullets && (
           <ul className="space-y-3">

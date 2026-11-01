@@ -23,6 +23,19 @@ export type ProjectSection = {
 
 export type ProjectFormat = "case-study" | "project";
 
+/**
+ * A 16:9 screenshot in /public/projects. `file` is the base name: the folder holds
+ * <file>-640 and <file>-1280 in AVIF and WebP, plus a 1280px <file>.jpg fallback.
+ */
+export type ProjectImage = {
+  file: string;
+  alt: string;
+  caption?: string;
+};
+
+/** Hand-drawn diagrams, rendered inside the "Architecture and technical decisions" section. */
+export type ProjectDiagramId = "credential-boundary";
+
 export type Project = {
   slug: string;
   /** Short name used in lists. */
@@ -42,6 +55,9 @@ export type Project = {
   links: ProjectLink[];
   /** Shown above the body, for confidentiality or attribution notes. */
   note?: string;
+  /** The first image also appears as the thumbnail in project lists. */
+  images?: ProjectImage[];
+  diagram?: ProjectDiagramId;
   sections: ProjectSection[];
 };
 
@@ -89,8 +105,16 @@ export const projects: Project[] = [
       "Playwright",
       "Azure DevOps pipelines",
     ],
-    links: [],
-    note: "This case study uses only what's on my public résumé. Internal code, architecture detail, and metrics stay inside Microsoft.",
+    links: [
+      { label: "Live Chat Widget on GitHub", href: "https://github.com/microsoft/omnichannel-chat-widget" },
+      { label: "Chat SDK on GitHub", href: "https://github.com/microsoft/omnichannel-chat-sdk" },
+      {
+        label: "My merged PRs in Microsoft's public repos",
+        href: "https://github.com/search?q=org%3Amicrosoft+author%3Abghcore+is%3Apr+is%3Amerged&type=pullrequests",
+      },
+    ],
+    note: "This case study uses only what's on my public résumé and in Microsoft's public repositories. Internal code, architecture detail, and metrics stay inside Microsoft.",
+    diagram: "credential-boundary",
     sections: [
       {
         heading: "Overview",
@@ -130,9 +154,13 @@ export const projects: Project[] = [
           "Took the integration from an empty repository to CDN deployment in six weeks: new React packages, the transport SDK, and the release pipeline.",
           "Implemented the embed protocol on both sides, in the Copilot Studio host and in the widget.",
           "Shipped the configuration contract into all three products, then built admin-side appearance and dark-mode authoring end to end.",
-          "Took the live chat service's on-call rotation. I root-caused a high-severity outage within about an hour, wrote the RCA, removed the failure mode in the C# messaging service, and built an alert that would have fired 11 minutes before existing monitoring.",
-          "Shipped 10+ C#/.NET fixes to the messaging and orchestration services, including recovery from a failed AI dialog that had left customers' chats silent.",
-          "Earlier in 2026, led frontend architecture for a new agent desktop: a Fluent UI v9 migration in one 243-file PR, a single state store, and a three-tier Playwright test architecture. I also embedded it inside Salesforce with a host-bridge postMessage protocol and a manual PKCE token exchange through Salesforce's iframe sandbox.",
+          "Built dark mode end to end: authored in the admin center, carried by the shared contract, and rendered at runtime, including theme-aware Adaptive Cards.",
+          "Owned quality on the shipping widget. I debugged its opening animation frame by frame (it painted one frame at the size of the chat button), fixed attachments and transcript ordering, and shipped the fixes to the release branches customers run.",
+          "Fixed accessibility gaps: screen readers now announce new messages and sent files across minimize and restore, and citation numbers sit inside the control so voice-control users can target them.",
+          "Took the live chat service's on-call rotation. I root-caused a high-severity outage within about an hour, wrote the RCA, and changed the C# messaging service so a failed background write no longer stops a chat from starting. The alert I built would have fired 11 minutes before existing monitoring.",
+          "Shipped 10+ C#/.NET fixes to the messaging and orchestration services. One covered failed AI dialogs: the customer's next message used to get no reply, and now the failure becomes a plain message and the session re-arms so a retry gets an answer.",
+          "Worked in Microsoft's public chat SDK repositories on GitHub: official releases including the chat widget's 2.0.0, security fixes across five packages, and hotfix workflows with OIDC trusted publishing to npm.",
+          "Earlier in 2026, led frontend architecture for a new agent desktop: a Fluent UI v9 migration in one 243-file PR, a single state store, a three-tier Playwright test architecture, and a localization check that fails the build if hardcoded text comes back. I also embedded it inside Salesforce with a host-bridge postMessage protocol and a manual PKCE token exchange through Salesforce's iframe sandbox.",
         ],
       },
       {
@@ -140,6 +168,7 @@ export const projects: Project[] = [
         paragraphs: [
           "Converging the renderers meant changing code that customers were running. I started with a 391-file rename that changed no runtime behavior. Then I split the rest of the work into a planned stack of four PRs instead of one large change, so each step could be reviewed and checked against the shipping widget on its own.",
           "Preserving fields the contract doesn't recognize is less strict than rejecting them. It's what lets three products on different release schedules share one configuration without erasing each other's settings.",
+          "A fix isn't done when it merges. Customers run release branches, so many of these fixes also went out as cherry-picks, and that only works if each change is small and safe on its own.",
         ],
       },
       {
@@ -148,6 +177,8 @@ export const projects: Project[] = [
           "Makers test agents in the same chat UI their customers see.",
           "A partial save in one product no longer erases another product's settings.",
           "Two products share one renderer, and CI stops either one from reimplementing shared behavior.",
+          "After an AI failure, a customer's retry gets a reply instead of silence.",
+          "Months after I moved on from the agent desktop, the larger team that inherited it was still building on that foundation rather than replacing it.",
           "Usage figures for the Copilot Studio integration aren't public, so they aren't included here.",
         ],
       },
@@ -273,6 +304,13 @@ export const projects: Project[] = [
       { label: "God's Eye View (upstream)", href: "https://github.com/bilawalsidhu/gods-eye-view" },
     ],
     note: "Civic Maps is built on a fork of God's Eye View, an open-source 3D globe by Bilawal Sidhu. The globe and its rendering are God's Eye View. The political data model, database, API, ingest, and website are mine.",
+    images: [
+      {
+        file: "civic-maps",
+        alt: "Civic Maps showing congressional districts over a satellite map of the United States, with a panel explaining who governs a place",
+        caption: "The congressional layer on civicmapshq.com. Click anywhere to see who represents it.",
+      },
+    ],
     sections: [
       {
         heading: "Overview",
@@ -399,17 +437,25 @@ export const projects: Project[] = [
     format: "project",
     featured: false,
     domains: ["frontend", "developer-tooling"],
-    technologies: ["React 19", "TypeScript", "React Hook Form", "Vitest", "Storybook"],
+    technologies: ["React 19", "TypeScript", "React Hook Form", "Vitest", "Storybook", "Next.js", "Clerk", "Stripe"],
     links: [
-      { label: "formosaic.com", href: "https://formosaic.com" },
+      { label: "formosaic.com", href: "https://www.formosaic.com" },
       { label: "GitHub", href: "https://github.com/bghcore/formosaic" },
       { label: "npm", href: "https://www.npmjs.com/package/@formosaic/core" },
+    ],
+    images: [
+      {
+        file: "formosaic",
+        alt: "The formosaic.com home page: a headline about building forms with any UI library and a live JSON editor next to the rendered form",
+        caption: "formosaic.com. The playground re-renders the form as you edit its JSON, in whichever UI library you pick.",
+      },
     ],
     sections: [
       {
         heading: "Overview",
         paragraphs: [
           "Formosaic is a React form library where a form is one configuration object: fields, validation, ordering, and declarative rules. When field A changes to a value, rules can make field B required, hide field C, or change field D's options, without code in your components.",
+          "The library is MIT licensed. Around it I built formosaic.com: documentation, a live playground, and a visual form designer, with accounts and billing for the hosted product.",
         ],
       },
       {
@@ -419,6 +465,7 @@ export const projects: Project[] = [
           "Rules declared as data with 20 condition operators, rather than imperative effects.",
           "Multi-step wizards with conditional step visibility and rules that reach across steps.",
           "Auto-save with debounce, retry, and abort, not only submit-on-click.",
+          "Open core: the library and its adapters stay public, and the designer and hosted product live in a separate private repository that pulls the public docs in as a submodule.",
         ],
       },
       {
@@ -434,7 +481,7 @@ export const projects: Project[] = [
     eyebrow: "Independent · Music",
     summary:
       "A discovery engine for underground music on SoundCloud. You seed artists you already know, set a depth, and daily scans surface tracks that are catching early.",
-    period: "Ongoing",
+    period: "2015 to present",
     role: "Sole developer",
     status: "Live at thesubdelta.com",
     format: "project",
@@ -442,11 +489,19 @@ export const projects: Project[] = [
     domains: ["full-stack", "cloud-enterprise"],
     technologies: ["Next.js", "TypeScript", "Azure Functions", "Cosmos DB", "Redis", "pnpm workspaces", "Vitest"],
     links: [{ label: "thesubdelta.com", href: "https://www.thesubdelta.com" }],
+    images: [
+      {
+        file: "the-sub-delta",
+        alt: "The Sub Delta home page with the headline Find music early and a button to build your first channel",
+        caption: "thesubdelta.com. Seed artists you know, set a depth, and a daily scan does the digging.",
+      },
+    ],
     sections: [
       {
         heading: "Overview",
         paragraphs: [
           "The Sub Delta builds a personal discovery channel from your taste. You seed artists, choose how far out to look, and a daily scan walks SoundCloud's graph to find tracks you haven't heard.",
+          "I started it in 2015 and have rebuilt it several times since. It's where I try new frontend and backend patterns on a product I actually use.",
         ],
       },
       {
@@ -455,6 +510,71 @@ export const projects: Project[] = [
           "A pnpm monorepo with a Next.js product site, an admin app, and shared TypeScript packages.",
           "An Azure Functions pipeline that runs the graph scans.",
           "Runs on my open-source SoundCloud packages for API access and playback.",
+        ],
+      },
+      {
+        heading: "Technologies",
+      },
+    ],
+  },
+  {
+    slug: "wedding-website",
+    name: "Wedding website and RSVP",
+    title: "A wedding website with its own RSVP system",
+    group: "independent",
+    eyebrow: "Independent · Personal",
+    summary:
+      "The website for my wedding in July 2026: our story, the schedule, travel, and an RSVP flow built around invitation codes, plus a separate admin app to track who was coming. It's an archive now, with demo data in place of real guests.",
+    period: "2025 to 2026",
+    role: "Sole developer",
+    status: "Archived, with a working demo",
+    format: "project",
+    featured: false,
+    domains: ["frontend", "full-stack"],
+    technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "MDX", "Azure Cosmos DB", "Open-Meteo API", "Python", "Vercel"],
+    links: [
+      { label: "bradleyandmakinna.com", href: "https://www.bradleyandmakinna.com" },
+      { label: "RSVP admin demo", href: "https://brad-makinna-wedding-rsvp.vercel.app/rsvps" },
+    ],
+    images: [
+      {
+        file: "wedding",
+        alt: "The wedding website home page with the names Bradley and MaKinna Hanson over a photo by the water",
+        caption: "bradleyandmakinna.com, now kept as an archive of the day.",
+      },
+      {
+        file: "wedding-rsvp",
+        alt: "The RSVP admin dashboard showing guest lists, RSVP counts, and attending and pending parties, filled with fictional demo guests",
+        caption: "The RSVP admin app. Every guest shown here is fictional demo data.",
+      },
+    ],
+    sections: [
+      {
+        heading: "Overview",
+        paragraphs: [
+          "MaKinna and I got married on July 11, 2026. I built our wedding website myself instead of using a template service, mostly because I wanted RSVPs to match how our guest list actually worked: households, plus-ones, and more than one guest list.",
+        ],
+      },
+      {
+        heading: "What guests could do",
+        bullets: [
+          "Find their invitation with a six-character code and answer for everyone in their party at once.",
+          "Add dietary notes and song requests with the RSVP.",
+          "Read our story, the schedule, travel details, and an FAQ, with a countdown and an hourly forecast for the afternoon of the wedding.",
+        ],
+      },
+      {
+        heading: "How it's built",
+        bullets: [
+          "Guest site: Next.js App Router with Tailwind CSS and MDX content. RSVPs went through API routes into Azure Cosmos DB.",
+          "Admin app: a separate Next.js app that grouped parties by guest list, split who had answered from who hadn't, and summarized dietary restrictions.",
+          "Song requests: they fed a songs page, and after RSVPs closed a small Python script matched each request to a Spotify track.",
+        ],
+      },
+      {
+        heading: "Archiving it",
+        paragraphs: [
+          "After the wedding I didn't want guests' names and answers sitting online. A one-off script exported the RSVP data to a private local backup and then emptied the database. Both apps now run on fictional demo data with no database at all, so the RSVP flow still works for anyone who tries it and no real guest appears anywhere.",
         ],
       },
       {

@@ -36,6 +36,7 @@ A few implementation notes:
 
 - **Engineering Explorer.** It's a native radio group. CSS `:has()` shows the matching panel and highlights related projects, so it ships no JavaScript, works with scripts off, and is keyboard accessible by default.
 - **Themes.** Dark is the default. The toggle stores a light-mode choice in `localStorage`, and a small inline script applies it before first paint.
+- **Images.** The static export can't optimize images on request, so they're prebuilt. Project screenshots live in `public/projects/` as `<name>-640` and `<name>-1280` in AVIF and WebP, plus a 1280×720 `<name>.jpg` fallback, and a project lists them in its `images` field. The portrait follows the same pattern at 360, 640, and 960px.
 - **Impact figures.** A figure with `verified: false` stays in the data but never renders, so a number can be held back while it's checked.
 - **Résumé.** `/resume/` is a web version of the résumé with no phone number or town. It prints cleanly on its own (the header and footer are hidden and colors switch to light), so "Print or save as PDF" produces a usable PDF. To also offer a file, put a reviewed PDF (no phone number) in `public/` and set `site.resumePath` to its path, for example `"/bradley-hanson-resume.pdf"`.
 

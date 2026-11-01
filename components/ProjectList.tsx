@@ -1,5 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { ProjectScreenshot } from "@/components/ProjectScreenshot";
 import type { Project } from "@/lib/content/projects";
 
 type ProjectListProps = {
@@ -23,24 +24,36 @@ export function ProjectList({ projects, numbered = false }: ProjectListProps) {
               <p className="font-mono text-xs text-subtle">{project.eyebrow}</p>
               <p className="hidden font-mono text-xs text-subtle sm:block">{project.period}</p>
             </div>
-            <div className="sm:col-span-8">
-              <h3 className="text-xl font-semibold tracking-tight text-balance sm:text-2xl">
-                <Link
-                  href={`/work/${project.slug}/`}
-                  className="after:absolute after:inset-0 after:content-[''] group-hover:text-accent"
-                >
-                  {project.title}
-                </Link>
-              </h3>
-              <p className="mt-3 max-w-2xl text-pretty text-muted">{project.summary}</p>
-              <p className="mt-4 flex items-center gap-1.5 text-sm font-medium text-ink">
-                {project.format === "case-study" ? "Read the case study" : "Project details"}
-                <ArrowRight
-                  aria-hidden="true"
-                  className="size-4 transition-transform group-hover:translate-x-0.5"
-                  strokeWidth={1.75}
-                />
-              </p>
+            <div className="sm:col-span-8 lg:flex lg:items-start lg:gap-8">
+              <div className="min-w-0 flex-1">
+                <h3 className="text-xl font-semibold tracking-tight text-balance sm:text-2xl">
+                  <Link
+                    href={`/work/${project.slug}/`}
+                    className="after:absolute after:inset-0 after:content-[''] group-hover:text-accent"
+                  >
+                    {project.title}
+                  </Link>
+                </h3>
+                <p className="mt-3 max-w-2xl text-pretty text-muted">{project.summary}</p>
+                <p className="mt-4 flex items-center gap-1.5 text-sm font-medium text-ink">
+                  {project.format === "case-study" ? "Read the case study" : "Project details"}
+                  <ArrowRight
+                    aria-hidden="true"
+                    className="size-4 transition-transform group-hover:translate-x-0.5"
+                    strokeWidth={1.75}
+                  />
+                </p>
+              </div>
+              {project.images?.[0] && (
+                <div className="mt-6 max-w-sm lg:mt-1 lg:w-56 lg:shrink-0">
+                  <ProjectScreenshot
+                    image={project.images[0]}
+                    sizes="(min-width: 1024px) 14rem, (min-width: 640px) 24rem, 90vw"
+                    decorative
+                    className="transition-colors group-hover:border-line-strong"
+                  />
+                </div>
+              )}
             </div>
           </div>
         </li>

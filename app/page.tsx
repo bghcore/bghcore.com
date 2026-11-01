@@ -34,7 +34,7 @@ export default function HomePage() {
           href="/work/"
           className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-muted hover:text-ink"
         >
-          All projects, including Formosaic, The Sub Delta, and TagPro tools
+          All projects, including The Sub Delta, Formosaic, and my wedding website
           <ArrowRight aria-hidden="true" className="size-4" strokeWidth={1.75} />
         </Link>
       </PageSection>
