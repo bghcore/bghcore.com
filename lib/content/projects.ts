@@ -165,7 +165,7 @@ export const projects: Project[] = [
       {
         heading: "Challenges and tradeoffs",
         paragraphs: [
-          "Converging the renderers meant changing code that customers were running. I started with a 391-file rename that changed no runtime behavior. Then I split the rest of the work into a planned stack of four PRs instead of one large change, so each step could be reviewed and checked against the shipping widget on its own.",
+          "Converging the renderers meant changing code that customers were running. I started with a 391-file rename that changed no runtime behavior. Then I split the rest of the work into a planned stack of four PRs, so each step could be reviewed and checked against the shipping widget on its own.",
           "Preserving fields the contract doesn't recognize is less strict than rejecting them. It's what lets three products on different release schedules share one configuration without erasing each other's settings.",
           "A fix isn't done when it merges. Customers run release branches, so many of these fixes also went out as cherry-picks, and that only works if each change is small and safe on its own.",
         ],
@@ -176,8 +176,8 @@ export const projects: Project[] = [
           "Makers test agents in the same chat UI their customers see.",
           "A partial save in one product no longer erases another product's settings.",
           "Two products share one renderer, and CI stops either one from reimplementing shared behavior.",
-          "After an AI failure, a customer's retry gets a reply instead of silence.",
-          "Months after I moved on from the agent desktop, the larger team that inherited it was still building on that foundation rather than replacing it.",
+          "After an AI failure, a customer's retry gets a reply.",
+          "Months after I moved on from the agent desktop, the larger team that inherited it was still building on that foundation.",
           "Usage figures for the Copilot Studio integration aren't public, so they aren't included here.",
         ],
       },
@@ -210,7 +210,7 @@ export const projects: Project[] = [
       "Azure Search",
     ],
     links: [],
-    note: "Internal tools are described by what they do rather than by name. Everything here is from my public résumé.",
+    note: "Internal tools are described by what they do. Everything here is from my public résumé.",
     sections: [
       {
         heading: "Overview",
@@ -236,9 +236,9 @@ export const projects: Project[] = [
       {
         heading: "Architecture and technical decisions",
         bullets: [
-          "Replaced Knockout with React and TypeScript until the legacy framework was gone, rather than running both indefinitely.",
+          "Replaced Knockout with React and TypeScript until the legacy framework was gone.",
           "Moved the extension to resource-provider deployment across all three clouds, which halved its core Assessments component from 3,000 to 1,500 lines.",
-          "Built data entry on a config-driven forms engine with business rules, using React Hook Form, so new forms are defined as configuration instead of new components.",
+          "Built data entry on a config-driven forms engine with business rules, using React Hook Form, so new forms are defined as configuration.",
           "Made about 100 Playwright end-to-end tests a release gate.",
           "Used Azure Search indexers for search over millions of documents in an outage-visibility app.",
         ],
@@ -257,7 +257,7 @@ export const projects: Project[] = [
       {
         heading: "Challenges and tradeoffs",
         paragraphs: [
-          "The rewrite landed as 100+ PRs rather than one cutover, so the customer-facing extension stayed in service while Knockout came out.",
+          "The rewrite landed as 100+ PRs, so the customer-facing extension stayed in service while Knockout came out.",
           "Case creation was on a stack I hadn't used before, with about three months to deliver. It shipped in 56 PRs and went to a pilot of about 4,000 users.",
         ],
       },
@@ -327,20 +327,20 @@ export const projects: Project[] = [
         heading: "Constraints",
         bullets: [
           "Official sources only, with provenance on every record.",
-          "Public offices, not people as a search target. No private-person tracking.",
+          "Public offices only. No private-person tracking.",
           "The globe is a fork I want to keep merging from upstream, so my code can't spread through it.",
-          "Mobile gets its own layout, a bottom sheet, instead of a shrunken desktop panel.",
+          "Mobile gets its own layout built around a bottom sheet.",
         ],
       },
       {
         heading: "Architecture and technical decisions",
         bullets: [
           "The political core is isolated. The domain model, API, ingest, and backend never import the globe or Cesium, and a check script fails the build if they do.",
-          "PostGIS is the system of record. Records use canonical text IDs such as cm:jurisdiction:us.wa. Source identifiers like Census GEOIDs live on provenance records, not as primary keys.",
-          "Containment is a relations table, not a parent pointer, because a place sits inside several overlapping jurisdictions at once.",
-          "Geometry belongs to a versioned Boundary rather than to the District, so a district keeps its identity when it's redrawn.",
+          "PostGIS is the system of record. Records use canonical text IDs such as cm:jurisdiction:us.wa. Source identifiers like Census GEOIDs live on provenance records.",
+          "Containment is a relations table, because a place sits inside several overlapping jurisdictions at once.",
+          "Geometry belongs to a versioned Boundary, so a district keeps its identity when it's redrawn.",
           "The website is Next.js. It embeds the globe in an iframe and talks to it over a postMessage protocol, and it calls the Civic Maps HTTP API for officeholders.",
-          "Coverage grows by adding ingest adapters and jurisdiction rows, not by changing the globe.",
+          "Coverage grows by adding ingest adapters and jurisdiction rows, with no changes to the globe.",
         ],
       },
       {
@@ -461,9 +461,9 @@ export const projects: Project[] = [
         heading: "Design decisions",
         bullets: [
           "A UI-agnostic core built on React Hook Form, with adapters for 11 UI libraries including Fluent UI, MUI, Ant Design, Chakra, Mantine, Radix, and React Aria.",
-          "Rules declared as data with 20 condition operators, rather than imperative effects.",
+          "Rules declared as data, with 20 condition operators.",
           "Multi-step wizards with conditional step visibility and rules that reach across steps.",
-          "Auto-save with debounce, retry, and abort, not only submit-on-click.",
+          "Auto-save with debounce, retry, and abort.",
           "Open core: the library and its adapters stay public, and the designer and hosted product live in a separate private repository that pulls the public docs in as a submodule.",
         ],
       },
@@ -551,7 +551,7 @@ export const projects: Project[] = [
       {
         heading: "Overview",
         paragraphs: [
-          "MaKinna and I got married on July 11, 2026. I built our wedding website myself instead of using a template service, mostly because I wanted RSVPs to match how our guest list actually worked: households, plus-ones, and more than one guest list.",
+          "MaKinna and I got married on July 11, 2026. I built our wedding website myself, mostly because I wanted RSVPs to match how our guest list actually worked: households, plus-ones, and more than one guest list.",
         ],
       },
       {

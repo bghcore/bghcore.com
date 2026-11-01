@@ -50,7 +50,7 @@ export const newTerritory: WorkflowItem[] = [
 export const guardrails: WorkflowItem[] = [
   {
     title: "Rules the agents read",
-    detail: "Architecture rule files and agent skills, so agents follow a codebase's conventions instead of guessing.",
+    detail: "Architecture rule files and agent skills, so agents follow each codebase's conventions.",
   },
   {
     title: "Tests as the gate",

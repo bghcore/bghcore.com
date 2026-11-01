@@ -1,4 +1,3 @@
-import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { AiWorkflow } from "@/components/AiWorkflow";
 import { ContactSection } from "@/components/ContactSection";
@@ -46,7 +45,6 @@ export default function HomePage() {
           className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-muted hover:text-ink"
         >
           All projects, including The Sub Delta, Formosaic, and my wedding website
-          <ArrowRight aria-hidden="true" className="size-4" strokeWidth={1.75} />
         </Link>
       </PageSection>
 
@@ -100,7 +98,6 @@ export default function HomePage() {
         </div>
         <Link href="/about/" className="mt-8 inline-flex items-center gap-1.5 text-sm font-medium text-accent hover:underline">
           More about me
-          <ArrowRight aria-hidden="true" className="size-4" strokeWidth={1.75} />
         </Link>
       </PageSection>
 
@@ -125,17 +122,16 @@ function Hero() {
           <h1 id="hero-heading" className="font-mono text-sm text-muted">
             {site.name}
           </h1>
-          <p className="mt-6 max-w-3xl text-[clamp(2.4rem,6.2vw,4.6rem)] leading-[1.02] font-semibold tracking-[-0.035em] sm:text-balance">
+          <p className="mt-6 max-w-3xl text-[clamp(2.4rem,6.2vw,4.6rem)] leading-[1.04] font-semibold tracking-[-0.02em] sm:text-balance">
             {site.headline}
           </p>
           <p className="mt-8 max-w-xl text-lg leading-relaxed text-pretty text-muted">{site.intro}</p>
           <div className="mt-10 flex flex-wrap gap-3">
             <Link
               href="#work"
-              className="inline-flex items-center gap-2 rounded-md bg-accent px-4 py-2.5 text-sm font-medium text-accent-ink transition-opacity hover:opacity-90"
+              className="inline-flex items-center rounded-md bg-accent px-4 py-2.5 text-sm font-medium text-accent-ink transition-opacity hover:opacity-90"
             >
               View my work
-              <ArrowRight aria-hidden="true" className="size-4" strokeWidth={2} />
             </Link>
             <Link
               href="#contact"

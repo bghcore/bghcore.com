@@ -1,4 +1,4 @@
-import { ArrowUpRight, FileText, Mail } from "lucide-react";
+import { Icon } from "@/components/Icon";
 import Link from "next/link";
 import { site } from "@/lib/site";
 
@@ -25,16 +25,14 @@ export function ContactSection() {
           <div className="mt-8 flex flex-wrap gap-3">
             <a
               href={`mailto:${site.email}`}
-              className="inline-flex items-center gap-2 rounded-md bg-accent px-4 py-2.5 text-sm font-medium text-accent-ink transition-opacity hover:opacity-90"
+              className="inline-flex items-center rounded-md bg-accent px-4 py-2.5 text-sm font-medium text-accent-ink transition-opacity hover:opacity-90"
             >
-              <Mail aria-hidden="true" className="size-4" strokeWidth={2} />
               Email me
             </a>
             <Link
               href="/resume/"
-              className="inline-flex items-center gap-2 rounded-md border border-line-strong px-4 py-2.5 text-sm font-medium transition-colors hover:border-accent"
+              className="inline-flex items-center rounded-md border border-line-strong px-4 py-2.5 text-sm font-medium transition-colors hover:border-accent"
             >
-              <FileText aria-hidden="true" className="size-4" strokeWidth={2} />
               View my résumé
             </Link>
           </div>
@@ -48,11 +46,7 @@ export function ContactSection() {
               >
                 <span className="font-mono text-xs text-subtle">{row.label}</span>
                 <span className="min-w-0 truncate text-sm sm:text-base">{row.value}</span>
-                <ArrowUpRight
-                  aria-hidden="true"
-                  className="size-4 text-subtle transition-colors group-hover:text-accent"
-                  strokeWidth={1.75}
-                />
+                <Icon name="arrow-up-right" className="size-4 text-subtle transition-colors group-hover:text-accent" />
               </a>
             </li>
           ))}

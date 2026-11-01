@@ -1,7 +1,7 @@
 "use client";
 
-import { Moon, Sun } from "lucide-react";
 import { useSyncExternalStore } from "react";
+import { Icon } from "@/components/Icon";
 
 type ThemeName = "light" | "dark";
 
@@ -39,8 +39,8 @@ export function ThemeToggle() {
       className="inline-flex size-9 items-center justify-center rounded-md border border-line text-muted transition-colors hover:border-line-strong hover:text-ink"
     >
       {/* Both icons render on the server; CSS picks one so nothing flashes before hydration. */}
-      <Sun aria-hidden="true" className="size-4 light:hidden" strokeWidth={1.75} />
-      <Moon aria-hidden="true" className="hidden size-4 light:block" strokeWidth={1.75} />
+      <Icon name="sun" className="size-4 light:hidden" />
+      <Icon name="moon" className="hidden size-4 light:block" />
     </button>
   );
 }

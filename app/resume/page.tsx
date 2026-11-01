@@ -1,6 +1,6 @@
-import { Download } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Icon } from "@/components/Icon";
 import { PrintButton } from "@/components/PrintButton";
 import { careerPositions, education } from "@/lib/content/experience";
 import { getProject, projectGroupLabels } from "@/lib/content/projects";
@@ -35,7 +35,7 @@ export default function ResumePage() {
               href={site.resumePath}
               className="inline-flex items-center gap-2 rounded-md bg-accent px-4 py-2.5 text-sm font-medium text-accent-ink transition-opacity hover:opacity-90"
             >
-              <Download aria-hidden="true" className="size-4" strokeWidth={2} />
+              <Icon name="download" className="size-4" />
               Download PDF
             </a>
           )}

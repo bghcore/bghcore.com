@@ -34,6 +34,11 @@ export function SiteFooter() {
               Résumé
             </Link>
           </li>
+          <li>
+            <Link className="hover:text-ink" href="/privacy/">
+              Privacy
+            </Link>
+          </li>
         </ul>
       </div>
     </footer>

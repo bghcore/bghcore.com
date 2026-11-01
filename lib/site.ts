@@ -14,7 +14,7 @@ export const site = {
   email: "b.g.h@outlook.com",
   linkedin: "https://www.linkedin.com/in/bradleyghanson/",
   github: "https://github.com/bghcore",
-  headline: "Building complex software into intuitive experiences.",
+  headline: "I ship across the whole stack with AI coding agents.",
   /**
    * Headshot in /public, cropped from a 2026 photo (eyes about 40% from the top), lightly
    * color-graded, saved without camera metadata. `src` is the JPEG fallback (also used in
@@ -28,7 +28,7 @@ export const site = {
     alt: "Bradley Hanson, smiling, in a green suit outdoors",
   },
   intro:
-    "I'm a full-stack engineer at Microsoft, and I build with AI coding agents every day. In my first 10 months on Dynamics 365 Contact Center I've merged 500+ pull requests, from React UI and SDKs down to C# services, pipelines, and monitors, in codebases owned by three product organizations.",
+    "I'm a software engineer at Microsoft. In my first 10 months on Dynamics 365 Contact Center I've merged 500+ pull requests, from React UI and SDKs down to C# services, pipelines, and monitors, in codebases owned by three product organizations.",
   description:
     "Bradley Hanson is a full-stack software engineer at Microsoft in the Greater Seattle Area. He builds with AI coding agents across React, TypeScript, SDKs, and C# services, and runs independent projects like Civic Maps and The Sub Delta.",
   /**

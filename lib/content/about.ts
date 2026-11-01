@@ -3,8 +3,8 @@
 export const aboutParagraphs = [
   "I'm a full-stack software engineer in the Seattle area. I've worked on Microsoft products since 2016, first as a vendor engineer through Mindtree and then at Microsoft from October 2018. Today I'm on Dynamics 365 Contact Center, working on the Live Chat Widget that businesses put on their websites and its integration into Copilot Studio.",
   "Frontend taught me to like change. Before AI, frontend developers complained all the time about how fast the ground moved: a new framework, a new major version, a new build tool every year. I enjoyed it. Learning the new thing was part of the job. AI has brought that pace to the whole industry, and backend engineers can't wait it out either. I already worked across the stack, so the same habit now lets me take on work anywhere in the product.",
-  "I build with AI coding agents every day. I've worked with Claude Code, Cursor, Grok Build, and GitHub Copilot's CLI and coding agent, and I pick the tool and the model for the job instead of using one for everything. I follow how these tools change and keep adjusting my workflow. That's how I joined Dynamics 365 Contact Center in January 2026 and was soon shipping in code I'd never seen: Copilot Studio's monorepo, the admin center's older React stack, and C# services I hadn't worked in before.",
-  "Speed only counts if the code holds up. At work I've put real time into the guardrails that make agents useful on a team: architecture rule files, agent skills, tests that gate releases, and a weekly check for architectural drift. When I moved on from the agent desktop, the larger team that took it over kept building on that foundation instead of replacing it.",
+  "I build with AI coding agents every day. I've worked with Claude Code, Cursor, Grok Build, and GitHub Copilot's CLI and coding agent, and I pick the tool and the model for each job. I follow how these tools change and keep adjusting my workflow. That's how I joined Dynamics 365 Contact Center in January 2026 and was soon shipping in code I'd never seen: Copilot Studio's monorepo, the admin center's older React stack, and C# services I hadn't worked in before.",
+  "Speed only counts if the code holds up. At work I've put real time into the guardrails that make agents useful on a team: architecture rule files, agent skills, tests that gate releases, and a weekly check for architectural drift. When I moved on from the agent desktop, the larger team that took it over kept building on that foundation.",
   "I also build a lot outside of work. The Sub Delta is a music-discovery app for SoundCloud that I've been rebuilding since 2015, and the latest version produced three open-source TypeScript packages. Civic Maps is about a question that should be easy to answer: who governs a given place? When I got married in 2026, I built our wedding website and its RSVP system myself. This site was built the same way, with AI coding agents.",
 ];
 
@@ -21,7 +21,7 @@ export const lessons: Lesson[] = [
     story:
       "My first big customer-facing release, a rewrite of an Azure portal extension, went out with a few bugs that unit tests had no way to catch. They lived in how the pieces fit together.",
     change:
-      "I made end-to-end tests a release gate there, and on my next greenfield project I set up a three-tier Playwright suite early instead of after launch.",
+      "I made end-to-end tests a release gate there, and on my next greenfield project I set up a three-tier Playwright suite before launch.",
   },
   {
     title: "Split security fixes along package lines",

@@ -1,4 +1,3 @@
-import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { engineeringDomains } from "@/lib/content/explorer";
 import { getProject, projects } from "@/lib/content/projects";
@@ -88,7 +87,6 @@ export function EngineeringExplorer() {
                           className="group inline-flex items-start gap-1.5 font-mono text-xs leading-5 text-subtle hover:text-accent sm:justify-self-end sm:text-right"
                         >
                           {project.name}
-                          <ArrowRight aria-hidden="true" className="mt-0.5 size-3.5 shrink-0" strokeWidth={1.75} />
                         </Link>
                       )}
                     </li>

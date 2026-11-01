@@ -1,9 +1,9 @@
-import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ContactSection } from "@/components/ContactSection";
 import { CredentialBoundaryDiagram } from "@/components/diagrams/CredentialBoundaryDiagram";
+import { Icon } from "@/components/Icon";
 import { JsonLd } from "@/components/JsonLd";
 import { ProjectScreenshot } from "@/components/ProjectScreenshot";
 import {
@@ -63,7 +63,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       <article>
         <header className="mx-auto max-w-6xl px-4 pt-12 pb-14 sm:px-6 sm:pt-16">
           <Link href="/work/" className="inline-flex items-center gap-1.5 text-sm text-muted hover:text-ink">
-            <ArrowLeft aria-hidden="true" className="size-4" strokeWidth={1.75} />
+            <Icon name="arrow-left" className="size-4" />
             All work
           </Link>
           <div className="mt-10 grid gap-10 lg:grid-cols-12 lg:gap-8">
@@ -72,7 +72,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 {project.format === "case-study" ? "Case study · " : ""}
                 {project.eyebrow}
               </p>
-              <h1 className="mt-4 text-4xl font-semibold tracking-[-0.03em] text-balance sm:text-5xl">
+              <h1 className="mt-4 text-4xl font-semibold tracking-[-0.015em] text-balance sm:text-5xl">
                 {project.title}
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-relaxed text-pretty text-muted">{project.summary}</p>
@@ -92,7 +92,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                     className="inline-flex items-center gap-1.5 rounded-md border border-line-strong px-3 py-1.5 text-sm transition-colors hover:border-accent hover:text-accent"
                   >
                     {link.label}
-                    <ArrowUpRight aria-hidden="true" className="size-3.5" strokeWidth={1.75} />
+                    <Icon name="arrow-up-right" className="size-3.5" />
                   </a>
                 </li>
               ))}
@@ -171,11 +171,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 {nextProject.title}
               </span>
             </span>
-            <ArrowRight
-              aria-hidden="true"
-              className="size-5 shrink-0 text-subtle transition-transform group-hover:translate-x-1 group-hover:text-accent"
-              strokeWidth={1.75}
-            />
+            <Icon name="arrow-right" className="size-5 shrink-0 text-subtle transition-colors group-hover:text-accent" />
           </Link>
         </nav>
       </article>

@@ -1,4 +1,4 @@
-import { ArrowRight, ArrowUp, ArrowUpDown } from "lucide-react";
+import { Icon } from "@/components/Icon";
 
 // Built from HTML boxes rather than SVG so the text stays readable at phone widths.
 // From sm up it reads left to right. On phones it stacks as iframe, MessagePort, host code, so
@@ -14,8 +14,8 @@ export function CredentialBoundaryDiagram() {
             <li>Opens the WebSocket</li>
           </DiagramBox>
           <div className="order-2 flex flex-col items-center justify-center py-1 text-center sm:order-none">
-            <ArrowUp aria-hidden="true" className="size-4 text-accent sm:hidden" strokeWidth={1.75} />
-            <ArrowRight aria-hidden="true" className="hidden size-4 text-accent sm:block" strokeWidth={1.75} />
+            <Icon name="arrow-up" className="size-4 text-accent sm:hidden" />
+            <Icon name="arrow-right" className="hidden size-4 text-accent sm:block" />
             <span className="mt-1 font-mono text-xs">MessagePort</span>
             <span className="text-xs text-subtle">versioned, origin-checked</span>
           </div>
@@ -27,7 +27,7 @@ export function CredentialBoundaryDiagram() {
       </div>
       <div className="grid sm:grid-cols-[1fr_8rem_1fr] sm:gap-3">
         <div className="flex flex-col items-center py-2 text-center sm:px-5">
-          <ArrowUpDown aria-hidden="true" className="size-4 text-subtle" strokeWidth={1.75} />
+          <Icon name="arrow-up-down" className="size-4 text-subtle" />
           <span className="mt-1 font-mono text-xs text-subtle">WebSocket and SSE</span>
         </div>
       </div>

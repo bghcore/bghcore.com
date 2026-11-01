@@ -1,4 +1,3 @@
-import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { ProjectScreenshot } from "@/components/ProjectScreenshot";
 import type { Project } from "@/lib/content/projects";
@@ -35,13 +34,8 @@ export function ProjectList({ projects, numbered = false }: ProjectListProps) {
                   </Link>
                 </h3>
                 <p className="mt-3 max-w-2xl text-pretty text-muted">{project.summary}</p>
-                <p className="mt-4 flex items-center gap-1.5 text-sm font-medium text-ink">
+                <p className="mt-4 text-sm font-medium text-accent">
                   {project.format === "case-study" ? "Read the case study" : "Project details"}
-                  <ArrowRight
-                    aria-hidden="true"
-                    className="size-4 transition-transform group-hover:translate-x-0.5"
-                    strokeWidth={1.75}
-                  />
                 </p>
               </div>
               {project.images?.[0] && (

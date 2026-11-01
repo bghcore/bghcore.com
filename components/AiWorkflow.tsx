@@ -3,14 +3,12 @@ import { guardrails, newTerritory, workflowFigures, workflowTools, type Workflow
 export function AiWorkflow() {
   return (
     <div>
-      <dl className="grid grid-cols-1 gap-px overflow-hidden rounded-md border border-line bg-line sm:grid-cols-3">
+      <dl className="flex flex-wrap gap-x-10 gap-y-4 border-y border-line py-5">
         {workflowFigures.map((figure) => (
-          <div key={figure.label} className="bg-bg px-5 py-5">
-            <dt className="sr-only">{figure.label}</dt>
-            <dd>
-              <span className="block text-3xl font-semibold tracking-tight text-accent">{figure.value}</span>
-              <span className="mt-1 block text-sm text-muted">{figure.label}</span>
-            </dd>
+          <div key={figure.label} className="flex items-baseline gap-2.5">
+            {/* The label is the term; it sits after the value visually. */}
+            <dt className="order-2 text-sm text-muted">{figure.label}</dt>
+            <dd className="order-1 text-2xl font-semibold tracking-tight">{figure.value}</dd>
           </div>
         ))}
       </dl>

@@ -1,4 +1,3 @@
-import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { careerPositions } from "@/lib/content/experience";
 
@@ -35,7 +34,6 @@ export function ExperienceTimeline() {
               className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-accent hover:underline"
             >
               Read the case study
-              <ArrowRight aria-hidden="true" className="size-4" strokeWidth={1.75} />
             </Link>
           )}
         </li>
