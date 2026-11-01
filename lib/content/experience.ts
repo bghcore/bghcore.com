@@ -42,8 +42,8 @@ export const careerPositions: CareerPosition[] = [
     team: "Azure CXP Engineering (now Azure Engineering Operations)",
     period: "2018 to 2026",
     roles: [
-      { title: "Software Engineer II", period: "September 2023 to January 2026" },
-      { title: "Software Engineer", period: "October 2018 to September 2023" },
+      { title: "Software Engineer II", period: "September 2022 to January 2026" },
+      { title: "Software Engineer", period: "October 2018 to September 2022" },
     ],
     summary:
       "Customer-facing Azure experiences and the internal tools Microsoft uses to support Azure customers.",
