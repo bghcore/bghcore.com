@@ -46,7 +46,15 @@ const themeScript = `try{var t=localStorage.getItem("theme");if(t==="light"||(!t
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${plexSans.variable} ${plexMono.variable}`}>
+    // data-scroll-behavior tells Next.js to turn off the CSS smooth scrolling during route changes.
+    // Without it, Next's scrollIntoView calls on each new page animate and race, and the page lands
+    // partway down (or at the contact section) instead of at the top.
+    <html
+      lang="en"
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
+      className={`${plexSans.variable} ${plexMono.variable}`}
+    >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>

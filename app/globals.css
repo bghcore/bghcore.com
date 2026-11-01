@@ -53,6 +53,7 @@ html {
   scroll-padding-top: 5rem;
 }
 
+/* Smooth for in-page anchors only. Route changes stay instant via data-scroll-behavior in layout.tsx. */
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;

@@ -110,7 +110,7 @@ export const engineeringDomains: EngineeringDomain[] = [
         projectSlug: "azure-engineering",
       },
       {
-        text: "Cut a platform's Azure subscription costs by about $142.7K a year (36%).",
+        text: "Cut a platform's Azure subscription costs by $142.7K a year (36%).",
         projectSlug: "azure-engineering",
       },
     ],
