@@ -114,11 +114,20 @@ export const engineeringDomains: EngineeringDomain[] = [
   },
   {
     id: "developer-tooling",
-    label: "Developer Tooling",
-    summary: "I like building the tools and guardrails that make the next change easier and safer.",
+    label: "AI & Developer Tooling",
+    summary:
+      "I build with AI coding agents every day, and I build the guardrails that let a whole team use them without losing quality.",
     contributions: [
       {
         text: "Built a team's AI-assisted development guardrails: 13 architecture rule files, 3 agent skills, repository instructions across 5 codebases, and a weekly architecture-drift audit.",
+        projectSlug: "dynamics-365-contact-center",
+      },
+      {
+        text: "Wrote a read-only on-call workbench in Python that pulls an incident's history, past fixes, and telemetry into one command, then ran two agent sessions on it in parallel through an on-call week.",
+        projectSlug: "dynamics-365-contact-center",
+      },
+      {
+        text: "Ran an agentic development workshop for about 11 engineers and fixed two bugs in unfamiliar code live, one in the UI and one in a backend service.",
         projectSlug: "dynamics-365-contact-center",
       },
       {
@@ -126,19 +135,21 @@ export const engineeringDomains: EngineeringDomain[] = [
         projectSlug: "dynamics-365-contact-center",
       },
       {
-        text: "Made about 100 Playwright end-to-end tests a release gate.",
-        projectSlug: "azure-engineering",
-      },
-      {
         text: "Published a zero-dependency API client with retries, request deduplication, and a CLI.",
         projectSlug: "soundcloud-libraries",
       },
-      {
-        text: "Wrote a CLI that inspects game replays as NDJSON event streams.",
-        projectSlug: "tagpro-tools",
-      },
     ],
-    technologies: ["GitHub Actions", "Playwright", "Vitest", "Jest", "npm publishing", "Claude Code", "GitHub Copilot", "MCP"],
+    technologies: [
+      "Claude Code",
+      "Cursor",
+      "Grok Build",
+      "GitHub Copilot CLI and coding agent",
+      "MCP",
+      "Agent skills and rule files",
+      "GitHub Actions",
+      "Playwright",
+      "npm publishing",
+    ],
   },
   {
     id: "data-geospatial",
@@ -159,10 +170,10 @@ export const engineeringDomains: EngineeringDomain[] = [
         projectSlug: "azure-engineering",
       },
       {
-        text: "Wrote a reducer that rebuilds game state from replay events.",
-        projectSlug: "tagpro-tools",
+        text: "Retuned alerting monitors in KQL and backtested them against past incidents before shipping, which cut firing on the noisiest alert family sharply.",
+        projectSlug: "dynamics-365-contact-center",
       },
     ],
-    technologies: ["PostgreSQL", "PostGIS", "Docker", "CesiumJS", "Azure Search", "Cosmos DB"],
+    technologies: ["PostgreSQL", "PostGIS", "Docker", "CesiumJS", "Azure Search", "Cosmos DB", "KQL"],
   },
 ];

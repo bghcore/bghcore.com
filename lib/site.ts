@@ -10,7 +10,7 @@ export const site = {
   team: "Dynamics 365 Contact Center",
   location: "Greater Seattle Area",
   region: "Washington",
-  focus: "React, TypeScript, full stack",
+  focus: "Full stack, built with AI agents",
   email: "b.g.h@outlook.com",
   linkedin: "https://www.linkedin.com/in/bradleyghanson/",
   github: "https://github.com/bghcore",
@@ -28,9 +28,9 @@ export const site = {
     alt: "Bradley Hanson, smiling, in a green suit outdoors",
   },
   intro:
-    "I'm a software engineer at Microsoft with 8+ years building products across Azure and Dynamics 365. I work mostly in React and TypeScript, and when a feature needs it I follow it down into SDKs and C# services.",
+    "I'm a full-stack engineer at Microsoft, and I build with AI coding agents every day. In my first 10 months on Dynamics 365 Contact Center I've merged 500+ pull requests, from React UI and SDKs down to C# services, pipelines, and monitors, in codebases owned by three product organizations.",
   description:
-    "Bradley Hanson is a software engineer at Microsoft in the Greater Seattle Area. He builds React and TypeScript products across Azure and Dynamics 365, plus open-source SDKs and independent projects like Civic Maps.",
+    "Bradley Hanson is a full-stack software engineer at Microsoft in the Greater Seattle Area. He builds with AI coding agents across React, TypeScript, SDKs, and C# services, and runs independent projects like Civic Maps and The Sub Delta.",
   /**
    * Optional public path to a résumé PDF placed in /public, for example "/bradley-hanson-resume.pdf".
    * The web résumé at /resume/ always exists. When this is set, that page also offers the PDF.

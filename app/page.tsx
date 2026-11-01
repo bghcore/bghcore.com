@@ -1,5 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { AiWorkflow } from "@/components/AiWorkflow";
 import { ContactSection } from "@/components/ContactSection";
 import { EngineeringExplorer } from "@/components/EngineeringExplorer";
 import { ExperienceTimeline } from "@/components/ExperienceTimeline";
@@ -10,6 +11,7 @@ import { Portrait } from "@/components/Portrait";
 import { ProjectList } from "@/components/ProjectList";
 import { SkillsOverview } from "@/components/SkillsOverview";
 import { aboutParagraphs } from "@/lib/content/about";
+import { workflowIntro } from "@/lib/content/ai-workflow";
 import { education } from "@/lib/content/experience";
 import { getFeaturedProjects } from "@/lib/content/projects";
 import { personJsonLd } from "@/lib/structured-data";
@@ -22,6 +24,15 @@ export default function HomePage() {
     <>
       <JsonLd data={personJsonLd()} />
       <Hero />
+
+      <PageSection
+        id="how-i-work"
+        label="How I work"
+        title="Building with AI agents, across the whole stack"
+        intro={workflowIntro}
+      >
+        <AiWorkflow />
+      </PageSection>
 
       <PageSection
         id="work"
@@ -84,8 +95,7 @@ export default function HomePage() {
         <div className="grid max-w-3xl gap-8 sm:grid-cols-[11rem_1fr] sm:gap-10">
           <Portrait sizes="(min-width: 640px) 11rem, 50vw" className="max-w-44" />
           <div className="space-y-5 text-lg leading-relaxed text-pretty">
-            <p>{aboutParagraphs[1]}</p>
-            <p className="text-muted">{aboutParagraphs[2]}</p>
+            <p>{aboutParagraphs[4]}</p>
           </div>
         </div>
         <Link href="/about/" className="mt-8 inline-flex items-center gap-1.5 text-sm font-medium text-accent hover:underline">

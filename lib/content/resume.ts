@@ -27,7 +27,7 @@ export type ResumeSkillLine = {
 };
 
 export const resumeSummary =
-  "Product engineer with 8+ years at Microsoft building React and TypeScript applications, after two years as a vendor engineer on Azure. Most recently I built the customer-facing Live Chat Widget for Dynamics 365 Contact Center into Microsoft Copilot Studio. I own features across the stack, from UI architecture and SDKs to C#/.NET services, CI/CD, and on-call, and I design shared contracts other teams build on.";
+  "Full-stack engineer who builds with AI coding agents every day, with 8+ years at Microsoft after two years as a vendor engineer on Azure. In 10 months on Dynamics 365 Contact Center I merged 500+ pull requests across codebases owned by three product organizations, including putting the customer-facing Live Chat Widget into Microsoft Copilot Studio. I own features across the stack, from UI architecture and SDKs to C#/.NET services, CI/CD, and on-call, and I build the guardrails that let a team use AI agents safely.";
 
 export const resumeSkills: ResumeSkillLine[] = [
   {
@@ -52,7 +52,7 @@ export const resumeSkills: ResumeSkillLine[] = [
   },
   {
     area: "AI-assisted engineering",
-    skills: "Claude Code, GitHub Copilot CLI and coding agent, MCP, agent skills and rule libraries, RAG",
+    skills: "Claude Code, Cursor, Grok Build, GitHub Copilot CLI and coding agent, MCP, agent skills and rule libraries, RAG",
   },
 ];
 

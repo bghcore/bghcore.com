@@ -25,8 +25,9 @@ export const careerPositions: CareerPosition[] = [
     period: "2026 to present",
     roles: [{ title: "Software Engineer II", period: "January 2026 to present" }],
     summary:
-      "Customer chat and agent experiences that span three product organizations, from React UI and SDKs to C# services and on-call.",
+      "Customer chat and agent experiences that span three product organizations, from React UI and SDKs to C# services and on-call. I work AI-first here, with coding agents running inside guardrails I built for the team.",
     highlights: [
+      "Merged 500+ pull requests in my first 10 months, in codebases owned by three product organizations.",
       "Built the production Live Chat Widget into Copilot Studio's agent test chat, from an empty repository to CDN deployment in six weeks.",
       "Designed the embed's security boundary on both sides of two repositories, so no credential enters the widget's iframe.",
       "Moved two products onto one shared React chat renderer, and replaced three configuration models with one versioned TypeScript contract.",

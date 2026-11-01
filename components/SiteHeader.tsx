@@ -3,9 +3,9 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 import { site } from "@/lib/site";
 
 const navigationLinks = [
+  { href: "/#how-i-work", label: "How I work" },
   { href: "/work/", label: "Work" },
   { href: "/#experience", label: "Experience" },
-  { href: "/#explorer", label: "Explorer" },
   { href: "/about/", label: "About" },
   { href: "/resume/", label: "Résumé" },
   { href: "/#contact", label: "Contact" },

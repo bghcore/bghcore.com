@@ -25,6 +25,8 @@ export function personJsonLd() {
     },
     sameAs: [site.linkedin, site.github],
     knowsAbout: [
+      "AI-assisted software engineering",
+      "Agentic coding",
       "React",
       "TypeScript",
       "Full-stack web development",

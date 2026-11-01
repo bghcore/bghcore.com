@@ -8,7 +8,7 @@ export type EngineeringDomainId =
   | "developer-tooling"
   | "data-geospatial";
 
-export type ProjectGroup = "microsoft" | "independent" | "open-source" | "experiment";
+export type ProjectGroup = "microsoft" | "independent" | "open-source";
 
 export type ProjectLink = {
   label: string;
@@ -65,7 +65,6 @@ export const projectGroupLabels: Record<ProjectGroup, string> = {
   microsoft: "Microsoft",
   independent: "Independent",
   "open-source": "Open source",
-  experiment: "Experiment",
 };
 
 /** Case studies use these eight headings, in this order. */
@@ -575,49 +574,6 @@ export const projects: Project[] = [
         heading: "Archiving it",
         paragraphs: [
           "After the wedding I didn't want guests' names and answers sitting online. A one-off script exported the RSVP data to a private local backup and then emptied the database. Both apps now run on fictional demo data with no database at all, so the RSVP flow still works for anyone who tries it and no real guest appears anywhere.",
-        ],
-      },
-      {
-        heading: "Technologies",
-      },
-    ],
-  },
-  {
-    slug: "tagpro-tools",
-    name: "TagPro tools",
-    title: "TagPro replay mining and a local game extension",
-    group: "experiment",
-    eyebrow: "Experiment · Game tooling",
-    summary:
-      "A replay parser and CLI for the multiplayer browser game TagPro, plus a local Chromium extension that shows power-up respawn timers.",
-    period: "2026",
-    role: "Sole developer",
-    status: "Local tool, not published",
-    format: "project",
-    featured: false,
-    domains: ["developer-tooling", "data-geospatial"],
-    technologies: ["TypeScript", "pnpm workspaces", "Vitest", "Chrome Manifest V3", "NDJSON"],
-    links: [],
-    sections: [
-      {
-        heading: "Overview",
-        paragraphs: [
-          "TagPro is a multiplayer capture-the-flag game played in the browser. Its official replay files are NDJSON, one [timeMs, eventName, payload] entry per line. I wanted to understand them well enough to rebuild game state from a replay, then use the same model during a live game.",
-        ],
-      },
-      {
-        heading: "How it works",
-        bullets: [
-          "A parser turns raw replay lines into one normalized event model shared by every package.",
-          "A reducer rebuilds game state from those events and derives power-up and flag facts.",
-          "A CLI inspects a replay's events, map, power-ups, flags, and players, and can download public replays.",
-          "A Manifest V3 extension uses the same model in the page to show a countdown above each power-up pad.",
-        ],
-      },
-      {
-        heading: "Ground rules",
-        paragraphs: [
-          "Local only. No telemetry, no input automation, no packet tampering, and nothing beyond what the normal game client already receives.",
         ],
       },
       {

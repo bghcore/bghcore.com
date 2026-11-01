@@ -11,13 +11,12 @@ export const metadata: Metadata = {
   openGraph: { url: "/work/" },
 };
 
-const groupOrder: ProjectGroup[] = ["microsoft", "independent", "open-source", "experiment"];
+const groupOrder: ProjectGroup[] = ["microsoft", "independent", "open-source"];
 
 const groupIntros: Record<ProjectGroup, string> = {
   microsoft: "Written only from what I can share publicly. Internal code, architecture, and metrics stay inside Microsoft.",
   independent: "Products I build and run on my own.",
   "open-source": "Libraries on npm that anyone can use.",
-  experiment: "Smaller tools I built to learn something.",
 };
 
 export default function WorkPage() {
