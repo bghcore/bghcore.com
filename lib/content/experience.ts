@@ -39,7 +39,7 @@ export const careerPositions: CareerPosition[] = [
   {
     id: "azure-cxp",
     organization: "Microsoft",
-    team: "Azure Customer Experience (CXP) Engineering",
+    team: "Azure CXP Engineering (now Azure Engineering Operations)",
     period: "2018 to 2026",
     roles: [
       { title: "Software Engineer II", period: "September 2023 to January 2026" },
@@ -53,6 +53,7 @@ export const careerPositions: CareerPosition[] = [
       "Built a config-driven forms engine with business rules that became a platform's main data-entry experience.",
       "Cut a platform's Azure subscription costs by about $142.7K a year (36%) by removing redundant infrastructure.",
       "Added about 100 Playwright end-to-end tests as a release gate.",
+      "Onboarded and mentored new teammates, and helped raise the team's frontend standards.",
     ],
     caseStudySlug: "azure-engineering",
   },

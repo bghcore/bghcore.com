@@ -8,6 +8,13 @@ export const aboutParagraphs = [
   "I also build a lot outside of work. The Sub Delta is a music-discovery app for SoundCloud that I've been rebuilding since 2015, and the latest version produced three open-source TypeScript packages. Civic Maps is about a question that should be easy to answer: who governs a given place? When I got married in 2026, I built our wedding website and its RSVP system myself. This site was built the same way, with AI coding agents.",
 ];
 
+/** "How I got here", adapted from my LinkedIn profile into first person. */
+export const originStory = [
+  "My first paid software work came from fixing a computer. In college I rented from a small, family-run property company near campus. They called about a problem with their office computer, I fixed it in about ten minutes, and they offered me a job. For the rest of school I built their mobile-first listings website and the spreadsheets that ran their office, along with leasing, showings, and the books.",
+  "My first engineering job came from a detour. At a hiring event, the recruiters from the company I'd come to see were busy, so I started talking to the next table over. That conversation turned into an offer from Mindtree, which sent new graduates to its training campus in Bhubaneswar, India, for three months of self-directed study. I focused on full-stack .NET, worked through real culture shock, and came back better at adapting than when I left.",
+  "Then I moved to the Pacific Northwest and started on-site at Microsoft in Redmond as a vendor. I've worked on Microsoft products ever since.",
+];
+
 export type Lesson = {
   title: string;
   story: string;

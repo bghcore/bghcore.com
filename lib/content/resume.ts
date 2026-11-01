@@ -158,6 +158,7 @@ export const resumePositions: ResumePosition[] = [
             detail: "by removing redundant infrastructure.",
           },
           { lead: "Introduced about 100 Playwright end-to-end tests as a release gate." },
+          { lead: "Onboarded and mentored new teammates, and helped raise the team's frontend standards." },
           {
             lead: "Sole frontend developer of the Azure field's outage-visibility app.",
             detail:

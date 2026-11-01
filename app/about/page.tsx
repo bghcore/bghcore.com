@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ContactSection } from "@/components/ContactSection";
 import { Portrait } from "@/components/Portrait";
-import { aboutParagraphs, interests, lessons } from "@/lib/content/about";
+import { aboutParagraphs, interests, lessons, originStory } from "@/lib/content/about";
 import { education } from "@/lib/content/experience";
 import { site } from "@/lib/site";
 
@@ -48,6 +48,12 @@ export default function AboutPage() {
         <div className="lg:col-span-7 lg:col-start-6">
           <div className="space-y-6 text-lg leading-relaxed text-pretty">
             {aboutParagraphs.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
+          <h2 className="mt-16 text-xl font-semibold tracking-tight">How I got here</h2>
+          <div className="mt-4 space-y-4 leading-relaxed text-pretty text-muted">
+            {originStory.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
             ))}
           </div>
