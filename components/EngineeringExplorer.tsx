@@ -1,20 +1,20 @@
 import Link from "next/link";
-import { engineeringDomains } from "@/lib/content/explorer";
-import { getProject, projects } from "@/lib/content/projects";
+import { engineeringDomains, type EngineeringDomain } from "@/lib/content/explorer";
+import { getProject } from "@/lib/content/projects";
 
-// The selection state lives in a native radio group. CSS :has() reads it to show one panel and
-// highlight matching projects, so the explorer ships no JavaScript and works with scripts off.
+// The selection state lives in a native radio group. CSS :has() reads it to show one panel, so the
+// explorer ships no JavaScript and works with scripts off.
 function buildExplorerStyles() {
-  const rules = engineeringDomains.map((domain) => {
-    const selected = `.explorer:has(#domain-${domain.id}:checked)`;
-    return [
-      `${selected} #panel-${domain.id}{display:block}`,
-      // De-emphasize with a gray that still passes WCAG AA contrast, not with opacity.
-      `${selected} .explorer-project:not([data-domains~="${domain.id}"]){color:var(--subtle);border-color:transparent}`,
-      `${selected} .explorer-project[data-domains~="${domain.id}"]{border-color:var(--accent);color:var(--ink)}`,
-    ].join("");
-  });
+  const rules = engineeringDomains.map(
+    (domain) => `.explorer:has(#domain-${domain.id}:checked) #panel-${domain.id}{display:block}`,
+  );
   return `@supports selector(:has(a)){${rules.join("")}}`;
+}
+
+/** The projects a domain's contributions come from, in first-appearance order. */
+function domainProjects(domain: EngineeringDomain) {
+  const slugs = [...new Set(domain.contributions.map((contribution) => contribution.projectSlug))];
+  return slugs.flatMap((slug) => getProject(slug) ?? []);
 }
 
 export function EngineeringExplorer() {
@@ -57,48 +57,49 @@ export function EngineeringExplorer() {
         </fieldset>
 
         <div className="min-w-0 lg:col-span-8">
-          <ul aria-label="Projects" className="flex flex-wrap gap-2">
-            {projects.map((project) => (
-              <li key={project.slug}>
-                <Link
-                  href={`/work/${project.slug}/`}
-                  data-domains={project.domains.join(" ")}
-                  className="explorer-project inline-block rounded-md border border-line px-2.5 py-1 font-mono text-xs text-muted hover:text-ink"
-                >
-                  {project.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
-
-          {engineeringDomains.map((domain) => (
-            <div key={domain.id} id={`panel-${domain.id}`} className="explorer-panel mt-8">
-              <h3 className="text-xl font-semibold tracking-tight">{domain.label}</h3>
-              <p className="mt-2 max-w-xl text-pretty text-muted">{domain.summary}</p>
-              <ul className="mt-6 divide-y divide-line border-y border-line">
-                {domain.contributions.map((contribution) => {
-                  const project = getProject(contribution.projectSlug);
-                  return (
-                    <li key={contribution.text} className="grid gap-1.5 py-4 sm:grid-cols-[1fr_11rem] sm:gap-6">
-                      <p className="text-pretty">{contribution.text}</p>
-                      {project && (
-                        <Link
-                          href={`/work/${project.slug}/`}
-                          className="group inline-flex items-start gap-1.5 font-mono text-xs leading-5 text-subtle hover:text-accent sm:justify-self-end sm:text-right"
-                        >
-                          {project.name}
-                        </Link>
-                      )}
-                    </li>
-                  );
-                })}
-              </ul>
-              <p className="mt-5 font-mono text-xs leading-6 text-subtle">
-                <span className="text-muted">Tools: </span>
-                {domain.technologies.join(" · ")}
-              </p>
-            </div>
-          ))}
+          {engineeringDomains.map((domain) => {
+            const relatedProjects = domainProjects(domain);
+            return (
+              <div key={domain.id} id={`panel-${domain.id}`} className="explorer-panel">
+                <h3 className="text-xl font-semibold tracking-tight">{domain.label}</h3>
+                <p className="mt-2 max-w-xl text-pretty text-muted">{domain.summary}</p>
+                <ul className="mt-6 divide-y divide-line border-y border-line">
+                  {domain.contributions.map((contribution) => {
+                    const project = getProject(contribution.projectSlug);
+                    return (
+                      <li key={contribution.text} className="grid gap-1.5 py-4 sm:grid-cols-[1fr_11rem] sm:gap-6">
+                        <p className="text-pretty">{contribution.text}</p>
+                        {project && (
+                          <Link
+                            href={`/work/${project.slug}/`}
+                            className="inline-flex items-start gap-1.5 font-mono text-xs leading-5 text-subtle hover:text-accent sm:justify-self-end sm:text-right"
+                          >
+                            {project.name}
+                          </Link>
+                        )}
+                      </li>
+                    );
+                  })}
+                </ul>
+                <dl className="mt-5 grid gap-x-6 gap-y-2 font-mono text-xs leading-6 sm:grid-cols-[4.5rem_1fr]">
+                  <dt className="text-muted">Projects</dt>
+                  <dd className="flex flex-wrap gap-2">
+                    {relatedProjects.map((project) => (
+                      <Link
+                        key={project.slug}
+                        href={`/work/${project.slug}/`}
+                        className="rounded-md border border-line px-2.5 py-0.5 text-muted transition-colors hover:border-accent hover:text-ink"
+                      >
+                        {project.name}
+                      </Link>
+                    ))}
+                  </dd>
+                  <dt className="text-muted">Tools</dt>
+                  <dd className="text-subtle">{domain.technologies.join(" · ")}</dd>
+                </dl>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

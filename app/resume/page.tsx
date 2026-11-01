@@ -10,7 +10,7 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Résumé",
-  description: `Résumé of ${site.name}, ${site.jobTitle} at ${site.employer}: React and TypeScript product engineering across Dynamics 365 and Azure.`,
+  description: `Résumé of ${site.name}, ${site.jobTitle} at ${site.employer}: full-stack product engineering across Dynamics 365 and Azure, built with AI coding agents.`,
   alternates: { canonical: "/resume/" },
   openGraph: { url: "/resume/" },
 };

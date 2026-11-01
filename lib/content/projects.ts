@@ -57,6 +57,8 @@ export type Project = {
   note?: string;
   /** The first image also appears as the thumbnail in project lists. */
   images?: ProjectImage[];
+  /** One figure from the work. Project lists show it in place of a thumbnail when there is no image. */
+  keyFact?: { value: string; label: string };
   diagram?: ProjectDiagramId;
   sections: ProjectSection[];
 };
@@ -113,6 +115,7 @@ export const projects: Project[] = [
       },
     ],
     note: "This case study uses only what's on my public résumé and in Microsoft's public repositories. Internal code, architecture detail, and metrics stay inside Microsoft.",
+    keyFact: { value: "6 weeks", label: "from an empty repository to CDN deployment in 13 regions" },
     diagram: "credential-boundary",
     sections: [
       {
@@ -152,14 +155,14 @@ export const projects: Project[] = [
         bullets: [
           "Took the integration from an empty repository to CDN deployment in six weeks: new React packages, the transport SDK, and the release pipeline.",
           "Implemented the embed protocol on both sides, in the Copilot Studio host and in the widget.",
-          "Shipped the configuration contract into all three products, then built admin-side appearance and dark-mode authoring end to end.",
-          "Built dark mode end to end: authored in the admin center, carried by the shared contract, and rendered at runtime, including theme-aware Adaptive Cards.",
+          "Shipped the configuration contract into all three products, then built dark mode on top of it end to end: authored in the admin center, carried by the contract, and rendered at runtime, including theme-aware Adaptive Cards.",
           "Owned quality on the shipping widget. I debugged its opening animation frame by frame (it painted one frame at the size of the chat button), fixed attachments and transcript ordering, and shipped the fixes to the release branches customers run.",
           "Fixed accessibility gaps: screen readers now announce new messages and sent files across minimize and restore, and citation numbers sit inside the control so voice-control users can target them.",
           "Took the live chat service's on-call rotation. I root-caused a high-severity outage within about an hour, wrote the RCA, and changed the C# messaging service so a failed background write no longer stops a chat from starting. The alert I built would have fired 11 minutes before existing monitoring.",
           "Shipped 10+ C#/.NET fixes to the messaging and orchestration services. One covered failed AI dialogs: the customer's next message used to get no reply, and now the failure becomes a plain message and the session re-arms so a retry gets an answer.",
           "Worked in Microsoft's public chat SDK repositories on GitHub: official releases including the chat widget's 2.0.0, security fixes across five packages, and hotfix workflows with OIDC trusted publishing to npm.",
-          "Earlier in 2026, led frontend architecture for a new agent desktop: a Fluent UI v9 migration in one 243-file PR, a single state store, a three-tier Playwright test architecture, and a localization check that fails the build if hardcoded text comes back. I also embedded it inside Salesforce with a host-bridge postMessage protocol and a manual PKCE token exchange through Salesforce's iframe sandbox.",
+          "Earlier in 2026, led frontend architecture for a new agent desktop: a Fluent UI v9 migration in one 243-file PR, a single state store, a three-tier Playwright test architecture, and a localization check that fails the build if hardcoded text comes back.",
+          "Embedded that desktop inside Salesforce with a host-bridge postMessage protocol and a manual PKCE token exchange through Salesforce's iframe sandbox.",
         ],
       },
       {
@@ -178,7 +181,6 @@ export const projects: Project[] = [
           "Two products share one renderer, and CI stops either one from reimplementing shared behavior.",
           "After an AI failure, a customer's retry gets a reply.",
           "Months after I moved on from the agent desktop, the larger team that inherited it was still building on that foundation.",
-          "Usage figures for the Copilot Studio integration aren't public, so they aren't included here.",
         ],
       },
     ],
@@ -190,9 +192,9 @@ export const projects: Project[] = [
     group: "microsoft",
     eyebrow: "Microsoft · Azure CXP Engineering",
     summary:
-      "Eight years on Azure customer experience tools: a portal extension rewrite, Services Hub support case creation, and a forms engine other apps reused.",
-    period: "2018 to 2026",
-    role: "Software Engineer, then Software Engineer II",
+      "Nine years on Azure customer experience tools, first as a vendor: a portal extension rewrite, Services Hub support case creation, and a forms engine other apps reused.",
+    period: "2016 to 2026",
+    role: "Vendor, then Software Engineer and Software Engineer II",
     status: "Shipped to production",
     format: "case-study",
     featured: true,
@@ -211,6 +213,7 @@ export const projects: Project[] = [
     ],
     links: [],
     note: "Internal tools are described by what they do. Everything here is from my public résumé.",
+    keyFact: { value: "0 → 77%", label: "unit test coverage on the portal extension rewrite" },
     sections: [
       {
         heading: "Overview",
@@ -268,7 +271,7 @@ export const projects: Project[] = [
         bullets: [
           "Knockout fully removed from the portal extension. Unit test coverage went from 0 to 77%+ and local dev startup from 4:32 to 1:34.",
           "Services Hub 2.0 case creation was piloted to about 4,000 users.",
-          "A CXP platform's Azure subscription costs dropped by about $142.7K a year (36%) after I removed redundant infrastructure.",
+          "A CXP platform's Azure subscription costs dropped by $142.7K a year (36%) after I removed redundant infrastructure.",
           "Search indexing over millions of documents went from weeks to hours. Daily users of the outage-visibility app grew from about 100 to about 173.",
           "Parts of the outage-visibility UI I built as a vendor are still in production today.",
           "The forms engine became the platform's primary data-entry UX.",
@@ -493,6 +496,7 @@ export const projects: Project[] = [
       { label: "soundcloud-widget-react on npm", href: "https://www.npmjs.com/package/soundcloud-widget-react" },
       { label: "GitHub: twin-paws", href: "https://github.com/twin-paws" },
     ],
+    keyFact: { value: "0", label: "runtime dependencies in the API client and the widget wrapper" },
     sections: [
       {
         heading: "Overview",

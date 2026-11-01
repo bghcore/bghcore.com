@@ -25,13 +25,12 @@ export const careerPositions: CareerPosition[] = [
     period: "2026 to present",
     roles: [{ title: "Software Engineer II", period: "January 2026 to present" }],
     summary:
-      "Customer chat and agent experiences that span three product organizations, from React UI and SDKs to C# services and on-call. I work AI-first here, with coding agents running inside guardrails I built for the team.",
+      "Customer chat and agent experiences that span three product organizations, from React UI and SDKs to C# services and on-call. Most of it is written with coding agents, inside guardrails I built for the team.",
     highlights: [
-      "Merged 500+ pull requests in my first 10 months, in codebases owned by three product organizations.",
       "Built the production Live Chat Widget into Copilot Studio's agent test chat, from an empty repository to CDN deployment in six weeks.",
       "Designed the embed's security boundary on both sides of two repositories, so no credential enters the widget's iframe.",
-      "Moved two products onto one shared React chat renderer, and replaced three configuration models with one versioned TypeScript contract.",
-      "Took the live chat service's on-call rotation and shipped 10+ C#/.NET fixes to its messaging and orchestration services.",
+      "Moved two products onto one shared React chat renderer and replaced three configuration models with one versioned TypeScript contract.",
+      "Took the live chat service's on-call rotation and removed the C# failure mode behind a high-severity outage.",
       "Earlier in 2026, led frontend architecture for a new agent desktop and embedded it inside Salesforce.",
     ],
     caseStudySlug: "dynamics-365-contact-center",
@@ -39,19 +38,19 @@ export const careerPositions: CareerPosition[] = [
   {
     id: "azure-cxp",
     organization: "Microsoft",
-    team: "Azure CXP Engineering (now Azure Engineering Operations)",
+    team: "Azure CXP Engineering",
     period: "2018 to 2026",
     roles: [
       { title: "Software Engineer II", period: "September 2022 to January 2026" },
       { title: "Software Engineer", period: "October 2018 to September 2022" },
     ],
     summary:
-      "Customer-facing Azure experiences and the internal tools Microsoft uses to support Azure customers.",
+      "Customer-facing Azure experiences and the internal tools Microsoft uses to support Azure customers. The team is now called Azure Engineering Operations.",
     highlights: [
       "Led the Knockout to React and TypeScript rewrite of a customer-facing Azure portal extension as its frontend owner.",
       "Delivered support case creation for Services Hub 2.0 in about three months, piloted to about 4,000 users.",
       "Built a config-driven forms engine with business rules that became a platform's main data-entry experience.",
-      "Cut a platform's Azure subscription costs by about $142.7K a year (36%) by removing redundant infrastructure.",
+      "Cut a platform's Azure subscription costs by $142.7K a year (36%) by removing redundant infrastructure.",
       "Added about 100 Playwright end-to-end tests as a release gate.",
       "Onboarded and mentored new teammates, and helped raise the team's frontend standards.",
     ],

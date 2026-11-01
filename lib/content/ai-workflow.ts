@@ -12,7 +12,7 @@ export type WorkflowItem = {
 };
 
 export const workflowIntro =
-  "Frontend taught me to like change: new frameworks, new versions, new build tools every year. AI brought that pace to the whole industry, and backend engineers can't wait it out either. Because I already work across the stack, I can take that speed anywhere in the product.";
+  "Frontend taught me to like change. A new framework or build tool every year was part of the job, and AI has brought that pace to the whole industry. Because I work across the stack, I can take it anywhere in the product.";
 
 export const workflowFigures: WorkflowFigure[] = [
   { value: "10 months", label: "on Dynamics 365 Contact Center" },
@@ -34,7 +34,7 @@ export const newTerritory: WorkflowItem[] = [
   {
     title: "C# services",
     detail:
-      "New to me this year. I started with a fix for chats that went silent after an AI failure, and during and right after an on-call week I merged 10+ more, including the one that removed an outage's failure mode.",
+      "New to me this year. My first fix was for chats that went silent after an AI failure. By the end of an on-call week I had merged 10+ more, including the one that removed an outage's failure mode.",
   },
   {
     title: "Salesforce",

@@ -3,6 +3,7 @@ import { AiWorkflow } from "@/components/AiWorkflow";
 import { ContactSection } from "@/components/ContactSection";
 import { EngineeringExplorer } from "@/components/EngineeringExplorer";
 import { ExperienceTimeline } from "@/components/ExperienceTimeline";
+import { Icon } from "@/components/Icon";
 import { ImpactFigures } from "@/components/ImpactFigures";
 import { JsonLd } from "@/components/JsonLd";
 import { PageSection } from "@/components/PageSection";
@@ -27,7 +28,7 @@ export default function HomePage() {
       <PageSection
         id="how-i-work"
         label="How I work"
-        title="Building with AI agents, across the whole stack"
+        title="Productive in unfamiliar code within weeks"
         intro={workflowIntro}
       >
         <AiWorkflow />
@@ -36,23 +37,24 @@ export default function HomePage() {
       <PageSection
         id="work"
         label="Selected work"
-        title="Products at Microsoft, and things I build on my own"
-        intro="Two case studies from my work at Microsoft, written from what I can share publicly, and the independent projects I spend the most time on."
+        title="Two Microsoft products and three of my own"
+        intro="Case studies from Dynamics 365 and Azure, plus the independent projects I spend the most time on."
       >
         <ProjectList projects={featuredProjects} numbered />
         <Link
           href="/work/"
-          className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-muted hover:text-ink"
+          className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-muted transition-colors hover:text-ink"
         >
-          All projects, including Formosaic and my wedding website
+          All seven projects
+          <Icon name="arrow-right" className="size-3.5" />
         </Link>
       </PageSection>
 
       <PageSection
         id="explorer"
-        label="Engineering explorer"
-        title="Where each kind of work shows up"
-        intro="Pick an area to see the specific contributions behind it and the projects they came from."
+        label="By area"
+        title="The same work, sorted by discipline"
+        intro="Pick an area to see the contributions behind it and the project each one came from."
         layout="stacked"
       >
         <EngineeringExplorer />
@@ -62,7 +64,7 @@ export default function HomePage() {
         id="experience"
         label="Experience"
         title="Ten years on Microsoft products"
-        intro="I started as a vendor engineer, and my work got me hired full time in October 2018. My title is Software Engineer II."
+        intro="I joined Azure CXP as a vendor engineer in 2016 and was hired full time in October 2018. Since January 2026 I've been on Dynamics 365 Contact Center."
       >
         <ExperienceTimeline />
         <div className="mt-16">
@@ -75,8 +77,8 @@ export default function HomePage() {
 
       <PageSection
         id="skills"
-        label="Technical expertise"
-        title="What I use, and where"
+        label="Skills"
+        title="What I work in"
         intro="Grouped by area, and split between what I use at work and what I've mainly used on my own projects."
       >
         <SkillsOverview />
@@ -89,7 +91,7 @@ export default function HomePage() {
         </div>
       </PageSection>
 
-      <PageSection id="about" label="About" title="I build outside of work, too">
+      <PageSection id="about" label="About" title="Outside of work">
         <p className="max-w-2xl text-lg leading-relaxed text-pretty">{aboutParagraphs[4]}</p>
         <Link href="/about/" className="mt-8 inline-flex items-center gap-1.5 text-sm font-medium text-accent hover:underline">
           More about me
@@ -103,8 +105,8 @@ export default function HomePage() {
 
 function Hero() {
   const facts = [
-    { label: "Now", value: `${site.team}: the Live Chat Widget and its Copilot Studio integration` },
-    { label: "Before", value: "Azure Customer Experience Engineering, 2018 to 2026" },
+    { label: "Now", value: `${site.team}: the Live Chat Widget and Copilot Studio` },
+    { label: "Before", value: "Azure CXP Engineering, 2016 to 2026, first as a vendor" },
     { label: "Role", value: `${site.jobTitle}, ${site.employer}` },
     { label: "Focus", value: site.focus },
     { label: "Based", value: site.location },

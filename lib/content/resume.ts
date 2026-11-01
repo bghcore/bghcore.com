@@ -27,7 +27,7 @@ export type ResumeSkillLine = {
 };
 
 export const resumeSummary =
-  "Full-stack engineer who builds with AI coding agents every day, with 8+ years at Microsoft after two years as a vendor engineer on Azure. In 10 months on Dynamics 365 Contact Center I merged 500+ pull requests across codebases owned by three product organizations, including putting the customer-facing Live Chat Widget into Microsoft Copilot Studio. I own features across the stack, from UI architecture and SDKs to C#/.NET services, CI/CD, and on-call, and I build the guardrails that let a team use AI agents safely.";
+  "Full-stack engineer with ten years on Microsoft products, the first two as a vendor. In 10 months on Dynamics 365 Contact Center I merged 500+ pull requests across codebases owned by three product organizations, from React UI and SDKs to C#/.NET services, pipelines, and on-call. I build with AI coding agents every day and own the guardrails that let a team do the same safely.";
 
 export const resumeSkills: ResumeSkillLine[] = [
   {
@@ -154,7 +154,7 @@ export const resumePositions: ResumePosition[] = [
               "Built its config-driven forms engine with business rules (React Hook Form), which became the product's main data-entry experience, plus tree-view navigation and shared controls that other CXP apps reused.",
           },
           {
-            lead: "Cut that platform's Azure subscription costs by about $142.7K a year (36%)",
+            lead: "Cut that platform's Azure subscription costs by $142.7K a year (36%)",
             detail: "by removing redundant infrastructure.",
           },
           { lead: "Introduced about 100 Playwright end-to-end tests as a release gate." },

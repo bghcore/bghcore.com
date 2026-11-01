@@ -92,19 +92,18 @@ body {
 
 /*
  * Engineering Explorer. Selection is a native radio group, and CSS :has() shows the matching
- * panel and highlights matching projects, so it works with JavaScript off. Browsers without
- * :has() skip this block and show every panel in order.
+ * panel, so it works with JavaScript off. Browsers without :has() skip this block and show
+ * every panel in order.
  */
 @supports selector(:has(a)) {
   .explorer-panel {
     display: none;
   }
+}
 
-  .explorer-project {
-    transition:
-      border-color 180ms ease,
-      color 180ms ease;
-  }
+/* Panels stack when :has() is unsupported; a selected panel is the only one shown otherwise. */
+.explorer-panel + .explorer-panel {
+  margin-top: 3rem;
 }
 
 /* Printing (mainly the résumé page) always uses light colors, with darker gray text for paper. */

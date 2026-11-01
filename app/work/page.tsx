@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 const groupOrder: ProjectGroup[] = ["microsoft", "independent", "open-source"];
 
 const groupIntros: Record<ProjectGroup, string> = {
-  microsoft: "Written only from what I can share publicly. Internal code, architecture, and metrics stay inside Microsoft.",
+  microsoft: "From my public résumé and Microsoft's public repositories.",
   independent: "Products I build and run on my own.",
   "open-source": "Libraries on npm that anyone can use.",
 };
@@ -28,8 +28,8 @@ export default function WorkPage() {
           Case studies and projects
         </h1>
         <p className="mt-5 max-w-2xl text-lg text-pretty text-muted">
-          Each Microsoft case study follows the same structure: the problem, the constraints, the decisions, what I
-          did, and what changed.
+          Two products at Microsoft, written from what I can share publicly, and five projects I build and run on my
+          own.
         </p>
       </div>
       {groupOrder.map((group) => {

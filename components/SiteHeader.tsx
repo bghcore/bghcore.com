@@ -3,8 +3,8 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 import { site } from "@/lib/site";
 
 const navigationLinks = [
-  { href: "/#how-i-work", label: "How I work" },
   { href: "/work/", label: "Work" },
+  { href: "/#how-i-work", label: "How I work" },
   { href: "/#experience", label: "Experience" },
   { href: "/about/", label: "About" },
   { href: "/resume/", label: "Résumé" },

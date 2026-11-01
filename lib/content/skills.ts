@@ -53,7 +53,6 @@ export const skillGroups: SkillGroup[] = [
       "Azure DevOps pipelines",
       "Feature flags and staged releases",
       "Playwright, Vitest, Jest",
-      "GitHub Copilot",
       "Claude Code",
       "Cursor",
       "Grok Build",

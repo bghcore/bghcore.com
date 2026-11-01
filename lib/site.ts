@@ -10,7 +10,7 @@ export const site = {
   team: "Dynamics 365 Contact Center",
   location: "Greater Seattle Area",
   region: "Washington",
-  focus: "Full stack, built with AI agents",
+  focus: "Frontend architecture, SDKs, and the services behind them",
   email: "b.g.h@outlook.com",
   linkedin: "https://www.linkedin.com/in/bradleyghanson/",
   github: "https://github.com/bghcore",
@@ -28,7 +28,7 @@ export const site = {
     alt: "Bradley Hanson, smiling, in a green suit outdoors",
   },
   intro:
-    "I'm a software engineer at Microsoft. In my first 10 months on Dynamics 365 Contact Center I've merged 500+ pull requests, from React UI and SDKs down to C# services, pipelines, and monitors, in codebases owned by three product organizations.",
+    "I'm a software engineer at Microsoft on Dynamics 365 Contact Center. I build the chat widget businesses put on their websites, the SDKs developers embed it with, and the C# services it talks to, and I do most of it with AI coding agents working inside guardrails I built for the team.",
   description:
     "Bradley Hanson is a full-stack software engineer at Microsoft in the Greater Seattle Area. He builds with AI coding agents across React, TypeScript, SDKs, and C# services, and runs independent projects like Civic Maps and The Sub Delta.",
   /**

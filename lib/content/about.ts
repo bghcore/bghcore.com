@@ -3,7 +3,7 @@
 export const aboutParagraphs = [
   "I'm a full-stack software engineer in the Seattle area. I've worked on Microsoft products since 2016. I started as a vendor engineer through Mindtree, took ownership of an internal app's frontend, and that work got me hired at Microsoft full time in October 2018. Today I'm on Dynamics 365 Contact Center, working on the Live Chat Widget that businesses put on their websites and its integration into Copilot Studio.",
   "Frontend taught me to like change. Before AI, frontend developers complained all the time about how fast the ground moved: a new framework, a new major version, a new build tool every year. I enjoyed it. Learning the new thing was part of the job. AI has brought that pace to the whole industry, and backend engineers can't wait it out either. I already worked across the stack, so the same habit now lets me take on work anywhere in the product.",
-  "I build with AI coding agents every day. I've worked with Claude Code, Cursor, Grok Build, and GitHub Copilot's CLI and coding agent, and I pick the tool and the model for each job. I follow how these tools change and keep adjusting my workflow. That's how I joined Dynamics 365 Contact Center in January 2026 and was soon shipping in code I'd never seen: Copilot Studio's monorepo, the admin center's older React stack, and C# services I hadn't worked in before.",
+  "I build with AI coding agents every day. I've worked with Claude Code, Cursor, Grok Build, and GitHub Copilot's CLI and coding agent, and I pick the tool and the model for each job, then change them when something better ships. That's how I joined Dynamics 365 Contact Center in January 2026 and was soon shipping in code I'd never seen: Copilot Studio's monorepo, the admin center's older React stack, and C# services I hadn't worked in before.",
   "Speed only counts if the code holds up. At work I've put real time into the guardrails that make agents useful on a team: architecture rule files, agent skills, tests that gate releases, and a weekly check for architectural drift. When I moved on from the agent desktop, the larger team that took it over kept building on that foundation.",
   "I also build a lot outside of work. The Sub Delta is a music-discovery app for SoundCloud that I've been rebuilding since 2015, and the latest version produced three open-source TypeScript packages. Civic Maps is about a question that should be easy to answer: who governs a given place? When I got married in 2026, I built our wedding website and its RSVP system myself. This site was built the same way, with AI coding agents.",
 ];
@@ -82,6 +82,6 @@ export const interests: Interest[] = [
   {
     name: "AI and how coding is changing",
     detail:
-      "I try new agents and models as they ship and keep what works. Most of my side projects, this site included, are built with AI coding agents.",
+      "I try new agents and models as they ship and keep what works, at work and on every side project here.",
   },
 ];

@@ -38,7 +38,7 @@ export function ProjectList({ projects, numbered = false }: ProjectListProps) {
                   {project.format === "case-study" ? "Read the case study" : "Project details"}
                 </p>
               </div>
-              {project.images?.[0] && (
+              {project.images?.[0] ? (
                 <div className="mt-6 max-w-sm lg:mt-1 lg:w-56 lg:shrink-0">
                   <ProjectScreenshot
                     image={project.images[0]}
@@ -47,11 +47,23 @@ export function ProjectList({ projects, numbered = false }: ProjectListProps) {
                     className="transition-colors group-hover:border-line-strong"
                   />
                 </div>
+              ) : (
+                project.keyFact && <KeyFactTile fact={project.keyFact} />
               )}
             </div>
           </div>
         </li>
       ))}
     </ol>
+  );
+}
+
+/** Stands in for a screenshot where there can't be one (internal Microsoft products, libraries). */
+function KeyFactTile({ fact }: { fact: NonNullable<Project["keyFact"]> }) {
+  return (
+    <div className="mt-6 flex max-w-sm flex-col justify-between rounded-md border border-line bg-raised px-4 py-3 transition-colors group-hover:border-line-strong lg:mt-1 lg:aspect-video lg:w-56 lg:shrink-0">
+      <span className="font-mono text-2xl tracking-tight text-ink">{fact.value}</span>
+      <span className="mt-2 text-xs leading-snug text-pretty text-muted">{fact.label}</span>
+    </div>
   );
 }

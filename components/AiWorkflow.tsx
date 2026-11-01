@@ -21,7 +21,7 @@ export function AiWorkflow() {
         />
         <WorkflowList
           heading="What keeps it trustworthy"
-          note="Speed only matters if the code holds up, so the agents work inside guardrails."
+          note="Agent output ships through the same gates as my own code. Those gates are where I spend my time."
           items={guardrails}
         />
       </div>
@@ -36,8 +36,8 @@ export function AiWorkflow() {
           ))}
         </ul>
         <p className="mt-4 max-w-2xl text-sm text-pretty text-muted">
-          I pick the agent and the model for the job, follow how they change, and keep adjusting the workflow. This
-          site was built the same way.
+          No single tool stays best for long. I keep two or three in rotation and switch when one gets better at
+          the job in front of me.
         </p>
       </div>
     </div>

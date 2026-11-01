@@ -34,8 +34,9 @@ Content and presentation are separate. To change what the site says, edit `lib/c
 
 A few implementation notes:
 
-- **Engineering Explorer.** It's a native radio group. CSS `:has()` shows the matching panel and highlights related projects, so it ships no JavaScript, works with scripts off, and is keyboard accessible by default.
-- **Themes.** Dark is the default. The toggle stores a light-mode choice in `localStorage`, and a small inline script applies it before first paint.
+- **Engineering Explorer.** It's a native radio group. CSS `:has()` shows the matching panel, so it ships no JavaScript, works with scripts off, and is keyboard accessible by default.
+- **Themes.** A saved choice in `localStorage` wins, then the system preference, then dark. A small inline script applies it before first paint.
+- **Project rows.** A project with an `images` entry shows its first screenshot as a thumbnail. One without (the Microsoft case studies, the libraries) shows its `keyFact` instead, so every row has a visual anchor.
 - **Images.** The static export can't optimize images on request, so they're prebuilt. Project screenshots live in `public/projects/` as `<name>-640` and `<name>-1280` in AVIF and WebP, plus a 1280×720 `<name>.jpg` fallback, and a project lists them in its `images` field. The portrait follows the same pattern at 360, 640, and 960px.
 - **Analytics.** `@vercel/analytics` adds cookie-free page-view tracking in `app/layout.tsx`. It only reports once Web Analytics is enabled for the Vercel project (project → Analytics → Enable). If you change what's tracked, update `app/privacy/page.tsx` to match.
 - **Impact figures.** A figure with `verified: false` stays in the data but never renders, so a number can be held back while it's checked.

@@ -40,8 +40,9 @@ export const viewport: Viewport = {
   themeColor: "#0b0d0c",
 };
 
-// Runs before first paint so a saved light theme applies without a flash. Dark is the default.
-const themeScript = `try{if(localStorage.getItem("theme")==="light")document.documentElement.dataset.theme="light"}catch(e){}`;
+// Runs before first paint so the theme applies without a flash. A saved choice wins; otherwise the
+// system preference does, and dark is the fallback.
+const themeScript = `try{var t=localStorage.getItem("theme");if(t==="light"||(!t&&matchMedia("(prefers-color-scheme: light)").matches))document.documentElement.dataset.theme="light"}catch(e){}`;
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
