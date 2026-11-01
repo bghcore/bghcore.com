@@ -10,7 +10,8 @@ function buildExplorerStyles() {
     const selected = `.explorer:has(#domain-${domain.id}:checked)`;
     return [
       `${selected} #panel-${domain.id}{display:block}`,
-      `${selected} .explorer-project:not([data-domains~="${domain.id}"]){opacity:.38}`,
+      // De-emphasize with a gray that still passes WCAG AA contrast, not with opacity.
+      `${selected} .explorer-project:not([data-domains~="${domain.id}"]){color:var(--subtle);border-color:transparent}`,
       `${selected} .explorer-project[data-domains~="${domain.id}"]{border-color:var(--accent);color:var(--ink)}`,
     ].join("");
   });
