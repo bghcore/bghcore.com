@@ -52,6 +52,8 @@ The site URL is `https://bghcore.com` (set in `lib/site.ts`). Canonical URLs, th
 
 No `vercel.json` is needed.
 
+The Vercel project (`bghcore-com`) is connected to this repository. Pushes to `main` deploy to production, and other branches get preview URLs.
+
 ### 2. Add the domain in Vercel
 
 1. In the project, open **Settings → Domains** and add `bghcore.com`, then `www.bghcore.com`.
