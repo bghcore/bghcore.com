@@ -19,8 +19,8 @@ export function ContactSection() {
             Get in touch
           </h2>
           <p className="mt-5 max-w-md text-pretty text-muted">
-            I&apos;m interested in senior product engineering work where the UI, the SDKs, and the services behind
-            them are one problem. Email is the fastest way to reach me.
+            I&apos;m interested in senior full-stack roles where the product UI and the systems behind it are one
+            job. Email is the fastest way to reach me.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a

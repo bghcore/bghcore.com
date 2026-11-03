@@ -3,8 +3,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ContactSection } from "@/components/ContactSection";
 import { CredentialBoundaryDiagram } from "@/components/diagrams/CredentialBoundaryDiagram";
+import { SharedRendererDiagram } from "@/components/diagrams/SharedRendererDiagram";
 import { Icon } from "@/components/Icon";
 import { JsonLd } from "@/components/JsonLd";
+import { ProjectSnapshot } from "@/components/ProjectSnapshot";
 import { ProjectScreenshot } from "@/components/ProjectScreenshot";
 import {
   getProject,
@@ -100,6 +102,8 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           )}
         </header>
 
+        {project.snapshot && <ProjectSnapshot snapshot={project.snapshot} technologies={project.technologies} />}
+
         {images.length > 0 && (
           <div className="mx-auto max-w-6xl px-4 pb-14 sm:px-6">
             <div className={`grid gap-8 ${images.length > 1 ? "lg:grid-cols-2" : ""}`}>
@@ -152,7 +156,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                     section={section}
                     number={sectionIndex + 1}
                     technologies={section.heading === "Technologies" ? project.technologies : undefined}
-                    diagram={section.heading === "Architecture and technical decisions" ? project.diagram : undefined}
+                    diagrams={section.heading === "Architecture and technical decisions" ? project.diagrams : undefined}
                   />
                 ))}
               </div>
@@ -210,15 +214,15 @@ type BodySectionProps = {
   section: ProjectSection;
   number: number;
   technologies?: string[];
-  diagram?: ProjectDiagramId;
+  diagrams?: ProjectDiagramId[];
 };
 
-const diagrams: Record<ProjectDiagramId, () => React.JSX.Element> = {
+const diagramComponents: Record<ProjectDiagramId, () => React.JSX.Element> = {
+  "shared-renderer": SharedRendererDiagram,
   "credential-boundary": CredentialBoundaryDiagram,
 };
 
-function BodySection({ section, number, technologies, diagram }: BodySectionProps) {
-  const Diagram = diagram ? diagrams[diagram] : undefined;
+function BodySection({ section, number, technologies, diagrams }: BodySectionProps) {
   const anchor = sectionAnchor(section.heading);
   return (
     <section id={anchor} aria-labelledby={`${anchor}-heading`}>
@@ -229,11 +233,14 @@ function BodySection({ section, number, technologies, diagram }: BodySectionProp
         {section.heading}
       </h2>
       <div className="mt-4 space-y-4 leading-relaxed text-pretty">
-        {Diagram && (
-          <div className="pb-4">
-            <Diagram />
-          </div>
-        )}
+        {diagrams?.map((diagramId) => {
+          const Diagram = diagramComponents[diagramId];
+          return (
+            <div key={diagramId} className="pb-2">
+              <Diagram />
+            </div>
+          );
+        })}
         {section.paragraphs?.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
         {section.bullets && (
           <ul className="space-y-3">

@@ -27,7 +27,7 @@ export type ResumeSkillLine = {
 };
 
 export const resumeSummary =
-  "Full-stack engineer with ten years on Microsoft products, the first two as a vendor. In 10 months on Dynamics 365 Contact Center I merged 500+ pull requests across codebases owned by three product organizations, from React UI and SDKs to C#/.NET services, pipelines, and on-call. I build with AI coding agents every day and own the guardrails that let a team do the same safely.";
+  "Full-stack software engineer specializing in React, TypeScript, enterprise SaaS, and AI-native engineering. Ten years on Microsoft products, the first two as a vendor, now a Software Engineer II. I own customer-facing product architecture and the systems behind it: shared React platforms, SDKs, authentication boundaries, and production reliability. I use AI coding agents to accelerate implementation, and I keep the architecture, the tests, and the production outcomes.";
 
 export const resumeSkills: ResumeSkillLine[] = [
   {

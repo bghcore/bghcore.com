@@ -1,4 +1,4 @@
-import { impactFigures } from "@/lib/content/experience";
+import { impactFigures, impactNote } from "@/lib/content/experience";
 
 export function ImpactFigures() {
   const verifiedFigures = impactFigures.filter((figure) => figure.verified);
@@ -17,7 +17,8 @@ export function ImpactFigures() {
           </div>
         ))}
       </dl>
-      <p className="mt-4 text-xs text-subtle">
+      <p className="mt-4 max-w-3xl text-sm text-pretty text-muted">{impactNote}</p>
+      <p className="mt-3 text-xs text-subtle">
         Each figure comes from one project and period. They aren&apos;t lifetime totals, and they aren&apos;t added
         together.
       </p>

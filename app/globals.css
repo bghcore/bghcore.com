@@ -50,7 +50,7 @@
 }
 
 html {
-  scroll-padding-top: 5rem;
+  scroll-padding-top: 6rem;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -121,7 +121,20 @@ body {
   }
 
   @page {
-    margin: 0.5in 0.55in;
+    margin: 0.55in 0.6in;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    break-after: avoid;
+  }
+
+  p,
+  li {
+    orphans: 3;
+    widows: 3;
   }
 }
 

@@ -5,6 +5,7 @@ const paths = {
   "arrow-left": "M19 12H5M11 6l-6 6 6 6",
   "arrow-right": "M5 12h14M13 6l6 6-6 6",
   "arrow-up": "M12 19V5M6 11l6-6 6 6",
+  "arrow-down": "M12 5v14M6 13l6 6 6-6",
   "arrow-up-down": "M8 20V4M4 8l4-4 4 4M16 4v16M12 16l4 4 4-4",
   "arrow-up-right": "M7 17 17 7M8 7h9v9",
   download: "M12 4v11M7 10l5 5 5-5M5 20h14",

@@ -13,7 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const projectPages = projects.map((project) => ({
     url: absoluteUrl(`/work/${project.slug}/`),
     changeFrequency: "monthly" as const,
-    priority: project.format === "case-study" ? 0.8 : 0.6,
+    priority: project.slug === "dynamics-365-contact-center" ? 0.9 : project.format === "case-study" ? 0.8 : 0.6,
   }));
   return [...pages, ...projectPages];
 }
