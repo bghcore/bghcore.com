@@ -10,11 +10,16 @@ export const site = {
   team: "Dynamics 365 Contact Center",
   location: "Greater Seattle Area",
   region: "Washington",
-  focus: "Frontend architecture, SDKs, and the services behind them",
+  focus: "React, TypeScript, and full-stack product architecture",
   email: "b.g.h@outlook.com",
   linkedin: "https://www.linkedin.com/in/bradleyghanson/",
   github: "https://github.com/bghcore",
-  headline: "I ship across the whole stack with AI coding agents.",
+  /** Positioning line. Official HR title stays in `jobTitle`. */
+  headline: "I build products end-to-end, from React interfaces to the systems behind them.",
+  /** Shorter line for the social card, where the full headline would wrap too far. */
+  cardTitle: "I build products end to end.",
+  specialization: "Full-Stack Software Engineer",
+  specialties: ["React", "TypeScript", "Enterprise SaaS", "AI-Native Engineering"] as const,
   /**
    * Headshot in /public, cropped from a 2026 photo (eyes about 40% from the top), lightly
    * color-graded, saved without camera metadata. `src` is the JPEG fallback (also used in
@@ -28,16 +33,24 @@ export const site = {
     alt: "Bradley Hanson, smiling, in a green suit outdoors",
   },
   intro:
-    "I'm a software engineer at Microsoft on Dynamics 365 Contact Center. I build the chat widget businesses put on their websites, the SDKs developers embed it with, and the C# services it talks to, and I do most of it with AI coding agents working inside guardrails I built for the team.",
+    "I'm a software engineer at Microsoft specializing in React, TypeScript, and full-stack architecture for enterprise SaaS. I build customer-facing products and the platforms behind them, and I use AI-native workflows to move faster without giving up the architecture, the tests, or what ships to production.",
   description:
-    "Bradley Hanson is a full-stack software engineer at Microsoft in the Greater Seattle Area. He builds with AI coding agents across React, TypeScript, SDKs, and C# services, and runs independent projects like Civic Maps and The Sub Delta.",
+    "Bradley Hanson is a Software Engineer II at Microsoft in the Greater Seattle Area. He builds enterprise products end to end in React and TypeScript, from customer-facing interfaces and SDKs to the services behind them.",
   /**
-   * Optional public path to a résumé PDF placed in /public, for example "/bradley-hanson-resume.pdf".
-   * The web résumé at /resume/ always exists. When this is set, that page also offers the PDF.
-   * Keep it null until a reviewed PDF without a phone number exists.
+   * Public résumé PDF in /public, generated from /resume/ with no phone number.
+   * Regenerate it with `pnpm resume:pdf` after résumé copy changes.
    */
-  resumePath: null as string | null,
+  resumePath: "/bradley-hanson-resume.pdf",
 };
+
+/** One click from any page to the strongest case study, the résumé, and contact. */
+export const navigation = [
+  { href: "/work/dynamics-365-contact-center/", label: "Case study", mobile: true },
+  { href: "/work/", label: "Work", mobile: false },
+  { href: "/resume/", label: "Résumé", mobile: true },
+  { href: "/about/", label: "About", mobile: false },
+  { href: "/#contact", label: "Contact", mobile: true },
+] as const;
 
 export function absoluteUrl(path: string) {
   return new URL(path, site.url).toString();

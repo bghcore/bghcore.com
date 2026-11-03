@@ -7,7 +7,7 @@ export const dynamic = "force-static";
 export function GET() {
   return renderOgImage({
     eyebrow: "bghcore.com",
-    title: site.headline,
-    footer: `${site.jobTitle}, ${site.employer} · ${site.focus} · ${site.location}`,
+    title: site.cardTitle,
+    footer: `${site.jobTitle}, ${site.employer} · React and TypeScript`,
   });
 }

@@ -11,7 +11,9 @@
     "dev": "next dev",
     "build": "next build",
     "lint": "eslint .",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "tsc -p tsconfig.test.json && printf '%s\n' '{\"type\":\"commonjs\"}' > .tmp-tests/package.json && node --test .tmp-tests/recruiting-invariants.test.js",
+    "resume:pdf": "node scripts/export-resume-pdf.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

@@ -10,7 +10,7 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Résumé",
-  description: `Résumé of ${site.name}, ${site.jobTitle} at ${site.employer}: full-stack product engineering across Dynamics 365 and Azure, built with AI coding agents.`,
+  description: `Résumé of ${site.name}, ${site.jobTitle} at ${site.employer}. Full-stack software engineer specializing in React, TypeScript, enterprise SaaS, and AI-native engineering.`,
   alternates: { canonical: "/resume/" },
   openGraph: { url: "/resume/" },
 };
@@ -26,13 +26,14 @@ export default function ResumePage() {
   const resumeProjects = resumeProjectSlugs.flatMap((slug) => getProject(slug) ?? []);
 
   return (
-    <article className="mx-auto max-w-4xl px-4 pt-16 pb-24 sm:px-6 sm:pt-20 print:max-w-none print:p-0 print:text-[9.5pt] print:leading-snug">
+    <article className="mx-auto max-w-4xl px-4 pt-16 pb-24 sm:px-6 sm:pt-20 print:max-w-none print:p-0 print:text-[10.5pt] print:leading-snug">
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line pb-6 print:hidden">
         <p className="font-mono text-xs text-accent">Résumé</p>
         <div className="flex flex-wrap gap-3">
           {site.resumePath && (
             <a
               href={site.resumePath}
+              download
               className="inline-flex items-center gap-2 rounded-md bg-accent px-4 py-2.5 text-sm font-medium text-accent-ink transition-opacity hover:opacity-90"
             >
               <Icon name="download" className="size-4" />
@@ -45,7 +46,11 @@ export default function ResumePage() {
 
       <header className="mt-10 print:mt-0">
         <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl print:text-[22pt]">{site.name}</h1>
-        <p className="mt-2 text-lg text-muted print:mt-1 print:text-[11pt]">
+        <p className="mt-3 text-lg font-medium print:mt-1 print:text-[12pt]">
+          {site.specialization}
+          <span className="font-normal text-muted"> · {site.specialties.join(" · ")}</span>
+        </p>
+        <p className="mt-1 text-muted print:text-[10.5pt]">
           {site.jobTitle}, {site.employer} · {site.team}
         </p>
         <ul className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted print:mt-2 print:text-[9pt]">

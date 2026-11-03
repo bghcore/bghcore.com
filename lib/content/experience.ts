@@ -25,11 +25,11 @@ export const careerPositions: CareerPosition[] = [
     period: "2026 to present",
     roles: [{ title: "Software Engineer II", period: "January 2026 to present" }],
     summary:
-      "Customer chat and agent experiences that span three product organizations, from React UI and SDKs to C# services and on-call. Most of it is written with coding agents, inside guardrails I built for the team.",
+      "Customer chat and agent experiences across three product organizations: React UI, SDKs, C# services, and on-call. I use coding agents to implement faster, and I own the architecture, the review, and the production result.",
     highlights: [
-      "Built the production Live Chat Widget into Copilot Studio's agent test chat, from an empty repository to CDN deployment in six weeks.",
-      "Designed the embed's security boundary on both sides of two repositories, so no credential enters the widget's iframe.",
       "Moved two products onto one shared React chat renderer and replaced three configuration models with one versioned TypeScript contract.",
+      "Designed the embed's security boundary on both sides of two repositories, so no credential enters the widget's iframe.",
+      "Built the production Live Chat Widget into Copilot Studio's agent test chat, from an empty repository to CDN deployment in six weeks, with a release pipeline routing to 13 production regions.",
       "Took the live chat service's on-call rotation and removed the C# failure mode behind a high-severity outage.",
       "Earlier in 2026, led frontend architecture for a new agent desktop and embedded it inside Salesforce.",
     ],
@@ -81,32 +81,43 @@ export type ImpactFigure = {
   verified: boolean;
 };
 
+/**
+ * Figures already published on the public résumé and this site. Each one is scoped to a single
+ * project. `$142.7K` is the résumé's rounding of about $142,745. Nothing here is a lifetime total.
+ */
 export const impactFigures: ImpactFigure[] = [
   {
-    value: "$142.7K",
-    label: "a year in Azure costs removed",
-    context: "36% of one CXP platform's Azure subscription spend, by removing redundant infrastructure.",
+    value: "2 → 1",
+    label: "shared React chat renderer",
+    context:
+      "Two Dynamics 365 chat products render through one React package. CI fails if either product reimplements shared behavior.",
     verified: true,
   },
   {
-    value: "~4,000",
-    label: "users in a support pilot",
-    context: "Services Hub 2.0 support case creation, which I delivered in about three months.",
+    value: "13",
+    label: "production regions",
+    context:
+      "The Live Chat Widget integration ships on its own release pipeline to 13 production regions. That is the pipeline's reach, not a company-wide footprint.",
+    verified: true,
+  },
+  {
+    value: "$142.7K",
+    label: "a year in Azure costs removed",
+    context: "36% of one Azure CXP platform's subscription spend, by removing redundant infrastructure.",
     verified: true,
   },
   {
     value: "0 → 77%+",
     label: "unit test coverage",
-    context: "On the Azure portal extension rewrite, which also cut local dev startup by 65%.",
-    verified: true,
-  },
-  {
-    value: "6 weeks",
-    label: "from empty repo to CDN",
-    context: "For the Live Chat Widget inside Copilot Studio's agent test chat.",
+    context:
+      "Frontend unit tests on the customer-facing Azure portal extension I owned, from none to 77%+. Local dev startup on that extension also dropped 65%.",
     verified: true,
   },
 ];
+
+/** Published outcomes that stay in prose so the homepage grid does not turn into a wall of numbers. */
+export const impactNote =
+  "Also on the record: Services Hub 2.0 support case creation, which I delivered in about three months, was piloted to about 4,000 users. The Copilot Studio chat integration went from an empty repository to CDN deployment in six weeks.";
 
 export const education = {
   school: "University of Wisconsin–Eau Claire",

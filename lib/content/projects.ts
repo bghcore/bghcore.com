@@ -34,7 +34,16 @@ export type ProjectImage = {
 };
 
 /** Hand-drawn diagrams, rendered inside the "Architecture and technical decisions" section. */
-export type ProjectDiagramId = "credential-boundary";
+export type ProjectDiagramId = "shared-renderer" | "credential-boundary";
+
+/** Scannable case-study opening. Copy must stay within what the long sections already say. */
+export type ProjectSnapshot = {
+  problem: string;
+  role: string;
+  decisions: string[];
+  tradeoff: string;
+  outcomes: string[];
+};
 
 export type Project = {
   slug: string;
@@ -59,7 +68,11 @@ export type Project = {
   images?: ProjectImage[];
   /** One figure from the work. Project lists show it in place of a thumbnail when there is no image. */
   keyFact?: { value: string; label: string };
-  diagram?: ProjectDiagramId;
+  /** Lower numbers appear first on the homepage. Unset featured projects keep source order after ranked ones. */
+  featuredRank?: number;
+  diagrams?: ProjectDiagramId[];
+  /** Shown under the title on case-study pages so a reader can judge the work without scrolling the essay. */
+  snapshot?: ProjectSnapshot;
   sections: ProjectSection[];
 };
 
@@ -95,6 +108,7 @@ export const projects: Project[] = [
     status: "Current work",
     format: "case-study",
     featured: true,
+    featuredRank: 1,
     domains: ["frontend", "full-stack", "cloud-enterprise", "developer-tooling"],
     technologies: [
       "React",
@@ -114,9 +128,28 @@ export const projects: Project[] = [
         href: "https://github.com/search?q=org%3Amicrosoft+author%3Abghcore+is%3Apr+is%3Amerged&type=pullrequests",
       },
     ],
-    note: "This case study uses only what's on my public résumé and in Microsoft's public repositories. Internal code, architecture detail, and metrics stay inside Microsoft.",
-    keyFact: { value: "6 weeks", label: "from an empty repository to CDN deployment in 13 regions" },
-    diagram: "credential-boundary",
+    note: "This case study uses only what's on my public résumé and in Microsoft's public repositories. The products and the code are Microsoft's. Internal endpoints, infrastructure identifiers, and nonpublic incident detail stay inside Microsoft.",
+    keyFact: { value: "2 → 1", label: "products on one shared React chat renderer" },
+    diagrams: ["shared-renderer", "credential-boundary"],
+    snapshot: {
+      problem:
+        "Makers tested agents in a chat surface that was not the one customers use. The admin center, Copilot Studio, and the runtime widget also each stored widget settings in their own model, so a partial save in one product could erase settings another product had written.",
+      role: "Software Engineer II. I took the Copilot Studio integration from an empty repository to CDN deployment, implemented the embed protocol on both sides of two repositories, and shipped the shared renderer and the configuration contract. The products and the code are Microsoft's.",
+      decisions: [
+        "The Copilot Studio host keeps the auth token and the WebSocket. The widget iframe receives only a transferred MessagePort.",
+        "Both products render chat through one shared React package, with CI checks that stop either from reimplementing shared behavior.",
+        "One versioned TypeScript contract replaces the three configuration models, keeps v1 and v2 compatibility, and preserves fields it does not recognize.",
+        "The integration has its own release pipeline, routing to 13 production regions.",
+      ],
+      tradeoff:
+        "Preserving unrecognized fields is less strict than rejecting them. It is what lets three products on different release schedules share one configuration without erasing each other's settings. Converging the renderers started with a behavior-preserving rename, then a stack of reviewable pull requests, because customers were already running the shipping widget.",
+      outcomes: [
+        "Makers test agents in the same chat UI their customers see.",
+        "A partial save in one product no longer erases another product's settings.",
+        "Two products share one renderer, and CI stops either one from reimplementing shared behavior.",
+        "A failed background write in the messaging service no longer stops a chat from starting.",
+      ],
+    },
     sections: [
       {
         heading: "Overview",
@@ -198,6 +231,7 @@ export const projects: Project[] = [
     status: "Shipped to production",
     format: "case-study",
     featured: true,
+    featuredRank: 2,
     domains: ["frontend", "full-stack", "cloud-enterprise", "developer-tooling", "data-geospatial"],
     technologies: [
       "React",
@@ -307,7 +341,7 @@ export const projects: Project[] = [
       "Vitest",
       "Vercel",
     ],
-    links: [{ label: "thesubdelta.com", href: "https://www.thesubdelta.com" }],
+    links: [{ label: "Live site", href: "https://www.thesubdelta.com" }],
     images: [
       {
         file: "the-sub-delta",
@@ -403,7 +437,8 @@ export const projects: Project[] = [
       "Node.js",
     ],
     links: [
-      { label: "civicmapshq.com", href: "https://www.civicmapshq.com" },
+      { label: "Live site", href: "https://www.civicmapshq.com" },
+      { label: "Live globe", href: "https://map.civicmapshq.com" },
       { label: "God's Eye View (upstream)", href: "https://github.com/bilawalsidhu/gods-eye-view" },
     ],
     note: "Civic Maps is built on a fork of God's Eye View, an open-source 3D globe by Bilawal Sidhu. The globe and its rendering are God's Eye View. The political data model, database, API, ingest, and website are mine.",
@@ -539,11 +574,12 @@ export const projects: Project[] = [
     role: "Author and maintainer",
     status: "Published on npm",
     format: "project",
-    featured: false,
+    featured: true,
+    featuredRank: 3,
     domains: ["frontend", "developer-tooling"],
     technologies: ["React 19", "TypeScript", "React Hook Form", "Vitest", "Storybook", "Next.js", "Clerk", "Stripe"],
     links: [
-      { label: "formosaic.com", href: "https://www.formosaic.com" },
+      { label: "Live playground", href: "https://www.formosaic.com" },
       { label: "GitHub", href: "https://github.com/bghcore/formosaic" },
       { label: "npm", href: "https://www.npmjs.com/package/@formosaic/core" },
     ],
@@ -649,5 +685,8 @@ export function getProject(slug: string) {
 }
 
 export function getFeaturedProjects() {
-  return projects.filter((project) => project.featured);
+  return projects
+    .filter((project) => project.featured)
+    .slice()
+    .sort((a, b) => (a.featuredRank ?? 50) - (b.featuredRank ?? 50));
 }
