@@ -29,8 +29,9 @@ export const careerPositions: CareerPosition[] = [
     highlights: [
       "Moved two products onto one shared React chat renderer and replaced three configuration models with one versioned TypeScript contract.",
       "Designed the embed's security boundary on both sides of two repositories, so no credential enters the widget's iframe.",
-      "Built the production Live Chat Widget into Copilot Studio's agent test chat, from an empty repository to CDN deployment in six weeks, with a release pipeline routing to 13 production regions.",
+      "Built the production Live Chat Widget into Copilot Studio's agent test chat, from an empty repository to CDN deployment in six weeks, with a release pipeline routing to 13 production regions. It reached public preview in October 2026.",
       "Took the live chat service's on-call rotation and removed the C# failure mode behind a high-severity outage.",
+      "Took over the unowned release pipelines for the iOS, Android, and React Native chat SDKs.",
       "Earlier in 2026, led frontend architecture for a new agent desktop and embedded it inside Salesforce.",
     ],
     caseStudySlug: "dynamics-365-contact-center",

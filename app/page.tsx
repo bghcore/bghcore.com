@@ -74,8 +74,8 @@ export default function HomePage() {
       <PageSection
         id="experience"
         label="Experience"
-        title="Ten years on Microsoft products"
-        intro="I joined Azure CXP as a vendor engineer in 2016 and was hired full time in October 2018. Since January 2026 I've been on Dynamics 365 Contact Center."
+        title="Nine years on Microsoft products"
+        intro="I joined Azure CXP as a vendor engineer in 2017 and was hired full time in October 2018. Since January 2026 I've been on Dynamics 365 Contact Center."
       >
         <ExperienceTimeline />
       </PageSection>
@@ -122,7 +122,7 @@ function Hero() {
     { label: "Title", value: `${site.jobTitle}, ${site.employer}` },
     { label: "Focus", value: "React, TypeScript, full-stack architecture" },
     { label: "Now", value: site.team },
-    { label: "Since", value: "Microsoft products since 2016, full time since 2018" },
+    { label: "Since", value: "Microsoft products since 2017, full time since 2018" },
     { label: "Based", value: site.location },
   ];
   const resumeHref = site.resumePath ?? "/resume/";

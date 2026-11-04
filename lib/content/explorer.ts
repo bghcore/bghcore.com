@@ -139,6 +139,14 @@ export const engineeringDomains: EngineeringDomain[] = [
         projectSlug: "dynamics-365-contact-center",
       },
       {
+        text: "Took over the unowned release pipelines for the iOS, Android, and React Native chat SDKs, so releases publish only from green builds and fail loudly.",
+        projectSlug: "dynamics-365-contact-center",
+      },
+      {
+        text: "Rebuilt the publishing pipeline for my org's troubleshooting guides after a repository move left them stale, fixed 486 broken links, and added a PR check that blocks new ones.",
+        projectSlug: "dynamics-365-contact-center",
+      },
+      {
         text: "Published a zero-dependency API client with retries, request deduplication, and a CLI.",
         projectSlug: "soundcloud-libraries",
       },

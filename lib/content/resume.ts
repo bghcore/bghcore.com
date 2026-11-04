@@ -27,7 +27,7 @@ export type ResumeSkillLine = {
 };
 
 export const resumeSummary =
-  "Full-stack software engineer specializing in React, TypeScript, enterprise SaaS, and AI-native engineering. Ten years on Microsoft products, the first two as a vendor, now a Software Engineer II. I own customer-facing product architecture and the systems behind it: shared React platforms, SDKs, authentication boundaries, and production reliability. I use AI coding agents to accelerate implementation, and I keep the architecture, the tests, and the production outcomes.";
+  "Full-stack software engineer specializing in React, TypeScript, enterprise SaaS, and AI-native engineering. Nine years on Microsoft products, the first year and a half as a vendor, now a Software Engineer II. I own customer-facing product architecture and the systems behind it: shared React platforms, SDKs, authentication boundaries, and production reliability. I use AI coding agents to accelerate implementation, and I keep the architecture, the tests, and the production outcomes.";
 
 export const resumeSkills: ResumeSkillLine[] = [
   {
@@ -67,7 +67,7 @@ export const resumePositions: ResumePosition[] = [
           {
             lead: "Built the production chat widget into Microsoft Copilot Studio's agent test chat,",
             detail:
-              "taking it from an empty repository to CDN deployment in six weeks: new React packages, a TypeScript transport SDK for the orchestration service's WebSocket and SSE protocol (reverse-engineered with a local simulator), and an independent release pipeline routing to 13 production regions. Makers now test agents in the same chat UI their customers see.",
+              "taking it from an empty repository to CDN deployment in six weeks: new React packages, a TypeScript transport SDK for the orchestration service's WebSocket and SSE protocol (reverse-engineered with a local simulator), and an independent release pipeline routing to 13 production regions. It reached public preview in October 2026, and I added session telemetry on both sides of the iframe to close the gaps the first weeks of traffic exposed.",
           },
           {
             lead: "Designed the embed's security boundary on both sides of two repositories.",
@@ -92,6 +92,11 @@ export const resumePositions: ResumePosition[] = [
           {
             lead: "Shipped 10+ C#/.NET fixes to the messaging and orchestration services,",
             detail: "including recovery from a failed AI dialog that had left customers' chat sessions silent.",
+          },
+          {
+            lead: "Took over the iOS, Android, and React Native SDK release pipelines,",
+            detail:
+              "which had no owner. Releases publish only after a green build, versions come from a checked-in source of truth, and a failed Maven Central publish stops the release.",
           },
         ],
       },

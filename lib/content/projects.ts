@@ -144,7 +144,7 @@ export const projects: Project[] = [
       tradeoff:
         "Preserving unrecognized fields is less strict than rejecting them. It is what lets three products on different release schedules share one configuration without erasing each other's settings. Converging the renderers started with a behavior-preserving rename, then a stack of reviewable pull requests, because customers were already running the shipping widget.",
       outcomes: [
-        "Makers test agents in the same chat UI their customers see.",
+        "The integration reached public preview in October 2026. Makers test agents in the same chat UI their customers see.",
         "A partial save in one product no longer erases another product's settings.",
         "Two products share one renderer, and CI stops either one from reimplementing shared behavior.",
         "A failed background write in the messaging service no longer stops a chat from starting.",
@@ -155,7 +155,7 @@ export const projects: Project[] = [
         heading: "Overview",
         paragraphs: [
           "The Live Chat Widget is the chat window businesses put on their websites to talk with customers through Dynamics 365 Contact Center. Copilot Studio is where makers build the AI agents that answer in that window.",
-          "In 2026 I built the production widget into Copilot Studio's agent test chat, so a maker tests an agent in the same chat UI their customers will see.",
+          "In 2026 I built the production widget into Copilot Studio's agent test chat, so a maker tests an agent in the same chat UI their customers will see. It reached public preview in October 2026.",
         ],
       },
       {
@@ -188,12 +188,14 @@ export const projects: Project[] = [
         bullets: [
           "Took the integration from an empty repository to CDN deployment in six weeks: new React packages, the transport SDK, and the release pipeline.",
           "Implemented the embed protocol on both sides, in the Copilot Studio host and in the widget.",
+          "Followed it through public preview. When the first weeks of real traffic showed what the telemetry couldn't explain, I added session telemetry on both sides of the iframe: why a session ended, turns that got no answer, and why a send failed.",
           "Shipped the configuration contract into all three products, then built dark mode on top of it end to end: authored in the admin center, carried by the contract, and rendered at runtime, including theme-aware Adaptive Cards.",
           "Owned quality on the shipping widget. I debugged its opening animation frame by frame (it painted one frame at the size of the chat button), fixed attachments and transcript ordering, and shipped the fixes to the release branches customers run.",
-          "Fixed accessibility gaps: screen readers now announce new messages and sent files across minimize and restore, and citation numbers sit inside the control so voice-control users can target them.",
+          "Fixed accessibility gaps: screen readers now announce new messages and sent files across minimize and restore, read Adaptive Cards that carry no speech text, and ignore the host page while the widget is fullscreen. Citation numbers sit inside the control so voice-control users can target them.",
           "Took the live chat service's on-call rotation. I root-caused a high-severity outage within about an hour, wrote the RCA, and changed the C# messaging service so a failed background write no longer stops a chat from starting. The alert I built would have fired 11 minutes before existing monitoring.",
           "Shipped 10+ C#/.NET fixes to the messaging and orchestration services. One covered failed AI dialogs: the customer's next message used to get no reply, and now the failure becomes a plain message and the session re-arms so a retry gets an answer.",
           "Worked in Microsoft's public chat SDK repositories on GitHub: official releases including the chat widget's 2.0.0, security fixes across five packages, and hotfix workflows with OIDC trusted publishing to npm.",
+          "Took over the official release pipelines for the iOS, Android, and React Native chat SDKs, which had no owner. Releases now publish only after a green build from the main or release branch, versions come from a checked-in source of truth, and a failed Maven Central publish stops the release instead of shipping silently.",
           "Earlier in 2026, led frontend architecture for a new agent desktop: a Fluent UI v9 migration in one 243-file PR, a single state store, a three-tier Playwright test architecture, and a localization check that fails the build if hardcoded text comes back.",
           "Embedded that desktop inside Salesforce with a host-bridge postMessage protocol and a manual PKCE token exchange through Salesforce's iframe sandbox.",
         ],
@@ -213,7 +215,7 @@ export const projects: Project[] = [
           "A partial save in one product no longer erases another product's settings.",
           "Two products share one renderer, and CI stops either one from reimplementing shared behavior.",
           "After an AI failure, a customer's retry gets a reply.",
-          "Months after I moved on from the agent desktop, the larger team that inherited it was still building on that foundation.",
+          "Four months after I handed off the agent desktop to a much larger team, none of the files I created had been rewritten, and about two-thirds of the new team's commits built on them.",
         ],
       },
     ],
@@ -225,8 +227,8 @@ export const projects: Project[] = [
     group: "microsoft",
     eyebrow: "Microsoft · Azure CXP Engineering",
     summary:
-      "Nine years on Azure customer experience tools, first as a vendor: a portal extension rewrite, Services Hub support case creation, and a forms engine other apps reused.",
-    period: "2016 to 2026",
+      "Nearly nine years on Azure customer experience tools, first as a vendor: a portal extension rewrite, Services Hub support case creation, and a forms engine other apps reused.",
+    period: "2017 to 2026",
     role: "Vendor, then Software Engineer and Software Engineer II",
     status: "Shipped to production",
     format: "case-study",
@@ -253,7 +255,7 @@ export const projects: Project[] = [
         heading: "Overview",
         paragraphs: [
           "Azure Customer Experience (CXP) Engineering builds the tools Microsoft uses to support Azure customers, along with customer-facing experiences in the Azure portal and Services Hub.",
-          "I worked there from 2016 to January 2026. I started as a vendor engineer through Mindtree, took ownership of an internal app's frontend, and that work got me hired at Microsoft full time in October 2018. After that, most of my work was frontend ownership of React and TypeScript apps, with .NET and Azure work underneath.",
+          "I worked there from 2017 to January 2026. I started as a vendor engineer through Mindtree, took ownership of an internal app's frontend, and that work got me hired at Microsoft full time in October 2018. After that, most of my work was frontend ownership of React and TypeScript apps, with .NET and Azure work underneath.",
         ],
       },
       {
