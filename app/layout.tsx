@@ -9,7 +9,7 @@ import "./globals.css";
 const plexSans = IBM_Plex_Sans({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-plex-sans", display: "swap" });
 const plexMono = IBM_Plex_Mono({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-plex-mono", display: "swap" });
 
-const defaultTitle = `${site.name} | Full-stack engineer building with AI agents`;
+const defaultTitle = `${site.name} | ${site.jobTitle} · React and TypeScript`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     title: defaultTitle,
     description: site.description,
     locale: "en_US",
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: `${site.name}: ${site.headline}` }],
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: `${site.name}: ${site.cardTitle}` }],
   },
   twitter: {
     card: "summary_large_image",

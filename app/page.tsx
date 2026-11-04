@@ -26,24 +26,35 @@ export default function HomePage() {
       <Hero />
 
       <PageSection
-        id="how-i-work"
-        label="How I work"
-        title="Productive in unfamiliar code within weeks"
-        intro={workflowIntro}
+        id="impact"
+        label="Impact"
+        title="Outcomes from production work"
+        intro="Architecture, production reach, cost, and test coverage. Each number is one project and one period."
       >
-        <AiWorkflow />
+        <ImpactFigures />
       </PageSection>
 
       <PageSection
         id="work"
         label="Selected work"
-        title="Two Microsoft products and three of my own"
-        intro="Case studies from Dynamics 365 and Azure, plus the independent projects I spend the most time on."
+        title="Contact Center, then the rest of the work"
+        intro="The Dynamics 365 case study is the fullest picture of product ownership. Azure, a React forms library, and the products I run myself follow."
       >
         <ProjectList projects={featuredProjects} numbered />
+        <p className="mt-6 text-sm text-pretty text-muted">
+          <a href="https://www.formosaic.com" className="font-medium text-accent hover:underline">
+            Formosaic playground
+          </a>
+          {" "}
+          for config-driven React forms, conditional fields, and validation.{" "}
+          <a href="https://www.civicmapshq.com" className="font-medium text-accent hover:underline">
+            Civic Maps
+          </a>{" "}
+          is the live geographic product.
+        </p>
         <Link
           href="/work/"
-          className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-muted transition-colors hover:text-ink"
+          className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-muted transition-colors hover:text-ink"
         >
           All seven projects
           <Icon name="arrow-right" className="size-3.5" />
@@ -67,12 +78,15 @@ export default function HomePage() {
         intro="I joined Azure CXP as a vendor engineer in 2016 and was hired full time in October 2018. Since January 2026 I've been on Dynamics 365 Contact Center."
       >
         <ExperienceTimeline />
-        <div className="mt-16">
-          <h3 className="font-mono text-xs text-subtle">Measured results</h3>
-          <div className="mt-4">
-            <ImpactFigures />
-          </div>
-        </div>
+      </PageSection>
+
+      <PageSection
+        id="how-i-work"
+        label="AI-native engineering"
+        title="Agents speed up the work. I own the outcome."
+        intro={workflowIntro}
+      >
+        <AiWorkflow />
       </PageSection>
 
       <PageSection
@@ -105,12 +119,13 @@ export default function HomePage() {
 
 function Hero() {
   const facts = [
-    { label: "Now", value: `${site.team}: the Live Chat Widget and Copilot Studio` },
-    { label: "Before", value: "Azure CXP Engineering, 2016 to 2026, first as a vendor" },
-    { label: "Role", value: `${site.jobTitle}, ${site.employer}` },
-    { label: "Focus", value: site.focus },
+    { label: "Title", value: `${site.jobTitle}, ${site.employer}` },
+    { label: "Focus", value: "React, TypeScript, full-stack architecture" },
+    { label: "Now", value: site.team },
+    { label: "Since", value: "Microsoft products since 2016, full time since 2018" },
     { label: "Based", value: site.location },
   ];
+  const resumeHref = site.resumePath ?? "/resume/";
 
   return (
     <section aria-labelledby="hero-heading" className="mx-auto max-w-6xl px-4 pt-16 pb-20 sm:px-6 sm:pt-24 sm:pb-28">
@@ -125,27 +140,47 @@ function Hero() {
           />
         </div>
         <div className="lg:col-span-8 lg:col-start-1 lg:row-span-2 lg:row-start-1 lg:self-center">
-          <h1 id="hero-heading" className="font-mono text-sm text-muted">
-            {site.name}
-          </h1>
-          <p className="mt-6 max-w-3xl text-[clamp(2.4rem,6.2vw,4.6rem)] leading-[1.04] font-semibold tracking-[-0.02em] sm:text-balance">
+          <p className="font-mono text-sm text-muted">{site.name}</p>
+          <h1
+            id="hero-heading"
+            className="mt-6 max-w-3xl text-[clamp(2rem,4.4vw,3.35rem)] leading-[1.08] font-semibold tracking-[-0.02em] text-balance"
+          >
             {site.headline}
-          </p>
-          <p className="mt-8 max-w-xl text-lg leading-relaxed text-pretty text-muted">{site.intro}</p>
-          <div className="mt-10 flex flex-wrap gap-3">
+          </h1>
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-pretty text-muted">{site.intro}</p>
+          <div className="mt-8 flex flex-wrap gap-3">
             <Link
               href="#work"
               className="inline-flex items-center rounded-md bg-accent px-4 py-2.5 text-sm font-medium text-accent-ink transition-opacity hover:opacity-90"
             >
               View my work
             </Link>
-            <Link
-              href="#contact"
+            <a
+              href={resumeHref}
+              download={site.resumePath ? "" : undefined}
+              className="inline-flex items-center gap-2 rounded-md border border-line-strong px-4 py-2.5 text-sm font-medium transition-colors hover:border-accent"
+            >
+              <Icon name="download" className="size-4" />
+              Download résumé
+            </a>
+            <a
+              href={site.github}
               className="inline-flex items-center rounded-md border border-line-strong px-4 py-2.5 text-sm font-medium transition-colors hover:border-accent"
             >
-              Get in touch
-            </Link>
+              GitHub
+            </a>
+            <a
+              href={site.linkedin}
+              className="inline-flex items-center rounded-md border border-line-strong px-4 py-2.5 text-sm font-medium transition-colors hover:border-accent"
+            >
+              LinkedIn
+            </a>
           </div>
+          <p className="mt-4 text-sm">
+            <Link href="/work/dynamics-365-contact-center/" className="font-medium text-accent hover:underline">
+              Dynamics 365 Contact Center case study
+            </Link>
+          </p>
         </div>
         <dl className="border-t border-line text-sm lg:col-span-4 lg:col-start-9 lg:row-start-2 lg:self-start">
           {facts.map((fact) => (

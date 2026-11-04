@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { ContactSection } from "@/components/ContactSection";
 import { ProjectList } from "@/components/ProjectList";
 import { projectGroupLabels, projects, type ProjectGroup } from "@/lib/content/projects";
@@ -28,8 +29,12 @@ export default function WorkPage() {
           Case studies and projects
         </h1>
         <p className="mt-5 max-w-2xl text-lg text-pretty text-muted">
-          Two products at Microsoft, written from what I can share publicly, and five projects I build and run on my
-          own.
+          Start with the{" "}
+          <Link href="/work/dynamics-365-contact-center/" className="text-accent hover:underline">
+            Dynamics 365 Contact Center case study
+          </Link>
+          . It is the fullest public view of product ownership: React and TypeScript architecture, a shared chat
+          platform, and the services behind it. Azure work and the products I run myself follow.
         </p>
       </div>
       {groupOrder.map((group) => {

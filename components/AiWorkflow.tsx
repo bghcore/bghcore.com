@@ -1,27 +1,19 @@
-import { guardrails, newTerritory, workflowFigures, workflowTools, type WorkflowItem } from "@/lib/content/ai-workflow";
+import { guardrails, newTerritory, throughputNote, workflowTools, type WorkflowItem } from "@/lib/content/ai-workflow";
 
 export function AiWorkflow() {
   return (
     <div>
-      <dl className="flex flex-wrap gap-x-10 gap-y-4 border-y border-line py-5">
-        {workflowFigures.map((figure) => (
-          <div key={figure.label} className="flex items-baseline gap-2.5">
-            {/* The label is the term; it sits after the value visually. */}
-            <dt className="order-2 text-sm text-muted">{figure.label}</dt>
-            <dd className="order-1 text-2xl font-semibold tracking-tight">{figure.value}</dd>
-          </div>
-        ))}
-      </dl>
+      <p className="max-w-3xl border-y border-line py-5 text-sm text-pretty text-muted">{throughputNote}</p>
 
       <div className="mt-12 grid gap-12 md:grid-cols-2 md:gap-10">
         <WorkflowList
           heading="Code I hadn't worked in, shipped anyway"
-          note="Agents shorten the time it takes to get productive in an unfamiliar codebase. These were all new to me this year."
+          note="Agents shorten the time it takes to get productive in an unfamiliar codebase. The design and the review stay mine. These were all new to me this year."
           items={newTerritory}
         />
         <WorkflowList
           heading="What keeps it trustworthy"
-          note="Agent output ships through the same gates as my own code. Those gates are where I spend my time."
+          note="I decide the architecture and review the change. Agent output uses the same tests, review, and release gates as code I write myself."
           items={guardrails}
         />
       </div>
