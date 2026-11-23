@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Icon } from "@/components/Icon";
+import { JsonLd } from "@/components/JsonLd";
 import { PrintButton } from "@/components/PrintButton";
 import { careerPositions, education } from "@/lib/content/experience";
 import { getProject, projectGroupLabels } from "@/lib/content/projects";
 import type { ResumeBullet } from "@/lib/content/resume";
 import { resumePositions, resumeProjectSlugs, resumeSkills, resumeSummary } from "@/lib/content/resume";
 import { site } from "@/lib/site";
+import { webPageJsonLd } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
   title: "Résumé",
@@ -27,6 +29,7 @@ export default function ResumePage() {
 
   return (
     <article className="mx-auto max-w-[54rem] px-5 pt-8 pb-20 sm:px-8 sm:pt-14 print:max-w-none print:p-0 print:text-[10.5pt] print:leading-snug">
+      <JsonLd data={webPageJsonLd("/resume/", `Résumé of ${site.name}`)} />
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line pb-6 print:hidden">
         <p className="text-muted">Résumé</p>
         <div className="flex flex-wrap gap-3">

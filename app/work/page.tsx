@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { ContactSection } from "@/components/ContactSection";
 import { EngineeringExplorer } from "@/components/EngineeringExplorer";
+import { JsonLd } from "@/components/JsonLd";
 import { ProjectList } from "@/components/ProjectList";
 import { projectGroupLabels, projects, type ProjectGroup } from "@/lib/content/projects";
+import { webPageJsonLd } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
   title: "Work and case studies",
@@ -17,6 +19,7 @@ const groupOrder: ProjectGroup[] = ["microsoft", "independent", "open-source"];
 export default function WorkPage() {
   return (
     <>
+      <JsonLd data={webPageJsonLd("/work/", "Work and case studies")} />
       <div className="mx-auto max-w-[68rem] px-5 sm:px-8">
         <div className="pt-8 pb-10 sm:pt-14">
           <h1 className="text-[clamp(2.15rem,5vw,3.25rem)] tracking-[-0.018em]">Work</h1>

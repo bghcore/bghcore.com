@@ -27,7 +27,7 @@ export function ProjectList({ projects }: { projects: Project[] }) {
               </div>
               {image && (
                 <div className="max-w-sm sm:pt-1">
-                  <ProjectScreenshot image={image} sizes="(min-width: 640px) 15rem, 90vw" decorative />
+                  <ProjectScreenshot image={image} sizes="(min-width: 640px) 15rem, 90vw" />
                 </div>
               )}
             </div>

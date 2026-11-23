@@ -2,14 +2,16 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ContactSection } from "@/components/ContactSection";
 import { ExperienceTimeline } from "@/components/ExperienceTimeline";
+import { JsonLd } from "@/components/JsonLd";
 import { LessonList } from "@/components/LessonList";
 import { NewTerritory } from "@/components/NewTerritory";
 import { Portrait } from "@/components/Portrait";
 import { SkillsOverview } from "@/components/SkillsOverview";
-import { aboutParagraphs, interests, lessons, originStory } from "@/lib/content/about";
+import { aboutFacts, aboutParagraphs, interests, lessons, originStory } from "@/lib/content/about";
 import { education } from "@/lib/content/experience";
 import { throughputNote } from "@/lib/content/new-territory";
 import { site } from "@/lib/site";
+import { profilePageJsonLd } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
   title: "About",
@@ -22,6 +24,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
+      <JsonLd data={profilePageJsonLd()} />
       <div className="mx-auto grid max-w-[68rem] gap-10 px-5 pt-8 pb-16 sm:px-8 sm:pt-14 md:grid-cols-[15rem_1fr] md:gap-14">
         <aside className="md:sticky md:top-8 md:self-start">
           <Portrait sizes="(min-width: 768px) 15rem, 10rem" priority className="max-w-40 md:max-w-none" />
@@ -90,6 +93,9 @@ export default function AboutPage() {
               </div>
             ))}
           </dl>
+
+          <AboutHeading id="in-brief">In brief</AboutHeading>
+          <p className="mt-3 max-w-[42rem] text-pretty text-muted">{aboutFacts}</p>
 
           <p className="mt-12 max-w-[42rem]">
             The work behind all of this is on the{" "}

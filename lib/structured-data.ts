@@ -1,12 +1,24 @@
 import { education } from "@/lib/content/experience";
-import type { Project } from "@/lib/content/projects";
-import { absoluteUrl, site } from "@/lib/site";
+import { getProject, type Project } from "@/lib/content/projects";
+import { absoluteUrl, pageUpdated, site } from "@/lib/site";
 
 const personId = `${site.url}/#person`;
+const websiteId = `${site.url}/#website`;
 
-export function personJsonLd() {
+/** Points at the Person by id, so pages that only mention the person don't redefine it. */
+const personRef = { "@id": personId };
+
+/**
+ * Sites I own and run, taken from each project's first link so the URLs can't drift from the
+ * project pages. The wedding site is left out on purpose.
+ */
+const ownedSites = ["formosaic", "the-sub-delta", "civic-maps"].flatMap(
+  (slug) => getProject(slug)?.links[0]?.href ?? [],
+);
+
+/** The full Person. The home page and the About page's ProfilePage emit it, with the same values. */
+function person() {
   return {
-    "@context": "https://schema.org",
     "@type": "Person",
     "@id": personId,
     name: site.name,
@@ -24,7 +36,7 @@ export function personJsonLd() {
       address: { "@type": "PostalAddress", addressRegion: "WA", addressCountry: "US" },
     },
     description: site.description,
-    sameAs: [site.linkedin, site.github],
+    sameAs: [site.linkedin, site.github, ...ownedSites],
     knowsAbout: [
       "React",
       "TypeScript",
@@ -40,16 +52,80 @@ export function personJsonLd() {
   };
 }
 
-export function projectJsonLd(project: Project) {
+/** Home page: the site and the person it is about. */
+export function homeJsonLd() {
   return {
     "@context": "https://schema.org",
-    "@type": project.format === "case-study" ? "Article" : "CreativeWork",
-    headline: project.title,
-    name: project.name,
-    description: project.summary,
-    url: absoluteUrl(`/work/${project.slug}/`),
-    image: absoluteUrl(`/work/${project.slug}/og.png`),
-    author: { "@type": "Person", "@id": personId, name: site.name, url: site.url },
-    keywords: project.technologies.join(", "),
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": websiteId,
+        url: site.url,
+        name: site.name,
+        description: site.description,
+        inLanguage: "en-US",
+        publisher: personRef,
+      },
+      person(),
+    ],
+  };
+}
+
+/** About page: a ProfilePage whose main entity is the same Person. */
+export function profilePageJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    "@id": `${absoluteUrl("/about/")}#profile`,
+    url: absoluteUrl("/about/"),
+    name: `About ${site.name}`,
+    dateModified: pageUpdated["/about/"],
+    isPartOf: { "@id": websiteId },
+    mainEntity: person(),
+  };
+}
+
+/** Pages about the person that are not the profile itself (the résumé, the work index). */
+export function webPageJsonLd(path: keyof typeof pageUpdated, name: string) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${absoluteUrl(path)}#webpage`,
+    url: absoluteUrl(path),
+    name,
+    dateModified: pageUpdated[path],
+    isPartOf: { "@id": websiteId },
+    about: personRef,
+  };
+}
+
+/** Project and case study pages: the work, its author by reference, and a breadcrumb trail. */
+export function projectJsonLd(project: Project) {
+  const url = absoluteUrl(`/work/${project.slug}/`);
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": project.format === "case-study" ? "Article" : "CreativeWork",
+        "@id": `${url}#work`,
+        headline: project.title,
+        name: project.name,
+        description: project.summary,
+        url,
+        image: absoluteUrl(`/work/${project.slug}/og.png`),
+        dateModified: project.updated,
+        author: personRef,
+        isPartOf: { "@id": websiteId },
+        keywords: project.technologies.join(", "),
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
+          { "@type": "ListItem", position: 2, name: "Work", item: absoluteUrl("/work/") },
+          { "@type": "ListItem", position: 3, name: project.name, item: url },
+        ],
+      },
+    ],
   };
 }

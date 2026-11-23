@@ -50,6 +50,8 @@ export type Project = {
   eyebrow: string;
   summary: string;
   period: string;
+  /** ISO date this page's copy last changed. Feeds the sitemap and structured data. */
+  updated: string;
   role: string;
   status: string;
   format: ProjectFormat;
@@ -84,6 +86,7 @@ export const projects: Project[] = [
     summary:
       "I built the customer-facing Live Chat Widget into Copilot Studio's agent test chat, then moved two products onto one chat renderer and one configuration contract.",
     period: "2026 to present",
+    updated: "2026-11-22",
     role: "Software Engineer II",
     status: "Current work",
     format: "case-study",
@@ -195,6 +198,7 @@ export const projects: Project[] = [
     summary:
       "Nearly nine years on Azure customer experience tools, first as a vendor: a portal extension rewrite, Services Hub support case creation, and a forms engine other apps reused.",
     period: "2017 to 2026",
+    updated: "2026-11-22",
     role: "Vendor, then Software Engineer and Software Engineer II",
     status: "Shipped to production",
     format: "case-study",
@@ -272,6 +276,7 @@ export const projects: Project[] = [
     summary:
       "My main side project since 2015 and the place I experiment freely. It crawls SoundCloud's social graph from artists you already like and surfaces tracks that are catching early.",
     period: "2015 to present",
+    updated: "2026-11-22",
     role: "Sole developer",
     status: "Live at thesubdelta.com",
     format: "case-study",
@@ -349,6 +354,7 @@ export const projects: Project[] = [
     summary:
       "A map-first way to answer \"who governs this place?\" PostGIS boundaries for all 50 states, current federal and state officeholders, and a Next.js site over a 3D globe.",
     period: "2026 to present",
+    updated: "2026-11-22",
     role: "Sole developer",
     status: "Live at civicmapshq.com, in active development",
     format: "case-study",
@@ -429,6 +435,7 @@ export const projects: Project[] = [
     summary:
       "Three TypeScript packages for SoundCloud's official API and embeddable player. They power my music-discovery app, The Sub Delta.",
     period: "2026 to present",
+    updated: "2026-11-22",
     role: "Author and maintainer",
     status: "Published on npm",
     format: "project",
@@ -504,6 +511,7 @@ const streams = await sc.tracks.getStreams(123456);`,
     summary:
       "Define a form once as JSON, and a rules engine handles conditional logic, validation, wizards, and auto-save. It renders through 11 UI library adapters.",
     period: "2026 to present",
+    updated: "2026-11-01",
     role: "Author and maintainer",
     status: "Published on npm",
     format: "project",
@@ -555,6 +563,7 @@ const streams = await sc.tracks.getStreams(123456);`,
     summary:
       "The website for my wedding in July 2026: our story, the schedule, travel, and an RSVP flow built around invitation codes, plus a separate admin app to track who was coming. It's an archive now, with demo data in place of real guests.",
     period: "2025 to 2026",
+    updated: "2026-11-01",
     role: "Sole developer",
     status: "Archived, with a working demo",
     format: "project",
