@@ -16,7 +16,7 @@ export const workflowIntro =
 export const throughputNote =
   "In 10 months on Dynamics 365 Contact Center I merged 500+ pull requests across three product organizations' codebases.";
 
-/** Code I hadn't worked in before and shipped in anyway, mostly within weeks. */
+/** Code I hadn't worked in before and shipped in anyway, mostly within weeks. Shown on the About page. */
 export const newTerritory: WorkflowItem[] = [
   {
     title: "Copilot Studio's monorepo",
@@ -70,8 +70,7 @@ export const workflowTools = [
   "Claude Code",
   "Cursor",
   "Grok Build",
-  "GitHub Copilot CLI",
-  "Copilot coding agent",
+  "GitHub Copilot CLI and coding agent",
   "MCP servers",
-  "Agent skills",
+  "agent skills",
 ];

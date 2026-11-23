@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { NewTerritory } from "@/components/AiWorkflow";
 import { ContactSection } from "@/components/ContactSection";
 import { ExperienceTimeline } from "@/components/ExperienceTimeline";
 import { PageSection } from "@/components/PageSection";
@@ -104,6 +105,15 @@ export default function AboutPage() {
         intro="Mindtree hired me in December 2016 and placed me on Azure CXP as a vendor engineer in 2017. Microsoft hired me full time in October 2018, and since January 2026 I've been on Dynamics 365 Contact Center."
       >
         <ExperienceTimeline />
+      </PageSection>
+
+      <PageSection
+        id="new-territory"
+        label="AI-native engineering"
+        title="Code I hadn't worked in, shipped anyway"
+        intro="Agents shorten the time it takes to get productive in an unfamiliar codebase. The design and the review stay mine. These were all new to me this year."
+      >
+        <NewTerritory />
       </PageSection>
 
       <PageSection
