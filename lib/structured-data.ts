@@ -1,5 +1,5 @@
 import { education } from "@/lib/content/experience";
-import type { Project } from "@/lib/content/projects";
+import { getProject, type Project } from "@/lib/content/projects";
 import { absoluteUrl, pageUpdated, site } from "@/lib/site";
 
 const personId = `${site.url}/#person`;
@@ -7,6 +7,14 @@ const websiteId = `${site.url}/#website`;
 
 /** Points at the Person by id, so pages that only mention the person don't redefine it. */
 const personRef = { "@id": personId };
+
+/**
+ * Sites I own and run, taken from each project's first link so the URLs can't drift from the
+ * project pages. The wedding site is left out on purpose.
+ */
+const ownedSites = ["formosaic", "the-sub-delta", "civic-maps"].flatMap(
+  (slug) => getProject(slug)?.links[0]?.href ?? [],
+);
 
 /** The full Person. The home page and the About page's ProfilePage emit it, with the same values. */
 function person() {
@@ -28,7 +36,7 @@ function person() {
       address: { "@type": "PostalAddress", addressRegion: "WA", addressCountry: "US" },
     },
     description: site.description,
-    sameAs: [site.linkedin, site.github],
+    sameAs: [site.linkedin, site.github, ...ownedSites],
     knowsAbout: [
       "React",
       "TypeScript",
