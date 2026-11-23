@@ -1,13 +1,13 @@
 import Link from "next/link";
-import { AiWorkflow } from "@/components/AiWorkflow";
 import { ContactSection } from "@/components/ContactSection";
 import { Icon } from "@/components/Icon";
 import { ImpactFigures } from "@/components/ImpactFigures";
 import { JsonLd } from "@/components/JsonLd";
+import { LessonList } from "@/components/LessonList";
 import { PageSection } from "@/components/PageSection";
 import { Portrait } from "@/components/Portrait";
 import { ProjectList } from "@/components/ProjectList";
-import { workflowIntro } from "@/lib/content/ai-workflow";
+import { lessons, originStoryShort } from "@/lib/content/about";
 import { getFeaturedProjects } from "@/lib/content/projects";
 import { personJsonLd } from "@/lib/structured-data";
 import { site } from "@/lib/site";
@@ -25,7 +25,6 @@ export default function HomePage() {
         id="impact"
         label="Impact"
         title="Outcomes from production work"
-        intro="Architecture, production reach, cost, and test coverage."
       >
         <ImpactFigures />
       </PageSection>
@@ -33,37 +32,47 @@ export default function HomePage() {
       <PageSection
         id="work"
         label="Selected work"
-        title="Contact Center, then Azure and open source"
-        intro="The Dynamics 365 case study is the fullest picture of product ownership. Azure and a React forms library I maintain follow."
+        title="Work"
       >
         <ProjectList projects={featuredProjects} numbered />
-        <Link
-          href="/work/"
-          className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-muted transition-colors hover:text-ink"
-        >
-          All seven projects
-          <Icon name="arrow-right" className="size-3.5" />
-        </Link>
-        <p className="mt-3 text-sm text-pretty text-muted">
-          My experience timeline and skills are on the{" "}
-          <Link href="/about/#experience" className="font-medium text-accent hover:underline">
-            About page
-          </Link>
-          . The{" "}
-          <Link href="/resume/" className="font-medium text-accent hover:underline">
-            résumé
-          </Link>{" "}
-          has the role-by-role detail.
-        </p>
+        <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium">
+          <li>
+            <Link href="/work/" className="inline-flex items-center gap-1.5 text-accent hover:underline">
+              All seven projects
+              <Icon name="arrow-right" className="size-3.5" />
+            </Link>
+          </li>
+          <li>
+            <Link href="/about/#experience" className="text-accent hover:underline">
+              Experience and skills
+            </Link>
+          </li>
+          <li>
+            <Link href="/resume/" className="text-accent hover:underline">
+              Résumé
+            </Link>
+          </li>
+        </ul>
       </PageSection>
 
-      <PageSection
-        id="how-i-work"
-        label="AI-native engineering"
-        title="Agents speed up the work. I own the outcome."
-        intro={workflowIntro}
-      >
-        <AiWorkflow />
+      <PageSection id="story" label="About" title="How I got here">
+        <div className="max-w-2xl space-y-4 text-lg leading-relaxed text-pretty">
+          {originStoryShort.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
+        </div>
+        <Link href="/about/#story" className="mt-6 inline-flex text-sm font-medium text-accent hover:underline">
+          The longer version
+        </Link>
+
+        <h3 className="mt-14 text-xl font-semibold tracking-tight">Lessons I&apos;ve kept</h3>
+        <p className="mt-2 text-pretty text-muted">Each of these started as something I got wrong.</p>
+        <div className="mt-6">
+          <LessonList lessons={lessons.slice(0, 3)} />
+        </div>
+        <Link href="/about/#lessons" className="mt-8 inline-flex text-sm font-medium text-accent hover:underline">
+          All {lessons.length} lessons
+        </Link>
       </PageSection>
 
       <ContactSection />

@@ -118,7 +118,7 @@ export const impactFigures: ImpactFigure[] = [
 
 /** Published outcomes that stay in prose so the homepage grid does not turn into a wall of numbers. */
 export const impactNote =
-  "Also on the record: Services Hub 2.0 support case creation, which I delivered in about three months, was piloted to about 4,000 users. The Copilot Studio chat integration went from an empty repository to CDN deployment in six weeks.";
+  "Services Hub 2.0 support case creation, which I delivered in about three months, was piloted to about 4,000 users. The Copilot Studio chat integration went from an empty repository to CDN deployment in six weeks.";
 
 export const education = {
   school: "University of Wisconsin–Eau Claire",

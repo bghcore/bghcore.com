@@ -1,11 +1,22 @@
 // About page copy, in my own voice.
 
+/**
+ * The first About paragraph. To rewrite it, replace the text between the quotes. Nothing else
+ * needs to change.
+ */
+export const aboutLead =
+  "I'm a full-stack software engineer in the Seattle area. I've worked on Microsoft products since 2017. I started as a vendor engineer through Mindtree, took ownership of an internal app's frontend, and that work got me hired at Microsoft full time in October 2018. Today I'm on Dynamics 365 Contact Center, working on the Live Chat Widget that businesses put on their websites and its integration into Copilot Studio.";
+
 export const aboutParagraphs = [
-  "I'm a full-stack software engineer in the Seattle area. I've worked on Microsoft products since 2017. I started as a vendor engineer through Mindtree, took ownership of an internal app's frontend, and that work got me hired at Microsoft full time in October 2018. Today I'm on Dynamics 365 Contact Center, working on the Live Chat Widget that businesses put on their websites and its integration into Copilot Studio.",
-  "Frontend taught me to like change. Before AI, frontend developers complained all the time about how fast the ground moved: a new framework, a new major version, a new build tool every year. I enjoyed it. Learning the new thing was part of the job. AI has brought that pace to the whole industry, and backend engineers can't wait it out either. I already worked across the stack, so the same habit now lets me take on work anywhere in the product.",
-  "I build with AI coding agents every day. I've worked with Claude Code, Cursor, Grok Build, and GitHub Copilot's CLI and coding agent, and I pick the tool and the model for each job, then change them when something better ships. That's how I joined Dynamics 365 Contact Center in January 2026 and was soon shipping in code I'd never seen: Copilot Studio's monorepo, the admin center's older React stack, and C# services I hadn't worked in before.",
-  "Speed only counts if the code holds up. At work I've put real time into the guardrails that make agents useful on a team: architecture rule files, agent skills, tests that gate releases, and a weekly check for architectural drift. When I moved on from the agent desktop, the larger team that took it over kept building on that foundation.",
-  "I also build a lot outside of work. The Sub Delta is a music-discovery app for SoundCloud that I've been rebuilding since 2015, and the latest version produced three open-source TypeScript packages. Civic Maps is about a question that should be easy to answer: who governs a given place? When I got married in 2026, I built our wedding website and its RSVP system myself. This site was built the same way, with AI coding agents.",
+  aboutLead,
+  "I've always liked how fast frontend moves, and I work across the stack. I joined Dynamics 365 Contact Center in January 2026 and was soon shipping in code I'd never seen: Copilot Studio's monorepo, the admin center's older React stack, and C# services I hadn't worked in before. I build with AI coding agents every day, and I've put real time into the rule files, tests, and release gates that keep that work reviewable. When I moved on from the agent desktop, the larger team that took it over kept building on that foundation.",
+  "I also build a lot outside of work. The Sub Delta is a music-discovery app for SoundCloud that I've been rebuilding since 2015, and the latest version produced three open-source TypeScript packages. Civic Maps is about a question that should be easy to answer: who governs a given place? When I got married in 2026, I built our wedding website and its RSVP system myself.",
+];
+
+/** The short version of "How I got here", for the home page. Same facts as originStory below. */
+export const originStoryShort = [
+  "My first paid software work came from fixing a computer. In college I rented from a small, family-run property company near campus. They called about a problem with their office computer, I fixed it in about ten minutes, and they offered me a job.",
+  "My first engineering job came from a detour. At a hiring event, the recruiters from the company I'd come to see were busy, so I started talking to the next table over. That conversation turned into an offer from Mindtree. After three months at its training campus in Bhubaneswar, India, I moved to the Pacific Northwest and started on-site at Microsoft in Redmond as a vendor.",
 ];
 
 /** "How I got here", adapted from my LinkedIn profile into first person. */

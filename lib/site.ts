@@ -14,8 +14,14 @@ export const site = {
   email: "b.g.h@outlook.com",
   linkedin: "https://www.linkedin.com/in/bradleyghanson/",
   github: "https://github.com/bghcore",
-  /** Positioning line. Official HR title stays in `jobTitle`. */
+  /**
+   * The hero: `headline` is the large line on the home page and `intro` is the paragraph under it.
+   * To rewrite either one, replace the text between the quotes. Nothing else needs to change.
+   * The official HR title stays in `jobTitle`.
+   */
   headline: "I build products end-to-end, from React interfaces to the systems behind them.",
+  intro:
+    "I'm a software engineer at Microsoft specializing in React, TypeScript, and full-stack architecture for enterprise SaaS. I build customer-facing products and the platforms behind them.",
   /** Shorter line for the social card, where the full headline would wrap too far. */
   cardTitle: "I build products end to end.",
   specialization: "Full-Stack Software Engineer",
@@ -32,8 +38,6 @@ export const site = {
     widths: [360, 640, 960],
     alt: "Bradley Hanson, smiling, in a green suit outdoors",
   },
-  intro:
-    "I'm a software engineer at Microsoft specializing in React, TypeScript, and full-stack architecture for enterprise SaaS. I build customer-facing products and the platforms behind them, and I use AI-native workflows to move faster without giving up the architecture, the tests, or what ships to production.",
   description:
     "Bradley Hanson is a Software Engineer II at Microsoft in the Greater Seattle Area. He builds enterprise products end to end in React and TypeScript, from customer-facing interfaces and SDKs to the services behind them.",
   /**

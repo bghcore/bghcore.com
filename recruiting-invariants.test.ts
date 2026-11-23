@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { existsSync, readFileSync } from "node:fs";
 import test from "node:test";
 import { aboutParagraphs } from "./lib/content/about";
-import { throughputNote, workflowIntro } from "./lib/content/ai-workflow";
+import { newTerritory, throughputNote } from "./lib/content/new-territory";
 import { careerPositions, impactFigures, impactNote } from "./lib/content/experience";
 import { getFeaturedProjects, getProject, projects } from "./lib/content/projects";
 import { resumeSummary } from "./lib/content/resume";
@@ -12,8 +12,8 @@ const publicCopy = JSON.stringify({
   site,
   navigation,
   resumeSummary,
-  workflowIntro,
   throughputNote,
+  newTerritory,
   impactFigures,
   impactNote,
   careerPositions,
@@ -34,7 +34,7 @@ test("homepage and résumé lead with product engineering", () => {
   assert.match(site.headline, /end-to-end/);
   assert.match(site.headline, /React/);
   assert.doesNotMatch(site.headline, /pull request|500\+|coding agents/i);
-  assert.match(site.intro, /I own the architecture|own the architecture|architecture, the tests/i);
+  assert.doesNotMatch(`${site.headline} ${site.intro} ${site.description}`, /AI-native|coding agents/i);
   assert.match(resumeSummary, /React, TypeScript, enterprise SaaS/);
   assert.match(resumeSummary, /Software Engineer II/);
   assert.doesNotMatch(resumeSummary, /500\+/);
@@ -54,7 +54,6 @@ test("impact figures stay scoped to one project each", () => {
 });
 
 test("AI throughput is secondary and scoped to one team and period", () => {
-  assert.match(workflowIntro, /own the architecture/i);
   assert.match(throughputNote, /500\+/);
   assert.match(throughputNote, /In 10 months on Dynamics 365 Contact Center/);
   assert.equal(impactFigures.some((figure) => /500\+|pull request/i.test(JSON.stringify(figure))), false);
@@ -67,12 +66,15 @@ test("hiring managers can open the Contact Center case study in one click", () =
   assert.equal(getFeaturedProjects()[0]?.slug, "dynamics-365-contact-center");
 
   const project = getProject("dynamics-365-contact-center");
-  assert.ok(project?.snapshot);
+  assert.ok(project);
   assert.equal(project.role, "Software Engineer II");
-  assert.match(project.note ?? "", /code are Microsoft's/);
-  assert.deepEqual(project.diagrams, ["shared-renderer", "credential-boundary"]);
-  assert.ok(project.snapshot.decisions.length >= 4);
-  assert.ok(project.snapshot.outcomes.length >= 3);
+  assert.equal(project.note, "The products and the code are Microsoft's.");
+  assert.deepEqual(
+    project.sections.flatMap((section) => section.diagram ?? []),
+    ["credential-boundary", "shared-renderer"],
+  );
+  // The attribution line appears once on the page.
+  assert.equal(JSON.stringify(project).split("code are Microsoft's").length - 1, 1);
 });
 
 test("public copy does not advertise compensation or unsupported multipliers", () => {

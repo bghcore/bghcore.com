@@ -7,7 +7,6 @@ import { PortalRewriteDiagram } from "@/components/diagrams/PortalRewriteDiagram
 import { SharedRendererDiagram } from "@/components/diagrams/SharedRendererDiagram";
 import { Icon } from "@/components/Icon";
 import { JsonLd } from "@/components/JsonLd";
-import { ProjectSnapshot } from "@/components/ProjectSnapshot";
 import { ProjectScreenshot } from "@/components/ProjectScreenshot";
 import {
   getProject,
@@ -103,8 +102,6 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           )}
         </header>
 
-        {project.snapshot && <ProjectSnapshot snapshot={project.snapshot} technologies={project.technologies} />}
-
         {images.length > 0 && (
           <div className="mx-auto max-w-6xl px-4 pb-14 sm:px-6">
             <div className={`grid gap-8 ${images.length > 1 ? "lg:grid-cols-2" : ""}`}>
@@ -145,11 +142,6 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             </nav>
 
             <div className="min-w-0 lg:col-span-8 lg:col-start-5">
-              {project.note && (
-                <p className="mb-12 border-l-2 border-accent bg-accent-wash px-4 py-3 text-sm text-pretty text-muted">
-                  {project.note}
-                </p>
-              )}
               <div className="space-y-14">
                 {sections.map((section, sectionIndex) => (
                   <BodySection
@@ -157,10 +149,10 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                     section={section}
                     number={sectionIndex + 1}
                     technologies={section.heading === "Technologies" ? project.technologies : undefined}
-                    diagrams={section.heading === "Architecture and technical decisions" ? project.diagrams : undefined}
                   />
                 ))}
               </div>
+              {project.note && <p className="mt-14 text-xs text-pretty text-subtle">{project.note}</p>}
             </div>
           </div>
         </div>
@@ -215,7 +207,6 @@ type BodySectionProps = {
   section: ProjectSection;
   number: number;
   technologies?: string[];
-  diagrams?: ProjectDiagramId[];
 };
 
 const diagramComponents: Record<ProjectDiagramId, () => React.JSX.Element> = {
@@ -224,8 +215,9 @@ const diagramComponents: Record<ProjectDiagramId, () => React.JSX.Element> = {
   "portal-rewrite": PortalRewriteDiagram,
 };
 
-function BodySection({ section, number, technologies, diagrams }: BodySectionProps) {
+function BodySection({ section, number, technologies }: BodySectionProps) {
   const anchor = sectionAnchor(section.heading);
+  const Diagram = section.diagram ? diagramComponents[section.diagram] : undefined;
   return (
     <section id={anchor} aria-labelledby={`${anchor}-heading`}>
       <h2 id={`${anchor}-heading`} className="flex items-baseline gap-3 text-xl font-semibold tracking-tight">
@@ -235,15 +227,12 @@ function BodySection({ section, number, technologies, diagrams }: BodySectionPro
         {section.heading}
       </h2>
       <div className="mt-4 space-y-4 leading-relaxed text-pretty">
-        {diagrams?.map((diagramId) => {
-          const Diagram = diagramComponents[diagramId];
-          return (
-            <div key={diagramId} className="pb-2">
-              <Diagram />
-            </div>
-          );
-        })}
         {section.paragraphs?.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+        {Diagram && (
+          <div className="py-2">
+            <Diagram />
+          </div>
+        )}
         {section.code && (
           <figure>
             <pre

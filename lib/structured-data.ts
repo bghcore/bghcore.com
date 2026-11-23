@@ -35,7 +35,6 @@ export function personJsonLd() {
       "Accessibility",
       "Microsoft Azure",
       "Dynamics 365",
-      "AI-assisted software engineering",
       "PostGIS",
     ],
   };

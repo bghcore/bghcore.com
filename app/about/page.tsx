@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { NewTerritory } from "@/components/AiWorkflow";
 import { ContactSection } from "@/components/ContactSection";
 import { ExperienceTimeline } from "@/components/ExperienceTimeline";
+import { LessonList } from "@/components/LessonList";
+import { NewTerritory } from "@/components/NewTerritory";
 import { PageSection } from "@/components/PageSection";
 import { Portrait } from "@/components/Portrait";
 import { SkillsOverview } from "@/components/SkillsOverview";
 import { aboutParagraphs, interests, lessons, originStory } from "@/lib/content/about";
 import { education } from "@/lib/content/experience";
+import { throughputNote } from "@/lib/content/new-territory";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -55,7 +57,9 @@ export default function AboutPage() {
               <p key={paragraph}>{paragraph}</p>
             ))}
           </div>
-          <h2 className="mt-16 text-xl font-semibold tracking-tight">How I got here</h2>
+          <h2 id="story" className="mt-16 text-xl font-semibold tracking-tight">
+            How I got here
+          </h2>
           <div className="mt-4 space-y-4 leading-relaxed text-pretty text-muted">
             {originStory.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
@@ -70,24 +74,13 @@ export default function AboutPage() {
               </div>
             ))}
           </dl>
-          <h2 className="mt-16 text-xl font-semibold tracking-tight">Lessons I&apos;ve kept</h2>
-          <p className="mt-2 text-pretty text-muted">
-            Each of these started as something I got wrong. What matters is what changed afterward.
-          </p>
-          <ol className="mt-6 space-y-8">
-            {lessons.map((lesson, lessonIndex) => (
-              <li key={lesson.title} className="grid gap-2 sm:grid-cols-[2.5rem_1fr]">
-                <span aria-hidden="true" className="font-mono text-xs leading-7 text-accent">
-                  {String(lessonIndex + 1).padStart(2, "0")}
-                </span>
-                <div>
-                  <h3 className="font-medium">{lesson.title}</h3>
-                  <p className="mt-2 text-pretty text-muted">{lesson.story}</p>
-                  <p className="mt-2 text-pretty">{lesson.change}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
+          <h2 id="lessons" className="mt-16 text-xl font-semibold tracking-tight">
+            Lessons I&apos;ve kept
+          </h2>
+          <p className="mt-2 text-pretty text-muted">Each of these started as something I got wrong.</p>
+          <div className="mt-6">
+            <LessonList lessons={lessons} />
+          </div>
           <p className="mt-10 text-muted">
             The work behind all of this is on the{" "}
             <Link href="/work/" className="text-link text-ink">
@@ -109,9 +102,9 @@ export default function AboutPage() {
 
       <PageSection
         id="new-territory"
-        label="AI-native engineering"
-        title="Code I hadn't worked in, shipped anyway"
-        intro="Agents shorten the time it takes to get productive in an unfamiliar codebase. The design and the review stay mine. These were all new to me this year."
+        label="2026"
+        title="Codebases that were new to me this year"
+        intro={throughputNote}
       >
         <NewTerritory />
       </PageSection>

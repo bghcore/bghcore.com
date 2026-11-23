@@ -10,7 +10,7 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Résumé",
-  description: `Résumé of ${site.name}, ${site.jobTitle} at ${site.employer}. Full-stack software engineer specializing in React, TypeScript, enterprise SaaS, and AI-native engineering.`,
+  description: `Résumé of ${site.name}, ${site.jobTitle} at ${site.employer}. Full-stack software engineer specializing in React, TypeScript, and enterprise SaaS.`,
   alternates: { canonical: "/resume/" },
   openGraph: { url: "/resume/" },
 };
