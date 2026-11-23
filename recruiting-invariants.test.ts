@@ -82,7 +82,9 @@ test("hiring managers can open the Contact Center case study in one click", () =
 });
 
 test("public copy does not advertise compensation or unsupported multipliers", () => {
-  assert.doesNotMatch(publicCopy, /\$300|\$450|450K|compensation|10x|10×/i);
+  assert.doesNotMatch(publicCopy, /compensation|salary|10x|10×/i);
+  // The only dollar figure on the site is the one published cost saving.
+  assert.deepEqual([...new Set(publicCopy.match(/\$[\d.,]*\dK?/g) ?? [])], ["$142.7K"]);
 });
 
 test("résumé download points at a real PDF", () => {
@@ -102,6 +104,6 @@ test("llms.txt follows the same content rules as the site", () => {
   for (const text of [index, full]) {
     assert.doesNotMatch(text, /\bSenior\b/);
     assert.doesNotMatch(text, /\(?\d{3}\)?[ .-]\d{3}[ .-]\d{4}/);
-    assert.doesNotMatch(text, /\$300|\$450|compensation/i);
+    assert.doesNotMatch(text, /compensation|salary/i);
   }
 });

@@ -86,7 +86,7 @@ export const projects: Project[] = [
     summary:
       "I built the customer-facing Live Chat Widget into Copilot Studio's agent test chat, then moved two products onto one chat renderer and one configuration contract.",
     period: "2026 to present",
-    updated: "2026-11-22",
+    updated: "2026-11-23",
     role: "Software Engineer II",
     status: "Current work",
     format: "case-study",
@@ -106,6 +106,10 @@ export const projects: Project[] = [
     links: [
       { label: "Live Chat Widget on GitHub", href: "https://github.com/microsoft/omnichannel-chat-widget" },
       { label: "Chat SDK on GitHub", href: "https://github.com/microsoft/omnichannel-chat-sdk" },
+      {
+        label: "Android SDK 1.2.0 release",
+        href: "https://github.com/microsoft/ContactCenterMessagingSDK-android/releases/tag/v1.2.0",
+      },
       {
         label: "Ignite 2026 session: Microsoft Contact Center Intelligence",
         href: "https://ignite.microsoft.com/en-US/sessions/BRK381",
@@ -168,8 +172,10 @@ export const projects: Project[] = [
         heading: "Public preview and general availability",
         paragraphs: [
           "The integration reached public preview in October 2026 and is now generally available.",
+          "Microsoft showed both chat surfaces in its Ignite 2026 session on Contact Center Intelligence. The agent test chat I worked on is on screen at about 5:40 in the recording, and the customer-facing widget at about 20:20. They look different and share one renderer.",
           "I followed it through the preview. When the first weeks of real traffic showed what the telemetry couldn't explain, I added session telemetry on both sides of the iframe: why a session ended, turns that got no answer, and why a send failed.",
           "I also owned quality on the shipping widget. I debugged its opening animation frame by frame (it painted one frame at the size of the chat button) and fixed attachments and transcript ordering. Customers run release branches, so many of these fixes also went out as cherry-picks, and that only works if each change is small and safe on its own.",
+          "The new version of the widget also needed an end-to-end regression suite it could trust. In October about half of its tests passed in the pre-production environment. I replaced the scenarios that no longer matched the product and fixed the rest, most of them myself and some with a teammate, and since early November every enabled test has passed there daily. One of the new checks caught a real bug in transcript handling.",
           "Some of the fixes were for accessibility. Screen readers now announce new messages and sent files across minimize and restore, read Adaptive Cards that carry no speech text, and ignore the host page while the widget is fullscreen. Citation numbers sit inside the control so voice-control users can target them.",
         ],
       },
@@ -184,7 +190,9 @@ export const projects: Project[] = [
         heading: "The public SDK repositories",
         paragraphs: [
           "Some of this work is public. In Microsoft's chat SDK repositories on GitHub I shipped official releases, including the chat widget's 2.0.0, security fixes across five packages, and hotfix workflows with OIDC trusted publishing to npm.",
-          "I also took over the official release pipelines for the iOS, Android, and React Native chat SDKs, which had no owner. Releases now publish only after a green build from the main or release branch, versions come from a checked-in source of truth, and a failed Maven Central publish stops the release.",
+          "I also took over the official release pipelines for the iOS, Android, and React Native chat SDKs, which had no owner. Releases had been published to GitHub and Maven Central by hand. They now publish only after a green build from the main or release branch, versions come from a checked-in source of truth, and a failed Maven Central publish stops the release.",
+          "In November 2026 I led the repair that got those pipelines publishing again, with code signing and SBOM validation on the Android build. They released the React Native core package and version 1.2.0 of the Android widget to Maven Central, plus an iOS prerelease.",
+          "Recent fixes in the public SDKs cap token-renewal retries, so a renewal that keeps failing stops and tells the app instead of looping.",
         ],
       },
     ],
@@ -547,72 +555,6 @@ const streams = await sc.tracks.getStreams(123456);`,
           "Multi-step wizards with conditional step visibility and rules that reach across steps.",
           "Auto-save with debounce, retry, and abort.",
           "Open core: the library and its adapters stay public, and the designer and hosted product live in a separate private repository that pulls the public docs in as a submodule.",
-        ],
-      },
-      {
-        heading: "Technologies",
-      },
-    ],
-  },
-  {
-    slug: "wedding-website",
-    name: "Wedding website and RSVP",
-    title: "A wedding website with its own RSVP system",
-    group: "independent",
-    eyebrow: "Independent · Personal",
-    summary:
-      "The website for my wedding in July 2026: our story, the schedule, travel, and an RSVP flow built around invitation codes, plus a separate admin app to track who was coming. It's an archive now, with demo data in place of real guests.",
-    period: "2025 to 2026",
-    updated: "2026-11-01",
-    role: "Sole developer",
-    status: "Archived, with a working demo",
-    format: "project",
-    featured: false,
-    domains: ["frontend", "full-stack"],
-    technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "MDX", "Azure Cosmos DB", "Open-Meteo API", "Python", "Vercel"],
-    links: [
-      { label: "bradleyandmakinna.com", href: "https://www.bradleyandmakinna.com" },
-      { label: "RSVP admin demo", href: "https://brad-makinna-wedding-rsvp.vercel.app/rsvps" },
-    ],
-    images: [
-      {
-        file: "wedding",
-        alt: "The wedding website home page with the names Bradley and MaKinna Hanson over a photo by the water",
-        caption: "bradleyandmakinna.com, now kept as an archive of the day.",
-      },
-      {
-        file: "wedding-rsvp",
-        alt: "The RSVP admin dashboard showing guest lists, RSVP counts, and attending and pending parties, filled with fictional demo guests",
-        caption: "The RSVP admin app. Every guest shown here is fictional demo data.",
-      },
-    ],
-    sections: [
-      {
-        heading: "Overview",
-        paragraphs: [
-          "MaKinna and I got married on July 11, 2026. I built our wedding website myself, mostly because I wanted RSVPs to match how our guest list actually worked: households, plus-ones, and more than one guest list.",
-        ],
-      },
-      {
-        heading: "What guests could do",
-        bullets: [
-          "Find their invitation with a six-character code and answer for everyone in their party at once.",
-          "Add dietary notes and song requests with the RSVP.",
-          "Read our story, the schedule, travel details, and an FAQ, with a countdown and an hourly forecast for the afternoon of the wedding.",
-        ],
-      },
-      {
-        heading: "How it's built",
-        bullets: [
-          "Guest site: Next.js App Router with Tailwind CSS and MDX content. RSVPs went through API routes into Azure Cosmos DB.",
-          "Admin app: a separate Next.js app that grouped parties by guest list, split who had answered from who hadn't, and summarized dietary restrictions.",
-          "Song requests: they fed a songs page, and after RSVPs closed a small Python script matched each request to a Spotify track.",
-        ],
-      },
-      {
-        heading: "Archiving it",
-        paragraphs: [
-          "After the wedding I didn't want guests' names and answers sitting online. A one-off script exported the RSVP data to a private local backup and then emptied the database. Both apps now run on fictional demo data with no database at all, so the RSVP flow still works for anyone who tries it and no real guest appears anywhere.",
         ],
       },
       {

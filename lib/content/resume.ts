@@ -77,7 +77,7 @@ export const resumePositions: ResumePosition[] = [
           {
             lead: "Converged two products onto one shared React chat renderer,",
             detail:
-              "starting with a 391-file rename that changed no runtime behavior, then a planned stack of four PRs verified to have no runtime impact on the shipping widget. Added build checks that fail CI if either product reimplements shared behavior.",
+              "starting with a 391-file rename that changed no runtime behavior, then a planned stack of four PRs verified to have no runtime impact on the shipping widget. Added build checks that fail CI if either product reimplements shared behavior. Microsoft demonstrated both products at Ignite 2026.",
           },
           {
             lead: "Replaced three widget-configuration models with one versioned TypeScript contract",
@@ -96,7 +96,7 @@ export const resumePositions: ResumePosition[] = [
           {
             lead: "Took over the iOS, Android, and React Native SDK release pipelines,",
             detail:
-              "which had no owner. Releases publish only after a green build, versions come from a checked-in source of truth, and a failed Maven Central publish stops the release.",
+              "which had no owner and published by hand. Releases now publish only after a green build, versions come from a checked-in source of truth, and a failed Maven Central publish stops the release. In November 2026 they shipped the Android widget 1.2.0 to Maven Central with code signing and SBOM validation.",
           },
         ],
       },

@@ -52,10 +52,10 @@ export const site = {
  * entry when you edit that page's copy. Project pages carry their own date in projects.ts.
  */
 export const pageUpdated = {
-  "/": "2026-11-22",
-  "/work/": "2026-11-22",
-  "/about/": "2026-11-22",
-  "/resume/": "2026-11-22",
+  "/": "2026-11-23",
+  "/work/": "2026-11-23",
+  "/about/": "2026-11-23",
+  "/resume/": "2026-11-23",
   "/privacy/": "2026-11-01",
 } as const;
 
