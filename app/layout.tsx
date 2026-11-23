@@ -6,8 +6,9 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { site } from "@/lib/site";
 import "./globals.css";
 
-// Both are variable fonts, downloaded at build time and served from this site.
-const headingFont = Newsreader({ subsets: ["latin"], style: ["normal", "italic"], variable: "--font-heading", display: "swap" });
+// Both are variable fonts, downloaded at build time and served from this site. Upright styles only:
+// an italic face was a third preloaded file and delayed the first full paint on phones.
+const headingFont = Newsreader({ subsets: ["latin"], variable: "--font-heading", display: "swap" });
 const bodyFont = Source_Sans_3({ subsets: ["latin"], variable: "--font-body", display: "swap" });
 
 const defaultTitle = `${site.name} | ${site.jobTitle} · React and TypeScript`;

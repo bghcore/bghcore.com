@@ -12,7 +12,7 @@ export function LessonList({ lessons, layout = "stacked" }: LessonListProps) {
     <ul className={layout === "columns" ? "grid gap-x-10 gap-y-8 md:grid-cols-3" : "max-w-[42rem] space-y-8"}>
       {lessons.map((lesson) => (
         <li key={lesson.title}>
-          <h3 className="text-xl italic">{lesson.title}</h3>
+          <h3 className="text-xl">{lesson.title}</h3>
           <p className="mt-2 text-pretty text-muted">{lesson.story}</p>
           <p className="mt-2 text-pretty">{lesson.change}</p>
         </li>
