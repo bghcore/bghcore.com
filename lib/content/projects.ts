@@ -19,6 +19,8 @@ export type ProjectSection = {
   heading: string;
   paragraphs?: string[];
   bullets?: string[];
+  /** A short code sample, copied from the project's own README so it runs as written. */
+  code?: { caption: string; source: string };
 };
 
 export type ProjectFormat = "case-study" | "project";
@@ -34,7 +36,7 @@ export type ProjectImage = {
 };
 
 /** Hand-drawn diagrams, rendered inside the "Architecture and technical decisions" section. */
-export type ProjectDiagramId = "shared-renderer" | "credential-boundary";
+export type ProjectDiagramId = "shared-renderer" | "credential-boundary" | "portal-rewrite";
 
 /** Scannable case-study opening. Copy must stay within what the long sections already say. */
 export type ProjectSnapshot = {
@@ -250,6 +252,7 @@ export const projects: Project[] = [
     links: [],
     note: "Internal tools are described by what they do. Everything here is from my public résumé.",
     keyFact: { value: "0 → 77%", label: "unit test coverage on the portal extension rewrite" },
+    diagrams: ["portal-rewrite"],
     sections: [
       {
         heading: "Overview",
@@ -548,6 +551,29 @@ export const projects: Project[] = [
           "soundcloud-api-ts-next: React hooks and Next.js route handlers for the App Router and Pages Router. Hooks fetch through your own API routes, so client secrets stay on the server.",
           "soundcloud-widget-react: a React wrapper for the SoundCloud HTML5 Widget API, with Promise-based getters, a useSCWidget hook for playback state, and SSR-safe script loading.",
         ],
+      },
+      {
+        heading: "Usage",
+        paragraphs: ["The quick start from the soundcloud-api-ts README:"],
+        code: {
+          caption: "Client credentials flow: get a token once, store it, and every later call uses it.",
+          source: `import { SoundCloudClient } from "soundcloud-api-ts";
+
+const sc = new SoundCloudClient({
+  clientId: "your-client-id",
+  clientSecret: "your-client-secret",
+  redirectUri: "https://yourapp.com/callback",
+});
+
+// Get a client token and store it
+const token = await sc.auth.getClientToken();
+sc.setToken(token.access_token, token.refresh_token);
+
+// Now all calls use the stored token automatically
+const results = await sc.search.tracks("electronic");
+const track = await sc.tracks.getTrack(123456);
+const streams = await sc.tracks.getStreams(123456);`,
+        },
       },
       {
         heading: "Design decisions",

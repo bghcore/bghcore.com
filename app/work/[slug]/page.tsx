@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ContactSection } from "@/components/ContactSection";
 import { CredentialBoundaryDiagram } from "@/components/diagrams/CredentialBoundaryDiagram";
+import { PortalRewriteDiagram } from "@/components/diagrams/PortalRewriteDiagram";
 import { SharedRendererDiagram } from "@/components/diagrams/SharedRendererDiagram";
 import { Icon } from "@/components/Icon";
 import { JsonLd } from "@/components/JsonLd";
@@ -220,6 +221,7 @@ type BodySectionProps = {
 const diagramComponents: Record<ProjectDiagramId, () => React.JSX.Element> = {
   "shared-renderer": SharedRendererDiagram,
   "credential-boundary": CredentialBoundaryDiagram,
+  "portal-rewrite": PortalRewriteDiagram,
 };
 
 function BodySection({ section, number, technologies, diagrams }: BodySectionProps) {
@@ -242,6 +244,17 @@ function BodySection({ section, number, technologies, diagrams }: BodySectionPro
           );
         })}
         {section.paragraphs?.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+        {section.code && (
+          <figure>
+            <pre
+              tabIndex={0}
+              className="overflow-x-auto rounded-md border border-line bg-raised px-4 py-3 font-mono text-[0.8125rem] leading-relaxed"
+            >
+              <code>{section.code.source}</code>
+            </pre>
+            <figcaption className="mt-3 text-sm text-pretty text-muted">{section.code.caption}</figcaption>
+          </figure>
+        )}
         {section.bullets && (
           <ul className="space-y-3">
             {section.bullets.map((bullet) => (
