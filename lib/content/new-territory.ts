@@ -13,9 +13,9 @@ export const throughputNote =
 /** Code I hadn't worked in before and shipped in anyway, mostly within weeks. */
 export const newTerritory: WorkflowItem[] = [
   {
-    title: "Copilot Studio's monorepo",
+    title: "Copilot Studio's builder UX repository",
     detail:
-      "Another organization's toolchain, build system, and release gates. I shipped the host side of the widget's credential boundary there.",
+      "Another organization's repository. I shipped the host side of the widget's credential boundary there.",
   },
   {
     title: "The admin center",

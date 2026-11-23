@@ -16,7 +16,7 @@ export const aboutFacts =
 
 export const aboutParagraphs = [
   aboutLead,
-  "I've always liked how fast frontend moves, and I work across the stack. I joined Dynamics 365 Contact Center in January 2026 and was soon shipping in code I'd never seen: Copilot Studio's monorepo, the admin center's older React stack, and C# services I hadn't worked in before. I build with AI coding agents every day, and I've put real time into the rule files, tests, and release gates that keep that work reviewable. When I moved on from the agent desktop, the larger team that took it over kept building on that foundation.",
+  "I've always liked how fast frontend moves, and I work across the stack. I joined Dynamics 365 Contact Center in January 2026 and was soon shipping in code I'd never seen: Copilot Studio's builder UX codebase, the admin center's older React stack, and C# services I hadn't worked in before. I build with AI coding agents every day, and I've put real time into the rule files, tests, and release gates that keep that work reviewable. When I moved on from the agent desktop, the larger team that took it over kept building on that foundation.",
   "I also build a lot outside of work. The Sub Delta is a music-discovery app for SoundCloud that I've been rebuilding since 2015, and the latest version produced three open-source TypeScript packages. Civic Maps is about a question that should be easy to answer: who governs a given place? When I got married in 2026, I built our wedding website and its RSVP system myself.",
 ];
 
