@@ -43,7 +43,6 @@ export function ProjectList({ projects, numbered = false }: ProjectListProps) {
                   <ProjectScreenshot
                     image={project.images[0]}
                     sizes="(min-width: 1024px) 14rem, (min-width: 640px) 24rem, 90vw"
-                    decorative
                     className="transition-colors group-hover:border-line-strong"
                   />
                 </div>
