@@ -47,6 +47,18 @@ export const site = {
   resumePath: "/bradley-hanson-resume.pdf",
 };
 
+/**
+ * The date each page's content last changed, for the sitemap and structured data. Update the
+ * entry when you edit that page's copy. Project pages carry their own date in projects.ts.
+ */
+export const pageUpdated = {
+  "/": "2026-11-22",
+  "/work/": "2026-11-22",
+  "/about/": "2026-11-22",
+  "/resume/": "2026-11-22",
+  "/privacy/": "2026-11-01",
+} as const;
+
 /** One click from any page to the strongest case study, the résumé, and contact. */
 export const navigation = [
   { href: "/work/dynamics-365-contact-center/", label: "Case study", mobile: true },

@@ -9,7 +9,7 @@ import { Portrait } from "@/components/Portrait";
 import { ProjectList } from "@/components/ProjectList";
 import { lessons, originStoryShort } from "@/lib/content/about";
 import { getFeaturedProjects } from "@/lib/content/projects";
-import { personJsonLd } from "@/lib/structured-data";
+import { homeJsonLd } from "@/lib/structured-data";
 import { site } from "@/lib/site";
 
 export default function HomePage() {
@@ -18,7 +18,7 @@ export default function HomePage() {
 
   return (
     <>
-      <JsonLd data={personJsonLd()} />
+      <JsonLd data={homeJsonLd()} />
       <Hero />
 
       <PageSection

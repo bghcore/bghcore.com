@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { ContactSection } from "@/components/ContactSection";
 import { EngineeringExplorer } from "@/components/EngineeringExplorer";
+import { JsonLd } from "@/components/JsonLd";
 import { PageSection } from "@/components/PageSection";
 import { ProjectList } from "@/components/ProjectList";
 import { projectGroupLabels, projects, type ProjectGroup } from "@/lib/content/projects";
+import { webPageJsonLd } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
   title: "Work and case studies",
@@ -24,6 +26,7 @@ const groupIntros: Record<ProjectGroup, string> = {
 export default function WorkPage() {
   return (
     <>
+      <JsonLd data={webPageJsonLd("/work/", "Work and case studies")} />
       <div className="mx-auto max-w-6xl px-4 pt-16 pb-8 sm:px-6 sm:pt-24">
         <p className="font-mono text-xs text-accent">Work</p>
         <h1 className="mt-3 max-w-3xl text-4xl font-semibold tracking-tight text-balance sm:text-5xl">

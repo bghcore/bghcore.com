@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ContactSection } from "@/components/ContactSection";
 import { ExperienceTimeline } from "@/components/ExperienceTimeline";
+import { JsonLd } from "@/components/JsonLd";
 import { LessonList } from "@/components/LessonList";
 import { NewTerritory } from "@/components/NewTerritory";
 import { PageSection } from "@/components/PageSection";
@@ -11,6 +12,7 @@ import { aboutParagraphs, interests, lessons, originStory } from "@/lib/content/
 import { education } from "@/lib/content/experience";
 import { throughputNote } from "@/lib/content/new-territory";
 import { site } from "@/lib/site";
+import { profilePageJsonLd } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
   title: "About",
@@ -23,6 +25,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
+      <JsonLd data={profilePageJsonLd()} />
       <div className="mx-auto grid max-w-6xl gap-12 px-4 pt-16 pb-20 sm:px-6 sm:pt-24 lg:grid-cols-12 lg:gap-8">
         <div className="lg:col-span-4">
           <Portrait sizes="(min-width: 1024px) 20rem, (min-width: 640px) 16rem, 60vw" priority className="mb-10 max-w-64 lg:max-w-none" />
