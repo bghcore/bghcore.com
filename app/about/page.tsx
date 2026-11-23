@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ContactSection } from "@/components/ContactSection";
+import { ExperienceTimeline } from "@/components/ExperienceTimeline";
+import { PageSection } from "@/components/PageSection";
 import { Portrait } from "@/components/Portrait";
+import { SkillsOverview } from "@/components/SkillsOverview";
 import { aboutParagraphs, interests, lessons, originStory } from "@/lib/content/about";
 import { education } from "@/lib/content/experience";
 import { site } from "@/lib/site";
@@ -93,6 +96,25 @@ export default function AboutPage() {
           </p>
         </div>
       </div>
+
+      <PageSection
+        id="experience"
+        label="Experience"
+        title="Nine years on Microsoft products"
+        intro="Mindtree hired me in December 2016 and placed me on Azure CXP as a vendor engineer in 2017. Microsoft hired me full time in October 2018, and since January 2026 I've been on Dynamics 365 Contact Center."
+      >
+        <ExperienceTimeline />
+      </PageSection>
+
+      <PageSection
+        id="skills"
+        label="Skills"
+        title="What I work in"
+        intro="Grouped by area, and split between what I use at work and what I've mainly used on my own projects."
+      >
+        <SkillsOverview />
+      </PageSection>
+
       <ContactSection />
     </>
   );

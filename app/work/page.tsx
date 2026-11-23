@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ContactSection } from "@/components/ContactSection";
+import { EngineeringExplorer } from "@/components/EngineeringExplorer";
+import { PageSection } from "@/components/PageSection";
 import { ProjectList } from "@/components/ProjectList";
 import { projectGroupLabels, projects, type ProjectGroup } from "@/lib/content/projects";
 
@@ -54,6 +56,15 @@ export default function WorkPage() {
         );
       })}
       <div className="h-12" />
+      <PageSection
+        id="explorer"
+        label="By area"
+        title="The same work, sorted by discipline"
+        intro="Pick an area to see the contributions behind it and the project each one came from."
+        layout="stacked"
+      >
+        <EngineeringExplorer />
+      </PageSection>
       <ContactSection />
     </>
   );

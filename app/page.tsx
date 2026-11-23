@@ -1,24 +1,20 @@
 import Link from "next/link";
 import { AiWorkflow } from "@/components/AiWorkflow";
 import { ContactSection } from "@/components/ContactSection";
-import { EngineeringExplorer } from "@/components/EngineeringExplorer";
-import { ExperienceTimeline } from "@/components/ExperienceTimeline";
 import { Icon } from "@/components/Icon";
 import { ImpactFigures } from "@/components/ImpactFigures";
 import { JsonLd } from "@/components/JsonLd";
 import { PageSection } from "@/components/PageSection";
 import { Portrait } from "@/components/Portrait";
 import { ProjectList } from "@/components/ProjectList";
-import { SkillsOverview } from "@/components/SkillsOverview";
-import { aboutParagraphs } from "@/lib/content/about";
 import { workflowIntro } from "@/lib/content/ai-workflow";
-import { education } from "@/lib/content/experience";
 import { getFeaturedProjects } from "@/lib/content/projects";
 import { personJsonLd } from "@/lib/structured-data";
 import { site } from "@/lib/site";
 
 export default function HomePage() {
-  const featuredProjects = getFeaturedProjects();
+  // The top three by featuredRank. The rest are on /work/.
+  const featuredProjects = getFeaturedProjects().slice(0, 3);
 
   return (
     <>
@@ -37,47 +33,28 @@ export default function HomePage() {
       <PageSection
         id="work"
         label="Selected work"
-        title="Contact Center, then the rest of the work"
-        intro="The Dynamics 365 case study is the fullest picture of product ownership. Azure, a React forms library, and the products I run myself follow."
+        title="Contact Center, then Azure and open source"
+        intro="The Dynamics 365 case study is the fullest picture of product ownership. Azure and a React forms library I maintain follow."
       >
         <ProjectList projects={featuredProjects} numbered />
-        <p className="mt-6 text-sm text-pretty text-muted">
-          <a href="https://www.formosaic.com" className="font-medium text-accent hover:underline">
-            Formosaic playground
-          </a>
-          {" "}
-          for config-driven React forms, conditional fields, and validation.{" "}
-          <a href="https://www.civicmapshq.com" className="font-medium text-accent hover:underline">
-            Civic Maps
-          </a>{" "}
-          is the live geographic product.
-        </p>
         <Link
           href="/work/"
-          className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-muted transition-colors hover:text-ink"
+          className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-muted transition-colors hover:text-ink"
         >
           All seven projects
           <Icon name="arrow-right" className="size-3.5" />
         </Link>
-      </PageSection>
-
-      <PageSection
-        id="explorer"
-        label="By area"
-        title="The same work, sorted by discipline"
-        intro="Pick an area to see the contributions behind it and the project each one came from."
-        layout="stacked"
-      >
-        <EngineeringExplorer />
-      </PageSection>
-
-      <PageSection
-        id="experience"
-        label="Experience"
-        title="Nine years on Microsoft products"
-        intro="Mindtree hired me in December 2016 and placed me on Azure CXP as a vendor engineer in 2017. Microsoft hired me full time in October 2018, and since January 2026 I've been on Dynamics 365 Contact Center."
-      >
-        <ExperienceTimeline />
+        <p className="mt-3 text-sm text-pretty text-muted">
+          My experience timeline and skills are on the{" "}
+          <Link href="/about/#experience" className="font-medium text-accent hover:underline">
+            About page
+          </Link>
+          . The{" "}
+          <Link href="/resume/" className="font-medium text-accent hover:underline">
+            résumé
+          </Link>{" "}
+          has the role-by-role detail.
+        </p>
       </PageSection>
 
       <PageSection
@@ -87,29 +64,6 @@ export default function HomePage() {
         intro={workflowIntro}
       >
         <AiWorkflow />
-      </PageSection>
-
-      <PageSection
-        id="skills"
-        label="Skills"
-        title="What I work in"
-        intro="Grouped by area, and split between what I use at work and what I've mainly used on my own projects."
-      >
-        <SkillsOverview />
-        <div className="mt-10 text-sm">
-          <p className="font-mono text-xs text-subtle">Education</p>
-          <p className="mt-2 font-medium">{education.school}</p>
-          <p className="text-muted">
-            {education.degree}, {education.minor}. {education.graduated}.
-          </p>
-        </div>
-      </PageSection>
-
-      <PageSection id="about" label="About" title="Outside of work">
-        <p className="max-w-2xl text-lg leading-relaxed text-pretty">{aboutParagraphs[4]}</p>
-        <Link href="/about/" className="mt-8 inline-flex items-center gap-1.5 text-sm font-medium text-accent hover:underline">
-          More about me
-        </Link>
       </PageSection>
 
       <ContactSection />
