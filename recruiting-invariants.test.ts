@@ -6,6 +6,7 @@ import { newTerritory, throughputNote } from "./lib/content/new-territory";
 import { careerPositions, impactFigures, impactNote } from "./lib/content/experience";
 import { getFeaturedProjects, getProject, projects } from "./lib/content/projects";
 import { resumeSummary } from "./lib/content/resume";
+import { buildLlmsFullTxt, buildLlmsTxt } from "./lib/llms";
 import { navigation, site } from "./lib/site";
 
 const publicCopy = JSON.stringify({
@@ -90,4 +91,17 @@ test("résumé download points at a real PDF", () => {
   const bytes = readFileSync("public/bradley-hanson-resume.pdf");
   assert.equal(bytes.subarray(0, 5).toString(), "%PDF-");
   assert.ok(bytes.length > 20_000);
+});
+
+test("llms.txt follows the same content rules as the site", () => {
+  const index = buildLlmsTxt();
+  const full = buildLlmsFullTxt();
+  assert.ok(index.startsWith("# Bradley Hanson\n\n> Bradley Hanson is a Software Engineer II at Microsoft"));
+  assert.match(index, /\]\(https:\/\/bghcore\.com\/work\/dynamics-365-contact-center\/\)/);
+  assert.match(index, /## Contact/);
+  for (const text of [index, full]) {
+    assert.doesNotMatch(text, /\bSenior\b/);
+    assert.doesNotMatch(text, /\(?\d{3}\)?[ .-]\d{3}[ .-]\d{4}/);
+    assert.doesNotMatch(text, /\$300|\$450|compensation/i);
+  }
 });
