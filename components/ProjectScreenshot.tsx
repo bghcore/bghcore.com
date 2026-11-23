@@ -30,7 +30,7 @@ export function ProjectScreenshot({ image, sizes, priority = false, decorative =
         loading={priority ? "eager" : "lazy"}
         fetchPriority={priority ? "high" : "auto"}
         decoding="async"
-        className={`aspect-video h-auto w-full rounded-md border border-line bg-raised object-cover object-top ${className}`}
+        className={`aspect-video h-auto w-full rounded-sm border border-line bg-raised object-cover object-top ${className}`}
       />
     </picture>
   );

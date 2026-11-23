@@ -16,7 +16,7 @@ export function PortalRewriteDiagram() {
         <div className="flex flex-col items-center justify-center py-1 text-center">
           <Icon name="arrow-down" className="size-4 text-accent sm:hidden" />
           <Icon name="arrow-right" className="hidden size-4 text-accent sm:block" />
-          <span className="mt-1 font-mono text-xs">100+ PRs</span>
+          <span className="mt-1 text-xs">100+ PRs</span>
           <span className="text-xs text-subtle">extension stayed in service</span>
         </div>
         <RewriteBox
@@ -43,8 +43,8 @@ function RewriteBox({
   highlighted?: boolean;
 }) {
   return (
-    <div className={`rounded-md border bg-surface px-4 py-3 ${highlighted ? "border-accent" : "border-line-strong"}`}>
-      <p className="font-mono text-xs text-subtle">{title}</p>
+    <div className={`rounded-sm border bg-surface px-4 py-3 ${highlighted ? "border-accent" : "border-line-strong"}`}>
+      <p className="text-xs text-subtle">{title}</p>
       <dl className="mt-2 space-y-2">
         {values.map((item) => (
           <div key={item.label}>

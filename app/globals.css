@@ -1,36 +1,36 @@
 @import "tailwindcss";
 
-/* Dark is the default theme. [data-theme="light"] on <html> switches it. */
-@custom-variant light (&:where([data-theme="light"], [data-theme="light"] *));
+/* Light is the default theme. [data-theme="dark"] on <html> switches it. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 :root {
-  --bg: #0b0d0c;
-  --surface: #111413;
-  --raised: #161a18;
-  --line: #222826;
-  --line-strong: #323a37;
-  --ink: #e8ecea;
-  --muted: #9ba5a0;
-  --subtle: #7f8984;
-  --accent: #4fd1a5;
-  --accent-ink: #062018;
-  --accent-wash: rgb(79 209 165 / 0.09);
-  color-scheme: dark;
+  --bg: #f6f1e7;
+  --surface: #fbf8f1;
+  --raised: #efe9db;
+  --line: #ded6c4;
+  --line-strong: #c4baa3;
+  --ink: #211e19;
+  --muted: #595346;
+  --subtle: #6b6455;
+  --accent: #9b2c1b;
+  --accent-ink: #fffaf2;
+  --accent-wash: rgb(155 44 27 / 0.07);
+  color-scheme: light;
 }
 
-:root[data-theme="light"] {
-  --bg: #fafaf8;
-  --surface: #ffffff;
-  --raised: #f3f4f1;
-  --line: #e3e5e1;
-  --line-strong: #cdd1cb;
-  --ink: #111413;
-  --muted: #545c58;
-  --subtle: #66706b;
-  --accent: #047857;
-  --accent-ink: #ffffff;
-  --accent-wash: rgb(4 120 87 / 0.07);
-  color-scheme: light;
+:root[data-theme="dark"] {
+  --bg: #1a1815;
+  --surface: #211f1b;
+  --raised: #292621;
+  --line: #353129;
+  --line-strong: #4d4739;
+  --ink: #ece5d6;
+  --muted: #b5ac9a;
+  --subtle: #9a917f;
+  --accent: #e89c84;
+  --accent-ink: #2a0f08;
+  --accent-wash: rgb(232 156 132 / 0.1);
+  color-scheme: dark;
 }
 
 @theme inline {
@@ -45,12 +45,14 @@
   --color-accent: var(--accent);
   --color-accent-ink: var(--accent-ink);
   --color-accent-wash: var(--accent-wash);
-  --font-sans: var(--font-plex-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-plex-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-heading), Georgia, "Times New Roman", serif;
+  /* Monospace is for code only, so the system face is enough. */
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
 html {
-  scroll-padding-top: 6rem;
+  scroll-padding-top: 1.5rem;
 }
 
 /* Smooth for in-page anchors only. Route changes stay instant via data-scroll-behavior in layout.tsx. */
@@ -64,7 +66,18 @@ body {
   background: var(--bg);
   color: var(--ink);
   font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  letter-spacing: -0.012em;
+  line-height: 1.15;
 }
 
 ::selection {
@@ -75,20 +88,49 @@ body {
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
-  border-radius: 3px;
+  border-radius: 2px;
 }
 
-.text-link {
+/* The one link style: accent text with a thin underline that darkens on hover. */
+.link {
+  color: var(--accent);
   text-decoration-line: underline;
-  text-decoration-color: var(--line-strong);
+  text-decoration-color: color-mix(in srgb, var(--accent) 35%, transparent);
   text-decoration-thickness: 1px;
-  text-underline-offset: 0.3em;
-  transition: text-decoration-color 150ms, color 150ms;
+  text-underline-offset: 0.22em;
+  transition: text-decoration-color 150ms;
 }
 
-.text-link:hover {
-  color: var(--ink);
+.link:hover {
   text-decoration-color: var(--accent);
+}
+
+/* Lists inside running text use ordinary bullets. */
+.prose-list {
+  list-style: disc;
+  padding-left: 1.2em;
+}
+
+.prose-list > li {
+  padding-left: 0.15em;
+}
+
+.prose-list > li + li {
+  margin-top: 0.55em;
+}
+
+.prose-list > li::marker {
+  color: var(--subtle);
+}
+
+/* Résumé bullets: ordinary discs, without the extra spacing running-text lists get. */
+.resume-bullets {
+  list-style: disc;
+  padding-left: 1.1em;
+}
+
+.resume-bullets > li::marker {
+  color: var(--subtle);
 }
 
 /*
@@ -107,22 +149,27 @@ body {
   margin-top: 3rem;
 }
 
-/* Printing (mainly the résumé page) always uses light colors, with darker gray text for paper. */
+/* Printing (mainly the résumé page) always uses light colors on white paper. */
 @media print {
-  :root {
+  :root,
+  :root[data-theme="dark"] {
     --bg: #ffffff;
     --surface: #ffffff;
-    --line: #d6d9d4;
-    --line-strong: #b9beb7;
-    --ink: #111413;
-    --muted: #3b423e;
-    --subtle: #555d59;
-    --accent: #047857;
+    --line: #d9d4c8;
+    --line-strong: #bdb6a6;
+    --ink: #161411;
+    --muted: #3d382f;
+    --subtle: #57514a;
+    --accent: #7d2214;
     color-scheme: light;
   }
 
   @page {
     margin: 0.55in 0.6in;
+  }
+
+  body {
+    font-size: 10.5pt;
   }
 
   h1,

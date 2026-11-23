@@ -30,7 +30,7 @@ export function Portrait({ className = "", sizes, priority = false, shape = "por
         loading={priority ? "eager" : "lazy"}
         fetchPriority={priority ? "high" : "auto"}
         decoding="async"
-        className={`${aspect} h-auto w-full rounded-md border border-line bg-raised object-cover ${className}`}
+        className={`${aspect} h-auto w-full rounded-sm bg-raised object-cover ${className}`}
       />
     </picture>
   );

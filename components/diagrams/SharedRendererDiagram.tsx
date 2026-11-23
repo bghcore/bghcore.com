@@ -39,20 +39,20 @@ function Convergence({
   detail: string;
 }) {
   return (
-    <div className="rounded-md border border-dashed border-line-strong p-4">
-      <p className="font-mono text-xs text-subtle">{kicker}</p>
+    <div className="rounded-sm border border-dashed border-line-strong p-4">
+      <p className="text-xs text-subtle">{kicker}</p>
       <ul className="mt-3 space-y-2">
         {sources.map((source) => (
-          <li key={source} className="rounded-md border border-line-strong bg-surface px-3 py-2 text-sm">
+          <li key={source} className="rounded-sm border border-line-strong bg-surface px-3 py-2 text-sm">
             {source}
           </li>
         ))}
       </ul>
       <div className="flex flex-col items-center py-2 text-center">
         <Icon name="arrow-down" className="size-4 text-accent" />
-        <span className="mt-1 font-mono text-xs text-subtle">converges to</span>
+        <span className="mt-1 text-xs text-subtle">converges to</span>
       </div>
-      <div className="rounded-md border border-accent bg-surface px-4 py-3">
+      <div className="rounded-sm border border-accent bg-surface px-4 py-3">
         <p className="text-sm font-semibold">{result}</p>
         <p className="mt-1 text-sm text-pretty text-muted">{detail}</p>
       </div>

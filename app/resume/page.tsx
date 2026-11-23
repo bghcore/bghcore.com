@@ -26,15 +26,15 @@ export default function ResumePage() {
   const resumeProjects = resumeProjectSlugs.flatMap((slug) => getProject(slug) ?? []);
 
   return (
-    <article className="mx-auto max-w-4xl px-4 pt-16 pb-24 sm:px-6 sm:pt-20 print:max-w-none print:p-0 print:text-[10.5pt] print:leading-snug">
+    <article className="mx-auto max-w-[54rem] px-5 pt-8 pb-20 sm:px-8 sm:pt-14 print:max-w-none print:p-0 print:text-[10.5pt] print:leading-snug">
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line pb-6 print:hidden">
-        <p className="font-mono text-xs text-accent">Résumé</p>
+        <p className="text-muted">Résumé</p>
         <div className="flex flex-wrap gap-3">
           {site.resumePath && (
             <a
               href={site.resumePath}
               download
-              className="inline-flex items-center gap-2 rounded-md bg-accent px-4 py-2.5 text-sm font-medium text-accent-ink transition-opacity hover:opacity-90"
+              className="inline-flex items-center gap-2 rounded-sm bg-accent px-4 py-2 text-sm font-medium text-accent-ink transition-opacity hover:opacity-90"
             >
               <Icon name="download" className="size-4" />
               Download PDF
@@ -45,7 +45,7 @@ export default function ResumePage() {
       </div>
 
       <header className="mt-10 print:mt-0">
-        <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl print:text-[22pt]">{site.name}</h1>
+        <h1 className="text-4xl sm:text-5xl print:text-[22pt]">{site.name}</h1>
         <p className="mt-3 text-lg font-medium print:mt-1 print:text-[12pt]">
           {site.specialization}
           <span className="font-normal text-muted"> · {site.specialties.join(" · ")}</span>
@@ -57,7 +57,7 @@ export default function ResumePage() {
           {contactItems.map((item) => (
             <li key={item.label}>
               {item.href ? (
-                <a href={item.href} className="text-link">
+                <a href={item.href} className="link">
                   {item.label}
                 </a>
               ) : (
@@ -81,7 +81,7 @@ export default function ResumePage() {
             }
             return (
               <section key={position.id} aria-labelledby={`resume-${position.id}`} className="break-inside-auto">
-                <h3 id={`resume-${position.id}`} className="text-lg font-semibold tracking-tight print:text-[11pt]">
+                <h3 id={`resume-${position.id}`} className="text-xl print:text-[12pt]">
                   {position.organization}
                   <span className="font-normal text-muted"> · {position.team}</span>
                 </h3>
@@ -101,10 +101,9 @@ export default function ResumePage() {
                         {group.period && <span className="font-normal text-subtle"> · {group.period}</span>}
                       </h4>
                     )}
-                    <ul className="mt-2 space-y-2 print:mt-1 print:space-y-0.5">
+                    <ul className="resume-bullets mt-2 space-y-2 print:mt-1 print:space-y-0.5">
                       {group.bullets.map((bullet) => (
-                        <li key={bullet.lead} className="relative pl-4 text-pretty print:break-inside-avoid">
-                          <span aria-hidden="true" className="absolute top-[0.7em] left-0 h-px w-2 bg-accent" />
+                        <li key={bullet.lead} className="text-pretty print:break-inside-avoid">
                           <BulletContent bullet={bullet} />
                         </li>
                       ))}
@@ -121,7 +120,7 @@ export default function ResumePage() {
         <ul className="space-y-3 print:space-y-0.5">
           {resumeProjects.map((project) => (
             <li key={project.slug} className="text-pretty print:break-inside-avoid">
-              <Link href={`/work/${project.slug}/`} className="font-semibold hover:text-accent">
+              <Link href={`/work/${project.slug}/`} className="font-semibold underline-offset-4 hover:text-accent hover:underline">
                 {project.name}
               </Link>
               <span className="text-muted"> · {projectGroupLabels[project.group]}.</span> {project.summary}
@@ -154,7 +153,7 @@ export default function ResumePage() {
 function ResumeSection({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <section className="mt-12 border-t border-line pt-6 print:mt-3 print:pt-2">
-      <h2 className="font-mono text-xs tracking-wide text-accent uppercase print:text-[8pt]">{title}</h2>
+      <h2 className="text-2xl print:text-[13pt]">{title}</h2>
       <div className="mt-4 print:mt-1.5">{children}</div>
     </section>
   );

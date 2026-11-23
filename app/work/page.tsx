@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { ContactSection } from "@/components/ContactSection";
 import { EngineeringExplorer } from "@/components/EngineeringExplorer";
-import { PageSection } from "@/components/PageSection";
 import { ProjectList } from "@/components/ProjectList";
 import { projectGroupLabels, projects, type ProjectGroup } from "@/lib/content/projects";
 
@@ -15,51 +14,46 @@ export const metadata: Metadata = {
 
 const groupOrder: ProjectGroup[] = ["microsoft", "independent", "open-source"];
 
-const groupIntros: Record<ProjectGroup, string> = {
-  microsoft: "From my public résumé and Microsoft's public repositories.",
-  independent: "Products I build and run on my own.",
-  "open-source": "Libraries on npm that anyone can use.",
-};
-
 export default function WorkPage() {
   return (
     <>
-      <div className="mx-auto max-w-6xl px-4 pt-16 pb-8 sm:px-6 sm:pt-24">
-        <p className="font-mono text-xs text-accent">Work</p>
-        <h1 className="mt-3 max-w-3xl text-4xl font-semibold tracking-tight text-balance sm:text-5xl">
-          Case studies and projects
-        </h1>
-        <p className="mt-5 max-w-2xl text-lg text-pretty text-muted">
-          Work at Microsoft on Dynamics 365 Contact Center and Azure, the products I build and run on my own, and
-          the libraries I publish on npm.
-        </p>
-      </div>
-      {groupOrder.map((group) => {
-        const groupProjects = projects.filter((project) => project.group === group);
-        if (groupProjects.length === 0) return null;
-        const headingId = `group-${group}`;
-        return (
-          <section key={group} aria-labelledby={headingId} className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
-            <div className="mb-6 flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
-              <h2 id={headingId} className="text-lg font-semibold">
+      <div className="mx-auto max-w-[68rem] px-5 sm:px-8">
+        <div className="pt-8 pb-10 sm:pt-14">
+          <h1 className="text-[clamp(2.15rem,5vw,3.25rem)] tracking-[-0.018em]">Work</h1>
+          <p className="mt-4 max-w-[40rem] text-lg text-pretty text-muted">
+            Work at Microsoft on Dynamics 365 Contact Center and Azure, the products I build and run on my own, and
+            the libraries I publish on npm.
+          </p>
+        </div>
+        {groupOrder.map((group) => {
+          const groupProjects = projects.filter((project) => project.group === group);
+          if (groupProjects.length === 0) return null;
+          const headingId = `group-${group}`;
+          return (
+            <section
+              key={group}
+              aria-labelledby={headingId}
+              className="grid gap-4 border-t border-line py-10 md:grid-cols-[10rem_1fr] md:gap-10"
+            >
+              <h2 id={headingId} className="text-2xl">
                 {projectGroupLabels[group]}
               </h2>
-              <p className="text-sm text-muted">{groupIntros[group]}</p>
-            </div>
-            <ProjectList projects={groupProjects} />
-          </section>
-        );
-      })}
-      <div className="h-12" />
-      <PageSection
-        id="explorer"
-        label="By area"
-        title="By discipline"
-        intro="Pick an area to see the contributions behind it and the project each one came from."
-        layout="stacked"
-      >
-        <EngineeringExplorer />
-      </PageSection>
+              <ProjectList projects={groupProjects} />
+            </section>
+          );
+        })}
+        <section id="explorer" aria-labelledby="explorer-heading" className="border-t border-line py-14">
+          <h2 id="explorer-heading" className="text-2xl">
+            By discipline
+          </h2>
+          <p className="mt-2 max-w-[40rem] text-pretty text-muted">
+            Pick an area to see the contributions behind it and the project each one came from.
+          </p>
+          <div className="mt-8">
+            <EngineeringExplorer />
+          </div>
+        </section>
+      </div>
       <ContactSection />
     </>
   );

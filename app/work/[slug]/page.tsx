@@ -5,13 +5,11 @@ import { ContactSection } from "@/components/ContactSection";
 import { CredentialBoundaryDiagram } from "@/components/diagrams/CredentialBoundaryDiagram";
 import { PortalRewriteDiagram } from "@/components/diagrams/PortalRewriteDiagram";
 import { SharedRendererDiagram } from "@/components/diagrams/SharedRendererDiagram";
-import { Icon } from "@/components/Icon";
 import { JsonLd } from "@/components/JsonLd";
 import { ProjectScreenshot } from "@/components/ProjectScreenshot";
 import {
   getProject,
   projects,
-  type Project,
   type ProjectDiagramId,
   type ProjectSection,
 } from "@/lib/content/projects";
@@ -49,6 +47,12 @@ function sectionAnchor(heading: string) {
   return heading.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 }
 
+/** "React, TypeScript, and Playwright" from a list of names. */
+function joinAsSentence(items: string[]) {
+  if (items.length < 3) return items.join(" and ");
+  return `${items.slice(0, -1).join(", ")}, and ${items[items.length - 1]}`;
+}
+
 export default async function ProjectPage({ params }: ProjectPageProps) {
   const { slug } = await params;
   const project = getProject(slug);
@@ -56,45 +60,33 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
   const index = projects.findIndex((candidate) => candidate.slug === project.slug);
   const nextProject = projects[(index + 1) % projects.length];
-  const sections = withTechnologiesSection(project);
+  // The stack is one sentence at the end of the page, so an empty "Technologies" section is dropped.
+  const sections = project.sections.filter((section) => section.heading !== "Technologies");
   const images = project.images ?? [];
 
   return (
     <>
       <JsonLd data={projectJsonLd(project)} />
-      <article>
-        <header className="mx-auto max-w-6xl px-4 pt-12 pb-14 sm:px-6 sm:pt-16">
-          <Link href="/work/" className="inline-flex items-center gap-1.5 text-sm text-muted hover:text-ink">
-            <Icon name="arrow-left" className="size-4" />
-            All work
-          </Link>
-          <div className="mt-10 grid gap-10 lg:grid-cols-12 lg:gap-8">
-            <div className="lg:col-span-8">
-              <p className="font-mono text-xs text-accent">
-                {project.format === "case-study" ? "Case study · " : ""}
-                {project.eyebrow}
-              </p>
-              <h1 className="mt-4 text-4xl font-semibold tracking-[-0.015em] text-balance sm:text-5xl">
-                {project.title}
-              </h1>
-              <p className="mt-6 max-w-2xl text-lg leading-relaxed text-pretty text-muted">{project.summary}</p>
-            </div>
-            <dl className="self-end border-t border-line text-sm lg:col-span-4">
-              <MetaRow label="Role" value={project.role} />
-              <MetaRow label="Period" value={project.period} />
-              <MetaRow label="Status" value={project.status} />
-            </dl>
-          </div>
+      <article className="mx-auto max-w-[68rem] px-5 sm:px-8">
+        <header className="max-w-[46rem] pt-6 pb-10 sm:pt-10">
+          <p className="text-sm">
+            <Link href="/work/" className="text-muted underline-offset-4 hover:text-ink hover:underline">
+              All work
+            </Link>
+          </p>
+          <h1 className="mt-6 text-[clamp(2.1rem,5vw,3.25rem)] leading-[1.08] tracking-[-0.018em] text-balance">
+            {project.title}
+          </h1>
+          <p className="mt-5 text-xl leading-relaxed text-pretty">{project.summary}</p>
+          <p className="mt-4 text-pretty text-muted">
+            {project.eyebrow}. {project.role}, {project.period}. {project.status}.
+          </p>
           {project.links.length > 0 && (
-            <ul className="mt-8 flex flex-wrap gap-2">
+            <ul className="mt-4 flex flex-wrap gap-x-6 gap-y-1">
               {project.links.map((link) => (
                 <li key={link.href}>
-                  <a
-                    href={link.href}
-                    className="inline-flex items-center gap-1.5 rounded-md border border-line-strong px-3 py-1.5 text-sm transition-colors hover:border-accent hover:text-accent"
-                  >
+                  <a href={link.href} className="link">
                     {link.label}
-                    <Icon name="arrow-up-right" className="size-3.5" />
                   </a>
                 </li>
               ))}
@@ -103,92 +95,58 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         </header>
 
         {images.length > 0 && (
-          <div className="mx-auto max-w-6xl px-4 pb-14 sm:px-6">
-            <div className={`grid gap-8 ${images.length > 1 ? "lg:grid-cols-2" : ""}`}>
-              {images.map((image, imageIndex) => (
-                <figure key={image.file}>
-                  <ProjectScreenshot
-                    image={image}
-                    sizes={images.length > 1 ? "(min-width: 1024px) 34rem, 100vw" : "(min-width: 1152px) 72rem, 100vw"}
-                    priority={imageIndex === 0}
-                  />
-                  {image.caption && (
-                    <figcaption className="mt-3 text-sm text-pretty text-muted">{image.caption}</figcaption>
-                  )}
-                </figure>
-              ))}
-            </div>
+          <div className={`grid gap-8 pb-12 ${images.length > 1 ? "lg:grid-cols-2" : "max-w-[56rem]"}`}>
+            {images.map((image, imageIndex) => (
+              <figure key={image.file}>
+                <ProjectScreenshot
+                  image={image}
+                  sizes={images.length > 1 ? "(min-width: 1024px) 32rem, 100vw" : "(min-width: 960px) 56rem, 100vw"}
+                  priority={imageIndex === 0}
+                />
+                {image.caption && <figcaption className="mt-2 text-sm text-pretty text-muted">{image.caption}</figcaption>}
+              </figure>
+            ))}
           </div>
         )}
 
-        <div className="border-t border-line">
-          <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-12 lg:gap-8">
-            <nav aria-label="On this page" className="hidden lg:col-span-3 lg:block">
-              <ol className="sticky top-24 space-y-2 text-sm">
-                {sections.map((section, sectionIndex) => (
-                  <li key={section.heading}>
-                    <a
-                      href={`#${sectionAnchor(section.heading)}`}
-                      className="flex gap-3 text-muted hover:text-ink"
-                    >
-                      <span aria-hidden="true" className="font-mono text-xs leading-5 text-subtle">
-                        {String(sectionIndex + 1).padStart(2, "0")}
-                      </span>
-                      {section.heading}
-                    </a>
-                  </li>
-                ))}
-              </ol>
-            </nav>
-
-            <div className="min-w-0 lg:col-span-8 lg:col-start-5">
-              <div className="space-y-14">
-                {sections.map((section, sectionIndex) => (
-                  <BodySection
-                    key={section.heading}
-                    section={section}
-                    number={sectionIndex + 1}
-                    technologies={section.heading === "Technologies" ? project.technologies : undefined}
-                  />
-                ))}
-              </div>
-              {project.note && <p className="mt-14 text-xs text-pretty text-subtle">{project.note}</p>}
+        <div className="grid gap-10 border-t border-line pt-10 pb-14 lg:grid-cols-[minmax(0,44rem)_12rem] lg:justify-between">
+          <div className="min-w-0">
+            <div className="space-y-11">
+              {sections.map((section) => (
+                <BodySection key={section.heading} section={section} />
+              ))}
             </div>
+            <p className="mt-11 text-pretty text-muted">Built with {joinAsSentence(project.technologies)}.</p>
+            {project.note && <p className="mt-4 text-sm text-pretty text-subtle">{project.note}</p>}
           </div>
+
+          <nav aria-label="On this page" className="hidden lg:block">
+            <ul className="sticky top-8 space-y-2 text-sm">
+              {sections.map((section) => (
+                <li key={section.heading}>
+                  <a
+                    href={`#${sectionAnchor(section.heading)}`}
+                    className="text-muted underline-offset-4 hover:text-ink hover:underline"
+                  >
+                    {section.heading}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
         </div>
 
-        <nav aria-label="Next project" className="border-t border-line">
-          <Link
-            href={`/work/${nextProject.slug}/`}
-            className="group mx-auto flex max-w-6xl items-center justify-between gap-6 px-4 py-10 sm:px-6"
-          >
-            <span>
-              <span className="block font-mono text-xs text-subtle">Next</span>
-              <span className="mt-1 block text-xl font-semibold tracking-tight group-hover:text-accent">
-                {nextProject.title}
-              </span>
-            </span>
-            <Icon name="arrow-right" className="size-5 shrink-0 text-subtle transition-colors group-hover:text-accent" />
-          </Link>
+        <nav aria-label="Next project" className="border-t border-line py-8">
+          <p className="text-sm text-subtle">Next</p>
+          <p className="mt-1 font-serif text-2xl font-medium tracking-tight">
+            <Link href={`/work/${nextProject.slug}/`} className="underline-offset-4 hover:text-accent hover:underline">
+              {nextProject.title}
+            </Link>
+          </p>
         </nav>
       </article>
       <ContactSection />
     </>
-  );
-}
-
-/** Every page ends with a Technologies section, filled from the project's technology list. */
-function withTechnologiesSection(project: Project): ProjectSection[] {
-  const hasTechnologies = project.sections.some((section) => section.heading === "Technologies");
-  return hasTechnologies ? project.sections : [...project.sections, { heading: "Technologies" }];
-}
-
-function MetaRow({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="grid grid-cols-[4.5rem_1fr] gap-3 border-b border-line py-3">
-      <dt className="font-mono text-xs leading-5 text-subtle">{label}</dt>
-      <dd className="text-pretty">{value}</dd>
-    </div>
   );
 }
 
@@ -203,33 +161,24 @@ function BulletText({ text }: { text: string }) {
   );
 }
 
-type BodySectionProps = {
-  section: ProjectSection;
-  number: number;
-  technologies?: string[];
-};
-
 const diagramComponents: Record<ProjectDiagramId, () => React.JSX.Element> = {
   "shared-renderer": SharedRendererDiagram,
   "credential-boundary": CredentialBoundaryDiagram,
   "portal-rewrite": PortalRewriteDiagram,
 };
 
-function BodySection({ section, number, technologies }: BodySectionProps) {
+function BodySection({ section }: { section: ProjectSection }) {
   const anchor = sectionAnchor(section.heading);
   const Diagram = section.diagram ? diagramComponents[section.diagram] : undefined;
   return (
     <section id={anchor} aria-labelledby={`${anchor}-heading`}>
-      <h2 id={`${anchor}-heading`} className="flex items-baseline gap-3 text-xl font-semibold tracking-tight">
-        <span aria-hidden="true" className="font-mono text-xs font-normal text-accent">
-          {String(number).padStart(2, "0")}
-        </span>
+      <h2 id={`${anchor}-heading`} className="text-2xl text-balance">
         {section.heading}
       </h2>
-      <div className="mt-4 space-y-4 leading-relaxed text-pretty">
+      <div className="mt-3 space-y-4 text-pretty">
         {section.paragraphs?.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
         {Diagram && (
-          <div className="py-2">
+          <div className="py-3">
             <Diagram />
           </div>
         )}
@@ -237,28 +186,18 @@ function BodySection({ section, number, technologies }: BodySectionProps) {
           <figure>
             <pre
               tabIndex={0}
-              className="overflow-x-auto rounded-md border border-line bg-raised px-4 py-3 font-mono text-[0.8125rem] leading-relaxed"
+              className="overflow-x-auto rounded-sm border border-line bg-surface px-4 py-3 font-mono text-[0.8125rem] leading-relaxed"
             >
               <code>{section.code.source}</code>
             </pre>
-            <figcaption className="mt-3 text-sm text-pretty text-muted">{section.code.caption}</figcaption>
+            <figcaption className="mt-2 text-sm text-pretty text-muted">{section.code.caption}</figcaption>
           </figure>
         )}
         {section.bullets && (
-          <ul className="space-y-3">
+          <ul className="prose-list">
             {section.bullets.map((bullet) => (
-              <li key={bullet} className="relative pl-5">
-                <span aria-hidden="true" className="absolute top-[0.75em] left-0 h-px w-2.5 bg-accent" />
+              <li key={bullet}>
                 <BulletText text={bullet} />
-              </li>
-            ))}
-          </ul>
-        )}
-        {technologies && (
-          <ul className="flex flex-wrap gap-2">
-            {technologies.map((technology) => (
-              <li key={technology} className="rounded-md border border-line px-2.5 py-1 font-mono text-xs text-muted">
-                {technology}
               </li>
             ))}
           </ul>

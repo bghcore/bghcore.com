@@ -2,68 +2,38 @@ import Link from "next/link";
 import { ProjectScreenshot } from "@/components/ProjectScreenshot";
 import type { Project } from "@/lib/content/projects";
 
-type ProjectListProps = {
-  projects: Project[];
-  /** Number the rows (used for the featured list on the home page). */
-  numbered?: boolean;
-};
-
-export function ProjectList({ projects, numbered = false }: ProjectListProps) {
+/** A plain list of projects: title, where and when, one or two lines, and a screenshot if there is one. */
+export function ProjectList({ projects }: { projects: Project[] }) {
   return (
-    <ol className="border-t border-line">
-      {projects.map((project, index) => (
-        <li key={project.slug} className="group relative border-b border-line">
-          <div className="grid gap-3 py-8 sm:grid-cols-12 sm:gap-6">
-            <div className="flex gap-4 sm:col-span-4 sm:flex-col sm:gap-1.5">
-              {numbered && (
-                <span aria-hidden="true" className="font-mono text-xs text-accent">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-              )}
-              <p className="font-mono text-xs text-subtle">{project.eyebrow}</p>
-              <p className="hidden font-mono text-xs text-subtle sm:block">{project.period}</p>
-            </div>
-            <div className="sm:col-span-8 lg:flex lg:items-start lg:gap-8">
-              <div className="min-w-0 flex-1">
-                <h3 className="text-xl font-semibold tracking-tight text-balance sm:text-2xl">
+    <ul className="divide-y divide-line">
+      {projects.map((project) => {
+        const image = project.images?.[0];
+        return (
+          <li key={project.slug} className="group relative py-7 first:pt-0">
+            <div className={image ? "grid gap-5 sm:grid-cols-[1fr_15rem] sm:gap-10" : ""}>
+              <div className="max-w-[40rem]">
+                <h3 className="text-2xl text-balance">
                   <Link
                     href={`/work/${project.slug}/`}
-                    className="after:absolute after:inset-0 after:content-[''] group-hover:text-accent"
+                    className="decoration-1 underline-offset-4 after:absolute after:inset-0 after:content-[''] group-hover:text-accent group-hover:underline"
                   >
                     {project.title}
                   </Link>
                 </h3>
-                <p className="mt-3 max-w-2xl text-pretty text-muted">{project.summary}</p>
-                <p className="mt-4 text-sm font-medium text-accent">
-                  {project.format === "case-study" ? "Read the case study" : "Project details"}
+                <p className="mt-1.5 text-sm text-subtle">
+                  {project.eyebrow}, {project.period}
                 </p>
+                <p className="mt-3 text-pretty text-muted">{project.summary}</p>
               </div>
-              {project.images?.[0] ? (
-                <div className="mt-6 max-w-sm lg:mt-1 lg:w-56 lg:shrink-0">
-                  <ProjectScreenshot
-                    image={project.images[0]}
-                    sizes="(min-width: 1024px) 14rem, (min-width: 640px) 24rem, 90vw"
-                    decorative
-                    className="transition-colors group-hover:border-line-strong"
-                  />
+              {image && (
+                <div className="max-w-sm sm:pt-1">
+                  <ProjectScreenshot image={image} sizes="(min-width: 640px) 15rem, 90vw" decorative />
                 </div>
-              ) : (
-                project.keyFact && <KeyFactTile fact={project.keyFact} />
               )}
             </div>
-          </div>
-        </li>
-      ))}
-    </ol>
-  );
-}
-
-/** Stands in for a screenshot where there can't be one (internal Microsoft products, libraries). */
-function KeyFactTile({ fact }: { fact: NonNullable<Project["keyFact"]> }) {
-  return (
-    <div className="mt-6 flex max-w-sm flex-col justify-between rounded-md border border-line bg-raised px-4 py-3 transition-colors group-hover:border-line-strong lg:mt-1 lg:aspect-video lg:w-56 lg:shrink-0">
-      <span className="font-mono text-2xl tracking-tight text-ink">{fact.value}</span>
-      <span className="mt-2 text-xs leading-snug text-pretty text-muted">{fact.label}</span>
-    </div>
+          </li>
+        );
+      })}
+    </ul>
   );
 }

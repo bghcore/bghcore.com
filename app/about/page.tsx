@@ -4,7 +4,6 @@ import { ContactSection } from "@/components/ContactSection";
 import { ExperienceTimeline } from "@/components/ExperienceTimeline";
 import { LessonList } from "@/components/LessonList";
 import { NewTerritory } from "@/components/NewTerritory";
-import { PageSection } from "@/components/PageSection";
 import { Portrait } from "@/components/Portrait";
 import { SkillsOverview } from "@/components/SkillsOverview";
 import { aboutParagraphs, interests, lessons, originStory } from "@/lib/content/about";
@@ -23,102 +22,93 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
-      <div className="mx-auto grid max-w-6xl gap-12 px-4 pt-16 pb-20 sm:px-6 sm:pt-24 lg:grid-cols-12 lg:gap-8">
-        <div className="lg:col-span-4">
-          <Portrait sizes="(min-width: 1024px) 20rem, (min-width: 640px) 16rem, 60vw" priority className="mb-10 max-w-64 lg:max-w-none" />
-          <p className="font-mono text-xs text-accent">About</p>
-          <h1 className="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">{site.name}</h1>
-          <dl className="mt-8 border-t border-line text-sm">
-            <div className="grid grid-cols-[5rem_1fr] gap-3 border-b border-line py-3">
-              <dt className="font-mono text-xs leading-5 text-subtle">Role</dt>
-              <dd>
-                {site.jobTitle}, {site.employer}
-              </dd>
-            </div>
-            <div className="grid grid-cols-[5rem_1fr] gap-3 border-b border-line py-3">
-              <dt className="font-mono text-xs leading-5 text-subtle">Team</dt>
-              <dd>{site.team}</dd>
-            </div>
-            <div className="grid grid-cols-[5rem_1fr] gap-3 border-b border-line py-3">
-              <dt className="font-mono text-xs leading-5 text-subtle">Based</dt>
-              <dd>{site.location}</dd>
-            </div>
-            <div className="grid grid-cols-[5rem_1fr] gap-3 border-b border-line py-3">
-              <dt className="font-mono text-xs leading-5 text-subtle">Education</dt>
-              <dd>
-                {education.degree}, {education.school}. {education.minor}.
-              </dd>
-            </div>
-          </dl>
-        </div>
-        <div className="lg:col-span-7 lg:col-start-6">
-          <div className="space-y-6 text-lg leading-relaxed text-pretty">
+      <div className="mx-auto grid max-w-[68rem] gap-10 px-5 pt-8 pb-16 sm:px-8 sm:pt-14 md:grid-cols-[15rem_1fr] md:gap-14">
+        <aside className="md:sticky md:top-8 md:self-start">
+          <Portrait sizes="(min-width: 768px) 15rem, 10rem" priority className="max-w-40 md:max-w-none" />
+          <ul className="mt-5 space-y-1 text-sm text-muted">
+            <li>
+              {site.jobTitle}, {site.employer}
+            </li>
+            <li>{site.team}</li>
+            <li>{site.location}</li>
+            <li>
+              {education.degree}, {education.school}. {education.minor}.
+            </li>
+          </ul>
+        </aside>
+
+        <div className="min-w-0">
+          <h1 className="text-[clamp(2.15rem,5vw,3.25rem)] tracking-[-0.018em]">About</h1>
+          <div className="mt-6 max-w-[42rem] space-y-5 text-lg text-pretty">
             {aboutParagraphs.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
             ))}
           </div>
-          <h2 id="story" className="mt-16 text-xl font-semibold tracking-tight">
-            How I got here
-          </h2>
-          <div className="mt-4 space-y-4 leading-relaxed text-pretty text-muted">
+
+          <AboutHeading id="story">How I got here</AboutHeading>
+          <div className="mt-4 max-w-[42rem] space-y-4 text-pretty">
             {originStory.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
             ))}
           </div>
-          <h2 className="mt-16 text-xl font-semibold tracking-tight">What I keep coming back to</h2>
-          <dl className="mt-6 divide-y divide-line border-y border-line">
-            {interests.map((interest) => (
-              <div key={interest.name} className="grid gap-1 py-4 sm:grid-cols-[13rem_1fr] sm:gap-6">
-                <dt className="font-medium">{interest.name}</dt>
-                <dd className="text-pretty text-muted">{interest.detail}</dd>
-              </div>
-            ))}
-          </dl>
-          <h2 id="lessons" className="mt-16 text-xl font-semibold tracking-tight">
-            Lessons I&apos;ve kept
-          </h2>
-          <p className="mt-2 text-pretty text-muted">Each of these started as something I got wrong.</p>
+
+          <AboutHeading id="lessons">Lessons I&apos;ve kept</AboutHeading>
+          <p className="mt-2 text-muted">Each of these started as something I got wrong.</p>
           <div className="mt-6">
             <LessonList lessons={lessons} />
           </div>
-          <p className="mt-10 text-muted">
+
+          <AboutHeading id="experience">Nine years on Microsoft products</AboutHeading>
+          <p className="mt-3 max-w-[42rem] text-pretty text-muted">
+            Mindtree hired me in December 2016 and placed me on Azure CXP as a vendor engineer in 2017. Microsoft
+            hired me full time in October 2018, and since January 2026 I&apos;ve been on Dynamics 365 Contact Center.
+          </p>
+          <div className="mt-8">
+            <ExperienceTimeline />
+          </div>
+
+          <AboutHeading id="new-territory">Codebases that were new to me this year</AboutHeading>
+          <p className="mt-3 max-w-[42rem] text-pretty text-muted">{throughputNote}</p>
+          <div className="mt-6">
+            <NewTerritory />
+          </div>
+
+          <AboutHeading id="skills">What I work in</AboutHeading>
+          <p className="mt-3 max-w-[42rem] text-pretty text-muted">
+            Grouped by area, and split between what I use at work and what I&apos;ve mainly used on my own projects.
+          </p>
+          <div className="mt-6">
+            <SkillsOverview />
+          </div>
+
+          <AboutHeading id="interests">What I keep coming back to</AboutHeading>
+          <dl className="mt-5 max-w-[42rem] space-y-3">
+            {interests.map((interest) => (
+              <div key={interest.name}>
+                <dt className="inline font-semibold">{interest.name}. </dt>
+                <dd className="inline text-pretty text-muted">{interest.detail}</dd>
+              </div>
+            ))}
+          </dl>
+
+          <p className="mt-12 max-w-[42rem]">
             The work behind all of this is on the{" "}
-            <Link href="/work/" className="text-link text-ink">
+            <Link href="/work/" className="link">
               work page
             </Link>
             .
           </p>
         </div>
       </div>
-
-      <PageSection
-        id="experience"
-        label="Experience"
-        title="Nine years on Microsoft products"
-        intro="Mindtree hired me in December 2016 and placed me on Azure CXP as a vendor engineer in 2017. Microsoft hired me full time in October 2018, and since January 2026 I've been on Dynamics 365 Contact Center."
-      >
-        <ExperienceTimeline />
-      </PageSection>
-
-      <PageSection
-        id="new-territory"
-        label="2026"
-        title="Codebases that were new to me this year"
-        intro={throughputNote}
-      >
-        <NewTerritory />
-      </PageSection>
-
-      <PageSection
-        id="skills"
-        label="Skills"
-        title="What I work in"
-        intro="Grouped by area, and split between what I use at work and what I've mainly used on my own projects."
-      >
-        <SkillsOverview />
-      </PageSection>
-
       <ContactSection />
     </>
+  );
+}
+
+function AboutHeading({ id, children }: { id: string; children: React.ReactNode }) {
+  return (
+    <h2 id={id} className="mt-14 border-t border-line pt-8 text-2xl">
+      {children}
+    </h2>
   );
 }

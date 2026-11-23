@@ -4,39 +4,22 @@ import { navigation, site } from "@/lib/site";
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-40 border-b border-line bg-bg/90 backdrop-blur-sm print:hidden">
-      <div className="mx-auto flex min-h-14 max-w-6xl flex-wrap items-center justify-between gap-x-3 gap-y-1 px-4 py-2 sm:h-14 sm:flex-nowrap sm:px-6 sm:py-0">
-        <Link href="/" className="flex items-baseline gap-2.5 text-sm">
-          <span className="font-semibold tracking-tight whitespace-nowrap">{site.name}</span>
-          <span className="hidden font-mono text-xs text-subtle lg:inline">{site.jobTitle}</span>
+    <header className="print:hidden">
+      <div className="mx-auto flex max-w-[68rem] flex-wrap items-center justify-between gap-x-6 gap-y-1 px-5 pt-5 pb-3 sm:px-8 sm:pt-7">
+        <Link href="/" className="font-serif text-xl font-medium tracking-tight whitespace-nowrap">
+          {site.name}
         </Link>
-        <nav aria-label="Main" className="flex items-center gap-1">
-          <ul className="hidden items-center md:flex">
+        <nav aria-label="Main" className="flex items-center gap-2">
+          <ul className="flex flex-wrap items-center gap-x-5 gap-y-1 text-[0.95rem]">
             {navigation.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className="rounded-md px-3 py-1.5 text-sm text-muted transition-colors hover:text-ink"
-                >
+              <li key={link.href} className={link.mobile ? "" : "hidden sm:list-item"}>
+                <Link href={link.href} className="text-muted underline-offset-4 hover:text-ink hover:underline">
                   {link.label}
                 </Link>
               </li>
             ))}
           </ul>
-          <ul className="flex items-center md:hidden">
-            {navigation
-              .filter((link) => link.mobile)
-              .map((link) => (
-                <li key={link.href}>
-                  <Link href={link.href} className="rounded-md px-2 py-1.5 text-sm text-muted hover:text-ink">
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-          </ul>
-          <span className="ml-1 sm:ml-2">
-            <ThemeToggle />
-          </span>
+          <ThemeToggle />
         </nav>
       </div>
     </header>

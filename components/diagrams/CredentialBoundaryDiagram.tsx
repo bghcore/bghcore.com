@@ -6,8 +6,8 @@ import { Icon } from "@/components/Icon";
 export function CredentialBoundaryDiagram() {
   return (
     <figure>
-      <div className="rounded-md border border-dashed border-line-strong p-4 sm:p-5">
-        <p className="font-mono text-xs text-subtle">Copilot Studio page</p>
+      <div className="rounded-sm border border-dashed border-line-strong p-4 sm:p-5">
+        <p className="text-xs text-subtle">Copilot Studio page</p>
         <div className="mt-3 grid items-stretch gap-2 sm:grid-cols-[1fr_8rem_1fr] sm:gap-3">
           <DiagramBox title="Host code" className="order-3 sm:order-none">
             <li>Owns the auth token</li>
@@ -16,7 +16,7 @@ export function CredentialBoundaryDiagram() {
           <div className="order-2 flex flex-col items-center justify-center py-1 text-center sm:order-none">
             <Icon name="arrow-up" className="size-4 text-accent sm:hidden" />
             <Icon name="arrow-right" className="hidden size-4 text-accent sm:block" />
-            <span className="mt-1 font-mono text-xs">MessagePort</span>
+            <span className="mt-1 text-xs">MessagePort</span>
             <span className="text-xs text-subtle">versioned, origin-checked</span>
           </div>
           <DiagramBox title="Live Chat Widget iframe" highlighted className="order-1 sm:order-none">
@@ -28,7 +28,7 @@ export function CredentialBoundaryDiagram() {
       <div className="grid sm:grid-cols-[1fr_8rem_1fr] sm:gap-3">
         <div className="flex flex-col items-center py-2 text-center sm:px-5">
           <Icon name="arrow-up-down" className="size-4 text-subtle" />
-          <span className="mt-1 font-mono text-xs text-subtle">WebSocket and SSE</span>
+          <span className="mt-1 text-xs text-subtle">WebSocket and SSE</span>
         </div>
       </div>
       <div className="grid sm:grid-cols-[1fr_8rem_1fr] sm:gap-3">
@@ -59,7 +59,7 @@ function DiagramBox({
 }) {
   return (
     <div
-      className={`rounded-md border bg-surface px-4 py-3 ${highlighted ? "border-accent" : "border-line-strong"} ${className}`}
+      className={`rounded-sm border bg-surface px-4 py-3 ${highlighted ? "border-accent" : "border-line-strong"} ${className}`}
     >
       <p className="text-sm font-semibold">{title}</p>
       <ul className="mt-1.5 space-y-0.5 text-sm text-muted">{children}</ul>

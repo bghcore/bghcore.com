@@ -8,7 +8,7 @@ type ThemeName = "light" | "dark";
 const themeChangeEvent = "themechange";
 
 function readTheme(): ThemeName {
-  return document.documentElement.dataset.theme === "light" ? "light" : "dark";
+  return document.documentElement.dataset.theme === "dark" ? "dark" : "light";
 }
 
 function subscribeToTheme(onChange: () => void) {
@@ -19,10 +19,11 @@ function subscribeToTheme(onChange: () => void) {
 export function ThemeToggle() {
   // Null during server render; the real theme is known only in the browser.
   const theme = useSyncExternalStore<ThemeName | null>(subscribeToTheme, readTheme, () => null);
-  const nextTheme: ThemeName = theme === "light" ? "dark" : "light";
+  const nextTheme: ThemeName = theme === "dark" ? "light" : "dark";
 
   function toggleTheme() {
-    document.documentElement.dataset.theme = nextTheme;
+    if (nextTheme === "dark") document.documentElement.dataset.theme = "dark";
+    else delete document.documentElement.dataset.theme;
     try {
       localStorage.setItem("theme", nextTheme);
     } catch {
@@ -36,11 +37,11 @@ export function ThemeToggle() {
       type="button"
       onClick={toggleTheme}
       aria-label={theme ? `Switch to ${nextTheme} theme` : "Toggle color theme"}
-      className="inline-flex size-9 items-center justify-center rounded-md border border-line text-muted transition-colors hover:border-line-strong hover:text-ink"
+      className="inline-flex size-9 items-center justify-center rounded-full text-muted transition-colors hover:bg-raised hover:text-ink"
     >
       {/* Both icons render on the server; CSS picks one so nothing flashes before hydration. */}
-      <Icon name="sun" className="size-4 light:hidden" />
-      <Icon name="moon" className="hidden size-4 light:block" />
+      <Icon name="moon" className="size-4 dark:hidden" />
+      <Icon name="sun" className="hidden size-4 dark:block" />
     </button>
   );
 }

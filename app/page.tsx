@@ -1,10 +1,8 @@
 import Link from "next/link";
 import { ContactSection } from "@/components/ContactSection";
-import { Icon } from "@/components/Icon";
 import { ImpactFigures } from "@/components/ImpactFigures";
 import { JsonLd } from "@/components/JsonLd";
 import { LessonList } from "@/components/LessonList";
-import { PageSection } from "@/components/PageSection";
 import { Portrait } from "@/components/Portrait";
 import { ProjectList } from "@/components/ProjectList";
 import { lessons, originStoryShort } from "@/lib/content/about";
@@ -19,140 +17,122 @@ export default function HomePage() {
   return (
     <>
       <JsonLd data={personJsonLd()} />
-      <Hero />
+      <div className="mx-auto max-w-[68rem] px-5 sm:px-8">
+        <Intro />
 
-      <PageSection
-        id="impact"
-        label="Impact"
-        title="Outcomes from production work"
-      >
-        <ImpactFigures />
-      </PageSection>
-
-      <PageSection
-        id="work"
-        label="Selected work"
-        title="Work"
-      >
-        <ProjectList projects={featuredProjects} numbered />
-        <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium">
-          <li>
-            <Link href="/work/" className="inline-flex items-center gap-1.5 text-accent hover:underline">
+        <section id="work" aria-labelledby="work-heading" className="border-t border-line py-14 sm:py-16">
+          <h2 id="work-heading" className="text-3xl">
+            Work
+          </h2>
+          <div className="mt-8">
+            <ProjectList projects={featuredProjects} />
+          </div>
+          <p className="mt-2 flex flex-wrap gap-x-6 gap-y-1 border-t border-line pt-6">
+            <Link href="/work/" className="link">
               All seven projects
-              <Icon name="arrow-right" className="size-3.5" />
             </Link>
-          </li>
-          <li>
-            <Link href="/about/#experience" className="text-accent hover:underline">
+            <Link href="/about/#experience" className="link">
               Experience and skills
             </Link>
-          </li>
-          <li>
-            <Link href="/resume/" className="text-accent hover:underline">
+            <Link href="/resume/" className="link">
               Résumé
             </Link>
-          </li>
-        </ul>
-      </PageSection>
+          </p>
+        </section>
 
-      <PageSection id="story" label="About" title="How I got here">
-        <div className="max-w-2xl space-y-4 text-lg leading-relaxed text-pretty">
-          {originStoryShort.map((paragraph) => (
-            <p key={paragraph}>{paragraph}</p>
-          ))}
-        </div>
-        <Link href="/about/#story" className="mt-6 inline-flex text-sm font-medium text-accent hover:underline">
-          The longer version
-        </Link>
+        {/* Side headings from here down, so the page doesn't repeat one section layout. */}
+        <section
+          id="impact"
+          aria-labelledby="impact-heading"
+          className="grid gap-6 border-t border-line py-14 sm:py-16 md:grid-cols-[14rem_1fr] md:gap-10"
+        >
+          <h2 id="impact-heading" className="text-2xl text-balance">
+            Outcomes from production work
+          </h2>
+          <ImpactFigures />
+        </section>
 
-        <h3 className="mt-14 text-xl font-semibold tracking-tight">Lessons I&apos;ve kept</h3>
-        <p className="mt-2 text-pretty text-muted">Each of these started as something I got wrong.</p>
-        <div className="mt-6">
-          <LessonList lessons={lessons.slice(0, 3)} />
-        </div>
-        <Link href="/about/#lessons" className="mt-8 inline-flex text-sm font-medium text-accent hover:underline">
-          All {lessons.length} lessons
-        </Link>
-      </PageSection>
+        <section
+          id="story"
+          aria-labelledby="story-heading"
+          className="grid gap-6 border-t border-line py-14 sm:py-16 md:grid-cols-[14rem_1fr] md:gap-10"
+        >
+          <h2 id="story-heading" className="text-2xl">
+            How I got here
+          </h2>
+          <div className="max-w-[42rem]">
+            <div className="space-y-4 text-lg text-pretty">
+              {originStoryShort.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
+            <p className="mt-5">
+              <Link href="/about/#story" className="link">
+                The longer version
+              </Link>
+            </p>
+          </div>
+        </section>
+
+        <section aria-labelledby="lessons-heading" className="border-t border-line py-14 sm:py-16">
+          <h2 id="lessons-heading" className="text-2xl">
+            Lessons I&apos;ve kept
+          </h2>
+          <p className="mt-2 text-muted">Each of these started as something I got wrong.</p>
+          <div className="mt-8">
+            <LessonList lessons={lessons.slice(0, 3)} layout="columns" />
+          </div>
+          <p className="mt-8">
+            <Link href="/about/#lessons" className="link">
+              The rest of the lessons
+            </Link>
+          </p>
+        </section>
+      </div>
 
       <ContactSection />
     </>
   );
 }
 
-function Hero() {
-  const facts = [
-    { label: "Title", value: `${site.jobTitle}, ${site.employer}` },
-    { label: "Focus", value: "React, TypeScript, full-stack architecture" },
-    { label: "Now", value: site.team },
-    { label: "Since", value: "Microsoft products since 2017, full time since 2018" },
-    { label: "Based", value: site.location },
-  ];
+function Intro() {
   const resumeHref = site.resumePath ?? "/resume/";
 
   return (
-    <section aria-labelledby="hero-heading" className="mx-auto max-w-6xl px-4 pt-16 pb-20 sm:px-6 sm:pt-24 sm:pb-28">
-      <div className="grid gap-10 lg:grid-cols-12 lg:gap-x-8 lg:gap-y-8">
-        {/* First in the DOM so phones see the photo before the headline; on desktop it tops the right column. */}
-        <div className="lg:col-span-4 lg:col-start-9 lg:row-start-1">
-          <Portrait
-            shape="square"
-            priority
-            sizes="(min-width: 1024px) 22rem, 9rem"
-            className="max-w-36 lg:max-w-none"
-          />
-        </div>
-        <div className="lg:col-span-8 lg:col-start-1 lg:row-span-2 lg:row-start-1 lg:self-center">
-          <p className="font-mono text-sm text-muted">{site.name}</p>
-          <h1
-            id="hero-heading"
-            className="mt-6 max-w-3xl text-[clamp(2rem,4.4vw,3.35rem)] leading-[1.08] font-semibold tracking-[-0.02em] text-balance"
-          >
-            {site.headline}
-          </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-pretty text-muted">{site.intro}</p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link
-              href="#work"
-              className="inline-flex items-center rounded-md bg-accent px-4 py-2.5 text-sm font-medium text-accent-ink transition-opacity hover:opacity-90"
-            >
-              View my work
-            </Link>
-            <a
-              href={resumeHref}
-              download={site.resumePath ? "" : undefined}
-              className="inline-flex items-center gap-2 rounded-md border border-line-strong px-4 py-2.5 text-sm font-medium transition-colors hover:border-accent"
-            >
-              <Icon name="download" className="size-4" />
-              Download résumé
-            </a>
-            <a
-              href={site.github}
-              className="inline-flex items-center rounded-md border border-line-strong px-4 py-2.5 text-sm font-medium transition-colors hover:border-accent"
-            >
-              GitHub
-            </a>
-            <a
-              href={site.linkedin}
-              className="inline-flex items-center rounded-md border border-line-strong px-4 py-2.5 text-sm font-medium transition-colors hover:border-accent"
-            >
-              LinkedIn
-            </a>
-          </div>
-          <p className="mt-4 text-sm">
-            <Link href="/work/dynamics-365-contact-center/" className="font-medium text-accent hover:underline">
-              Dynamics 365 Contact Center case study
-            </Link>
-          </p>
-        </div>
-        <dl className="border-t border-line text-sm lg:col-span-4 lg:col-start-9 lg:row-start-2 lg:self-start">
-          {facts.map((fact) => (
-            <div key={fact.label} className="grid grid-cols-[4.5rem_1fr] gap-3 border-b border-line py-3">
-              <dt className="font-mono text-xs leading-5 text-subtle">{fact.label}</dt>
-              <dd className="text-pretty">{fact.value}</dd>
-            </div>
-          ))}
-        </dl>
+    <section
+      aria-labelledby="intro-heading"
+      className="grid items-start gap-8 pt-8 pb-14 sm:pt-14 sm:pb-20 md:grid-cols-[1fr_15rem] md:gap-14"
+    >
+      {/* First in the DOM so phones see the photo before the headline; on desktop it sits to the right. */}
+      <div className="md:col-start-2 md:row-start-1 md:pt-2">
+        <Portrait priority sizes="(min-width: 768px) 15rem, 8rem" className="max-w-32 md:max-w-none" />
+      </div>
+      <div className="md:col-start-1 md:row-start-1">
+        <h1
+          id="intro-heading"
+          className="text-[clamp(2.15rem,5vw,3.4rem)] leading-[1.06] tracking-[-0.018em] text-pretty"
+        >
+          {site.headline}
+        </h1>
+        <p className="mt-6 max-w-[38rem] text-xl leading-relaxed text-pretty">{site.intro}</p>
+        <p className="mt-4 max-w-[38rem] text-pretty text-muted">
+          {site.jobTitle} at {site.employer}, on {site.team}. Microsoft products since 2017, full time since 2018.{" "}
+          {site.location}.
+        </p>
+        <p className="mt-6 flex flex-wrap gap-x-6 gap-y-1">
+          <a href={resumeHref} download={site.resumePath ? "" : undefined} className="link">
+            Résumé (PDF)
+          </a>
+          <a href={site.github} className="link">
+            GitHub
+          </a>
+          <a href={site.linkedin} className="link">
+            LinkedIn
+          </a>
+          <a href={`mailto:${site.email}`} className="link">
+            Email
+          </a>
+        </p>
       </div>
     </section>
   );

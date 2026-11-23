@@ -1,23 +1,22 @@
 import { impactFigures, impactNote } from "@/lib/content/experience";
 
+/** The figures read as sentences, each led by its number. */
 export function ImpactFigures() {
   const verifiedFigures = impactFigures.filter((figure) => figure.verified);
 
   return (
-    <div>
-      <dl className="grid border-t border-line sm:grid-cols-2">
+    <div className="max-w-[42rem]">
+      <ul className="space-y-5">
         {verifiedFigures.map((figure) => (
-          <div
-            key={figure.label}
-            className="flex flex-col border-b border-line py-6 sm:odd:border-r sm:odd:pr-6 sm:even:pl-6"
-          >
-            <dt className="order-2 mt-1 text-sm font-medium">{figure.label}</dt>
-            <dd className="order-1 font-mono text-3xl tracking-tight text-ink">{figure.value}</dd>
-            <dd className="order-3 mt-2 text-sm text-pretty text-muted">{figure.context}</dd>
-          </div>
+          <li key={figure.label} className="text-pretty">
+            <span className="font-serif text-xl font-medium">
+              {figure.value} {figure.label}.
+            </span>{" "}
+            <span className="text-muted">{figure.context}</span>
+          </li>
         ))}
-      </dl>
-      <p className="mt-4 max-w-3xl text-sm text-pretty text-muted">{impactNote}</p>
+      </ul>
+      <p className="mt-5 text-pretty text-muted">{impactNote}</p>
     </div>
   );
 }
