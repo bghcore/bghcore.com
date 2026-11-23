@@ -64,7 +64,7 @@ export const careerPositions: CareerPosition[] = [
     period: "2016 to 2018",
     roles: [{ title: "Software Engineer", period: "December 2016 to October 2018" }],
     summary:
-      "I joined Azure CXP as a vendor engineer and took ownership of the frontend of an internal app that tells Microsoft's Azure field teams when an outage affects their customers. That work is what got me hired at Microsoft full time in October 2018.",
+      "Mindtree hired me in December 2016 and, after its training program, placed me on Microsoft's Azure CXP team in 2017 as a vendor engineer. I took ownership of the frontend of an internal app that tells Microsoft's Azure field teams when an outage affects their customers. That work is what got me hired at Microsoft full time in October 2018.",
     highlights: [
       "Took the app from a pilot to a preview release, working through feedback from its first users.",
       "Rebuilt it in React and retired the AngularJS version, then set it up on a new web platform with routing, telemetry, an error boundary, and token refresh.",
@@ -98,7 +98,7 @@ export const impactFigures: ImpactFigure[] = [
     value: "13",
     label: "production regions",
     context:
-      "The Live Chat Widget integration ships on its own release pipeline to 13 production regions. That is the pipeline's reach, not a company-wide footprint.",
+      "The Live Chat Widget integration's own release pipeline ships to 13 production regions.",
     verified: true,
   },
   {

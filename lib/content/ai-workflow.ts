@@ -7,14 +7,14 @@ export type WorkflowItem = {
 };
 
 export const workflowIntro =
-  "I use AI coding agents to accelerate implementation while I own the architecture, the technical decisions, the testing strategy, and the production outcomes. Agents shorten the time it takes to get productive in an unfamiliar codebase. They do not sign off on the design.";
+  "I use AI coding agents to accelerate implementation while I own the architecture, the technical decisions, the testing strategy, and the production outcomes. Agents shorten the time it takes to get productive in an unfamiliar codebase.";
 
 /**
- * Throughput, kept off the impact grid on purpose. The count is already on the public site;
- * it is not a substitute for the product results above.
+ * Throughput, kept off the impact grid on purpose. The scope (one team, 10 months) is in the
+ * sentence itself, so it needs no caveat after it.
  */
 export const throughputNote =
-  "In 10 months on Dynamics 365 Contact Center I merged 500+ pull requests across three product organizations' codebases. That is throughput while working in unfamiliar code, not a measure of impact. The impact is the architecture, the reliability work, and the product outcomes above.";
+  "In 10 months on Dynamics 365 Contact Center I merged 500+ pull requests across three product organizations' codebases.";
 
 /** Code I hadn't worked in before and shipped in anyway, mostly within weeks. */
 export const newTerritory: WorkflowItem[] = [

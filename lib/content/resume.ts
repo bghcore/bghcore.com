@@ -27,7 +27,7 @@ export type ResumeSkillLine = {
 };
 
 export const resumeSummary =
-  "Full-stack software engineer specializing in React, TypeScript, enterprise SaaS, and AI-native engineering. Nine years on Microsoft products, the first year and a half as a vendor, now a Software Engineer II. I own customer-facing product architecture and the systems behind it: shared React platforms, SDKs, authentication boundaries, and production reliability. I use AI coding agents to accelerate implementation, and I keep the architecture, the tests, and the production outcomes.";
+  "Full-stack software engineer specializing in React, TypeScript, enterprise SaaS, and AI-native engineering. Nine years on Microsoft products, starting as a vendor through Mindtree in 2017, now a Software Engineer II. I own customer-facing product architecture and the systems behind it: shared React platforms, SDKs, authentication boundaries, and production reliability. I use AI coding agents to accelerate implementation, and I keep the architecture, the tests, and the production outcomes.";
 
 export const resumeSkills: ResumeSkillLine[] = [
   {

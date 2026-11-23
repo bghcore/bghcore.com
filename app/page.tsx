@@ -29,7 +29,7 @@ export default function HomePage() {
         id="impact"
         label="Impact"
         title="Outcomes from production work"
-        intro="Architecture, production reach, cost, and test coverage. Each number is one project and one period."
+        intro="Architecture, production reach, cost, and test coverage."
       >
         <ImpactFigures />
       </PageSection>
@@ -75,7 +75,7 @@ export default function HomePage() {
         id="experience"
         label="Experience"
         title="Nine years on Microsoft products"
-        intro="I joined Azure CXP as a vendor engineer in 2017 and was hired full time in October 2018. Since January 2026 I've been on Dynamics 365 Contact Center."
+        intro="Mindtree hired me in December 2016 and placed me on Azure CXP as a vendor engineer in 2017. Microsoft hired me full time in October 2018, and since January 2026 I've been on Dynamics 365 Contact Center."
       >
         <ExperienceTimeline />
       </PageSection>
@@ -119,7 +119,7 @@ export default function HomePage() {
 
 function Hero() {
   const facts = [
-    { label: "Title", value: `${site.jobTitle}, ${site.employer}` },
+    { label: "Title", value: `${site.displayTitle}, ${site.employer}` },
     { label: "Focus", value: "React, TypeScript, full-stack architecture" },
     { label: "Now", value: site.team },
     { label: "Since", value: "Microsoft products since 2017, full time since 2018" },

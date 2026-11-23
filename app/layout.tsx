@@ -9,7 +9,7 @@ import "./globals.css";
 const plexSans = IBM_Plex_Sans({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-plex-sans", display: "swap" });
 const plexMono = IBM_Plex_Mono({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-plex-mono", display: "swap" });
 
-const defaultTitle = `${site.name} | ${site.jobTitle} · React and TypeScript`;
+const defaultTitle = `${site.name} | ${site.displayTitle} at ${site.employer} · React and TypeScript`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),

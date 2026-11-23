@@ -5,7 +5,10 @@ export const site = {
   name: "Bradley Hanson",
   firstName: "Bradley",
   lastName: "Hanson",
+  /** Exact HR title. Shown on the résumé page; the experience timeline keeps its own copies. */
   jobTitle: "Software Engineer II",
+  /** How the title reads everywhere else: page titles, social cards, structured data, the hero. */
+  displayTitle: "Software Engineer",
   employer: "Microsoft",
   team: "Dynamics 365 Contact Center",
   location: "Greater Seattle Area",
@@ -35,7 +38,7 @@ export const site = {
   intro:
     "I'm a software engineer at Microsoft specializing in React, TypeScript, and full-stack architecture for enterprise SaaS. I build customer-facing products and the platforms behind them, and I use AI-native workflows to move faster without giving up the architecture, the tests, or what ships to production.",
   description:
-    "Bradley Hanson is a Software Engineer II at Microsoft in the Greater Seattle Area. He builds enterprise products end to end in React and TypeScript, from customer-facing interfaces and SDKs to the services behind them.",
+    "Bradley Hanson is a software engineer at Microsoft in the Greater Seattle Area. He builds enterprise products end to end in React and TypeScript, from customer-facing interfaces and SDKs to the services behind them.",
   /**
    * Public résumé PDF in /public, generated from /resume/ with no phone number.
    * Regenerate it with `pnpm resume:pdf` after résumé copy changes.

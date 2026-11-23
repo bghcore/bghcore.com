@@ -8,6 +8,6 @@ export function GET() {
   return renderOgImage({
     eyebrow: "bghcore.com",
     title: site.cardTitle,
-    footer: `${site.jobTitle}, ${site.employer} · React and TypeScript`,
+    footer: `${site.displayTitle}, ${site.employer} · React and TypeScript`,
   });
 }

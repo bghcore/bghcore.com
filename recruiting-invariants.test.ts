@@ -23,6 +23,8 @@ const publicCopy = JSON.stringify({
 
 test("official title stays Software Engineer II", () => {
   assert.equal(site.jobTitle, "Software Engineer II");
+  assert.equal(site.displayTitle, "Software Engineer");
+  assert.doesNotMatch(publicCopy, /\bSenior\b/);
   assert.deepEqual(
     careerPositions.flatMap((position) => position.roles.map((role) => role.title)),
     ["Software Engineer II", "Software Engineer II", "Software Engineer", "Software Engineer"],
@@ -47,16 +49,16 @@ test("impact figures stay scoped to one project each", () => {
   );
   const regions = impactFigures.find((figure) => figure.value === "13");
   assert.ok(regions);
-  assert.match(regions.context, /pipeline/i);
-  assert.match(regions.context, /not a company-wide footprint/);
+  assert.match(regions.context, /integration's own release pipeline/);
   assert.match(impactNote, /4,000/);
   assert.match(impactNote, /six weeks/);
 });
 
-test("AI throughput is secondary and not treated as impact", () => {
+test("AI throughput is secondary and scoped to one team and period", () => {
   assert.match(workflowIntro, /own the architecture/i);
   assert.match(throughputNote, /500\+/);
-  assert.match(throughputNote, /not a measure of impact/);
+  assert.match(throughputNote, /In 10 months on Dynamics 365 Contact Center/);
+  assert.equal(impactFigures.some((figure) => /500\+|pull request/i.test(JSON.stringify(figure))), false);
 });
 
 test("hiring managers can open the Contact Center case study in one click", () => {
