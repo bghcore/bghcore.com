@@ -126,6 +126,10 @@ export const projects: Project[] = [
       { label: "Live Chat Widget on GitHub", href: "https://github.com/microsoft/omnichannel-chat-widget" },
       { label: "Chat SDK on GitHub", href: "https://github.com/microsoft/omnichannel-chat-sdk" },
       {
+        label: "Ignite 2026 session: Microsoft Contact Center Intelligence",
+        href: "https://ignite.microsoft.com/en-US/sessions/BRK381",
+      },
+      {
         label: "My merged PRs in Microsoft's public repos",
         href: "https://github.com/search?q=org%3Amicrosoft+author%3Abghcore+is%3Apr+is%3Amerged&type=pullrequests",
       },
