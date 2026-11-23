@@ -146,7 +146,7 @@ export const projects: Project[] = [
       tradeoff:
         "Preserving unrecognized fields is less strict than rejecting them. It is what lets three products on different release schedules share one configuration without erasing each other's settings. Converging the renderers started with a behavior-preserving rename, then a stack of reviewable pull requests, because customers were already running the shipping widget.",
       outcomes: [
-        "The integration reached public preview in October 2026. Makers test agents in the same chat UI their customers see.",
+        "The integration reached public preview in October 2026 and is now generally available. Makers test agents in the same chat UI their customers see.",
         "A partial save in one product no longer erases another product's settings.",
         "Two products share one renderer, and CI stops either one from reimplementing shared behavior.",
         "A failed background write in the messaging service no longer stops a chat from starting.",
@@ -157,7 +157,7 @@ export const projects: Project[] = [
         heading: "Overview",
         paragraphs: [
           "The Live Chat Widget is the chat window businesses put on their websites to talk with customers through Dynamics 365 Contact Center. Copilot Studio is where makers build the AI agents that answer in that window.",
-          "In 2026 I built the production widget into Copilot Studio's agent test chat, so a maker tests an agent in the same chat UI their customers will see. It reached public preview in October 2026.",
+          "In 2026 I built the production widget into Copilot Studio's agent test chat, so a maker tests an agent in the same chat UI their customers will see. It reached public preview in October 2026 and is now generally available.",
         ],
       },
       {

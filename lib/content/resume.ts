@@ -67,7 +67,7 @@ export const resumePositions: ResumePosition[] = [
           {
             lead: "Built the production chat widget into Microsoft Copilot Studio's agent test chat,",
             detail:
-              "taking it from an empty repository to CDN deployment in six weeks: new React packages, a TypeScript transport SDK for the orchestration service's WebSocket and SSE protocol (reverse-engineered with a local simulator), and an independent release pipeline routing to 13 production regions. It reached public preview in October 2026, and I added session telemetry on both sides of the iframe to close the gaps the first weeks of traffic exposed.",
+              "taking it from an empty repository to CDN deployment in six weeks: new React packages, a TypeScript transport SDK for the orchestration service's WebSocket and SSE protocol (reverse-engineered with a local simulator), and an independent release pipeline routing to 13 production regions. It reached public preview in October 2026 and is now generally available. I added session telemetry on both sides of the iframe to close the gaps the first weeks of traffic exposed.",
           },
           {
             lead: "Designed the embed's security boundary on both sides of two repositories.",
