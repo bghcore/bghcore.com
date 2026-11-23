@@ -7,6 +7,13 @@
 export const aboutLead =
   "I'm a full-stack software engineer in the Seattle area. I've worked on Microsoft products since 2017. I started as a vendor engineer through Mindtree, took ownership of an internal app's frontend, and that work got me hired at Microsoft full time in October 2018. Today I'm on Dynamics 365 Contact Center, working on the Live Chat Widget that businesses put on their websites and its integration into Copilot Studio.";
 
+/**
+ * The same facts in the third person, so the paragraph can be quoted as it stands. It is also the
+ * summary at the top of /llms.txt. Keep it to what the rest of the site says.
+ */
+export const aboutFacts =
+  "Bradley Hanson is a Software Engineer II at Microsoft, on the Dynamics 365 Contact Center team, and lives in the Greater Seattle Area. He works mainly in React and TypeScript, on customer-facing interfaces, SDKs, and the C#/.NET services behind them. On his own he builds The Sub Delta, Civic Maps, and Formosaic, and publishes three open-source TypeScript libraries for SoundCloud.";
+
 export const aboutParagraphs = [
   aboutLead,
   "I've always liked how fast frontend moves, and I work across the stack. I joined Dynamics 365 Contact Center in January 2026 and was soon shipping in code I'd never seen: Copilot Studio's monorepo, the admin center's older React stack, and C# services I hadn't worked in before. I build with AI coding agents every day, and I've put real time into the rule files, tests, and release gates that keep that work reviewable. When I moved on from the agent desktop, the larger team that took it over kept building on that foundation.",

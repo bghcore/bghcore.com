@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { existsSync, readFileSync } from "node:fs";
 import test from "node:test";
-import { aboutParagraphs } from "./lib/content/about";
+import { aboutFacts, aboutParagraphs } from "./lib/content/about";
 import { newTerritory, throughputNote } from "./lib/content/new-territory";
 import { careerPositions, impactFigures, impactNote } from "./lib/content/experience";
 import { getFeaturedProjects, getProject, projects } from "./lib/content/projects";
@@ -19,10 +19,13 @@ const publicCopy = JSON.stringify({
   careerPositions,
   projects,
   aboutParagraphs,
+  aboutFacts,
 });
 
 test("official title stays Software Engineer II", () => {
   assert.equal(site.jobTitle, "Software Engineer II");
+  assert.match(aboutFacts, /Software Engineer II at Microsoft/);
+  assert.match(aboutFacts, /Greater Seattle Area/);
   assert.doesNotMatch(publicCopy, /\bSenior\b/);
   assert.deepEqual(
     careerPositions.flatMap((position) => position.roles.map((role) => role.title)),

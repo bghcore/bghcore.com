@@ -8,7 +8,7 @@ import { NewTerritory } from "@/components/NewTerritory";
 import { PageSection } from "@/components/PageSection";
 import { Portrait } from "@/components/Portrait";
 import { SkillsOverview } from "@/components/SkillsOverview";
-import { aboutParagraphs, interests, lessons, originStory } from "@/lib/content/about";
+import { aboutFacts, aboutParagraphs, interests, lessons, originStory } from "@/lib/content/about";
 import { education } from "@/lib/content/experience";
 import { throughputNote } from "@/lib/content/new-territory";
 import { site } from "@/lib/site";
@@ -84,6 +84,10 @@ export default function AboutPage() {
           <div className="mt-6">
             <LessonList lessons={lessons} />
           </div>
+          <h2 id="in-brief" className="mt-16 text-xl font-semibold tracking-tight">
+            In brief
+          </h2>
+          <p className="mt-4 text-pretty text-muted">{aboutFacts}</p>
           <p className="mt-10 text-muted">
             The work behind all of this is on the{" "}
             <Link href="/work/" className="text-link text-ink">
