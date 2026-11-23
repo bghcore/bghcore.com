@@ -15,7 +15,7 @@ export function personJsonLd() {
     url: site.url,
     image: absoluteUrl(site.portrait.src),
     email: `mailto:${site.email}`,
-    jobTitle: site.displayTitle,
+    jobTitle: site.jobTitle,
     worksFor: { "@type": "Organization", name: site.employer, url: "https://www.microsoft.com" },
     alumniOf: { "@type": "CollegeOrUniversity", name: education.school },
     homeLocation: {

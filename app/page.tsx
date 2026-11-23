@@ -119,7 +119,7 @@ export default function HomePage() {
 
 function Hero() {
   const facts = [
-    { label: "Title", value: `${site.displayTitle}, ${site.employer}` },
+    { label: "Title", value: `${site.jobTitle}, ${site.employer}` },
     { label: "Focus", value: "React, TypeScript, full-stack architecture" },
     { label: "Now", value: site.team },
     { label: "Since", value: "Microsoft products since 2017, full time since 2018" },

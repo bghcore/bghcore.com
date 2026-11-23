@@ -8,9 +8,7 @@ export function SiteHeader() {
       <div className="mx-auto flex min-h-14 max-w-6xl flex-wrap items-center justify-between gap-x-3 gap-y-1 px-4 py-2 sm:h-14 sm:flex-nowrap sm:px-6 sm:py-0">
         <Link href="/" className="flex items-baseline gap-2.5 text-sm">
           <span className="font-semibold tracking-tight whitespace-nowrap">{site.name}</span>
-          <span className="hidden font-mono text-xs text-subtle lg:inline">
-            {site.displayTitle}, {site.employer}
-          </span>
+          <span className="hidden font-mono text-xs text-subtle lg:inline">{site.jobTitle}</span>
         </Link>
         <nav aria-label="Main" className="flex items-center gap-1">
           <ul className="hidden items-center md:flex">

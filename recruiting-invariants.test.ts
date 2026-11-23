@@ -23,7 +23,6 @@ const publicCopy = JSON.stringify({
 
 test("official title stays Software Engineer II", () => {
   assert.equal(site.jobTitle, "Software Engineer II");
-  assert.equal(site.displayTitle, "Software Engineer");
   assert.doesNotMatch(publicCopy, /\bSenior\b/);
   assert.deepEqual(
     careerPositions.flatMap((position) => position.roles.map((role) => role.title)),

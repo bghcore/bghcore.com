@@ -26,7 +26,7 @@ export default function AboutPage() {
             <div className="grid grid-cols-[5rem_1fr] gap-3 border-b border-line py-3">
               <dt className="font-mono text-xs leading-5 text-subtle">Role</dt>
               <dd>
-                {site.displayTitle}, {site.employer}
+                {site.jobTitle}, {site.employer}
               </dd>
             </div>
             <div className="grid grid-cols-[5rem_1fr] gap-3 border-b border-line py-3">
