@@ -10,7 +10,7 @@ const personRef = { "@id": personId };
 
 /**
  * Sites I own and run, taken from each project's first link so the URLs can't drift from the
- * project pages.
+ * project pages. The wedding site is left out on purpose.
  */
 const ownedSites = ["formosaic", "the-sub-delta", "civic-maps"].flatMap(
   (slug) => getProject(slug)?.links[0]?.href ?? [],

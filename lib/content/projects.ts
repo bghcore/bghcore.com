@@ -562,6 +562,72 @@ const streams = await sc.tracks.getStreams(123456);`,
       },
     ],
   },
+  {
+    slug: "wedding-website",
+    name: "Wedding website and RSVP",
+    title: "A wedding website with its own RSVP system",
+    group: "independent",
+    eyebrow: "Independent · Personal",
+    summary:
+      "The website for my wedding in July 2026: our story, the schedule, travel, and an RSVP flow built around invitation codes, plus a separate admin app to track who was coming. It's an archive now, with demo data in place of real guests.",
+    period: "2025 to 2026",
+    updated: "2026-11-01",
+    role: "Sole developer",
+    status: "Archived, with a working demo",
+    format: "project",
+    featured: false,
+    domains: ["frontend", "full-stack"],
+    technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "MDX", "Azure Cosmos DB", "Open-Meteo API", "Python", "Vercel"],
+    links: [
+      { label: "bradleyandmakinna.com", href: "https://www.bradleyandmakinna.com" },
+      { label: "RSVP admin demo", href: "https://brad-makinna-wedding-rsvp.vercel.app/rsvps" },
+    ],
+    images: [
+      {
+        file: "wedding",
+        alt: "The wedding website home page with the names Bradley and MaKinna Hanson over a photo by the water",
+        caption: "bradleyandmakinna.com, now kept as an archive of the day.",
+      },
+      {
+        file: "wedding-rsvp",
+        alt: "The RSVP admin dashboard showing guest lists, RSVP counts, and attending and pending parties, filled with fictional demo guests",
+        caption: "The RSVP admin app. Every guest shown here is fictional demo data.",
+      },
+    ],
+    sections: [
+      {
+        heading: "Overview",
+        paragraphs: [
+          "MaKinna and I got married on July 11, 2026. I built our wedding website myself, mostly because I wanted RSVPs to match how our guest list actually worked: households, plus-ones, and more than one guest list.",
+        ],
+      },
+      {
+        heading: "What guests could do",
+        bullets: [
+          "Find their invitation with a six-character code and answer for everyone in their party at once.",
+          "Add dietary notes and song requests with the RSVP.",
+          "Read our story, the schedule, travel details, and an FAQ, with a countdown and an hourly forecast for the afternoon of the wedding.",
+        ],
+      },
+      {
+        heading: "How it's built",
+        bullets: [
+          "Guest site: Next.js App Router with Tailwind CSS and MDX content. RSVPs went through API routes into Azure Cosmos DB.",
+          "Admin app: a separate Next.js app that grouped parties by guest list, split who had answered from who hadn't, and summarized dietary restrictions.",
+          "Song requests: they fed a songs page, and after RSVPs closed a small Python script matched each request to a Spotify track.",
+        ],
+      },
+      {
+        heading: "Archiving it",
+        paragraphs: [
+          "After the wedding I didn't want guests' names and answers sitting online. A one-off script exported the RSVP data to a private local backup and then emptied the database. Both apps now run on fictional demo data with no database at all, so the RSVP flow still works for anyone who tries it and no real guest appears anywhere.",
+        ],
+      },
+      {
+        heading: "Technologies",
+      },
+    ],
+  },
 ];
 
 export function getProject(slug: string) {
